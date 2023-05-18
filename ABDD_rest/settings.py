@@ -26,31 +26,22 @@ SECRET_KEY = 'django-insecure--0s*0q6!omfo5pbb85**%weub#i2x24&v2=nnase1-m4q@d+8w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['a18b-213-255-147-31.ngrok-free.app','localhost']
+ALLOWED_HOSTS = ['*']
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = False
-CORS_ORIGIN_ALLOW_ALL = True
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ],
 
-
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://localhost:7000"
-    "a18b-213-255-147-31.ngrok-free.app",
-    "https://9062-41-190-3-225.ngrok-free.app",
-    "https://30b4-213-255-147-146.ngrok-free.app"
+'DEFAULT_AUTHENTICATION_CLASSES': [
+    'rest_framework_simplejwt.authentication.JWTAuthentication',
 ]
 
-from corsheaders.defaults import default_headers
+}
 
-CORS_ALLOW_HEADERS = default_headers + (
-    'Access-Control-Allow-Origin', 'Content-Type', 'Origin', 'Accept'
-)
+CSRF_TRUSTED_ORIGINS = ['https://mep-backend2-production.up.railway.app']
+CORS_ALLOW_ALL_ORIGINS = True
 
-# CORS_EXPOSE_HEADERS = [
-#     "Access-Control-Allow-Origin",
-# ]
 
 # Application definition
 
@@ -65,17 +56,20 @@ INSTALLED_APPS = [
     'base',
     'web_base',
     'rest_framework',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
 ]
 
 
@@ -122,6 +116,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
