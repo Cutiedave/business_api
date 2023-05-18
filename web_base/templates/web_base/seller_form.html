@@ -1,0 +1,507 @@
+{% extends 'main.html'%}
+{% block content%}
+{% load static %}
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+     form, input, select, textarea, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #bb1b1b;
+      line-height: 22px;
+      }
+
+      /* h1 {
+      position: absolute;
+      margin: 0;
+      font-size: 32px;
+      color: #fff;
+      z-index: 2;
+      } */
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      position: absolute;
+      top: 100px;
+      /* margin-top: 800px; */
+      padding: 20px;
+      }
+      form {
+      width: 70%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 30px 0 #fdfbfc; 
+      }
+      .banner {
+      position: relative;
+      height: 210px;
+      background-image: url("/static/img/banner.png");  
+      background-size: contain;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.5); 
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      p.top-info {
+      margin: 10px 0;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      textarea {
+      width: calc(100% - 12px);
+      padding: 5px;
+      }
+      .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+      color: #ca1231;
+      }
+      .item input:hover, .item select:hover, .item textarea:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 8px 0 #c00e26;
+      color: #c52152;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      }
+      .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      font-size: 20px;
+      color: #a9a9a9;
+      }
+      .item i {
+      right: 2%;
+      top: 30px;
+      z-index: 1;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+      right: 1%;
+      z-index: 2;
+      opacity: 0;
+      cursor: pointer;
+      }
+      input[type=radio] {
+      width: 0;
+      visibility: hidden;
+      }
+      label.radio {
+      position: relative;
+      display: inline-block;
+      margin: 5px 20px 25px 0;
+      cursor: pointer;
+      }
+      .question span {
+      margin-left: 30px;
+      }
+      label.radio:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 2px solid #9c1229;
+      }
+      label.radio:after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 4px;
+      top: 6px;
+      left: 5px;
+      background: transparent;
+      border: 3px solid #be1a4b;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      opacity: 0;
+      }
+      input[type=radio]:checked + label:after {
+      opacity: 1;
+      }
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px; 
+      background: #ce1d3b;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background: #bb1547;
+      }
+      @media (min-width: 568px) {
+      .name-item, .city-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .name-item input, .city-item input {
+      width: calc(50% - 20px);
+      }
+      .city-item select {
+      width: calc(50% - 8px);
+      }
+      }
+    </style>
+
+
+    <div class="testbox">
+      <form action="" action="" method='post'>
+        {% csrf_token %}
+        {% if messages %}
+        {% for message in messages%}
+        {{ message }}
+        {% endfor %}
+        {% endif %}
+        <div class="banner">
+          <h1>seller information Form</h1>
+        </div>
+        <div class="item">
+          <p>Name</p>`
+          <div class="name-item">
+            <input type="text" name="First" placeholder="First" required/>
+            <input type="text" name="Last" placeholder="Last" required/>
+          </div>
+        </div>
+        <div class="item">
+          <p>Phone Number</p>
+          <input type="number" name="phone_number" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="item">
+          <p>Work Email</p>
+          <input type="email" name="email" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="item">
+          <p>Company Name</p>
+          <input type="text" name="company name" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="item">
+          <p>What is your position/title?</p>
+          <input type="text" name="position" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+
+
+        <h2>Tell us a little about your ideal prospect</h2>
+        <div class="question">
+          <p>Please select your ideal lead's management level</p>
+          <div class="question-answer">
+            <input type="radio" value="owner" id="radio_1" name="management_level"/>
+            <label for="radio_1" class="radio"><span>owner</span></label>
+
+            <input type="radio" value="Partner" id="radio_2" name="management_level" />
+            <label for="radio_2" class="radio"><span>Partner</span></label>
+
+            <input type="radio" value="cxo" id="radio_3" name="management_level" />
+            <label for="radio_3" class="radio"><span>cxo</span></label>
+
+            <input type="radio" value="VP" id="radio_4" name="management_level" />
+            <label for="radio_4" class="radio"><span>VP</span></label>
+
+            <input type="radio" value="Director" id="radio_5" name="management_level" />
+            <label for="radio_5" class="radio"><span>Director</span></label>
+
+            <input type="radio" value="Manager" id="radio_6" name="management_level" />
+            <label for="radio_6" class="radio"><span>Manager</span></label>
+
+            <input type="radio" value="Senior" id="radio_7" name="management_level" />
+            <label for="radio_7" class="radio"><span>Senior</span></label>
+
+            <input type="radio" value="Entry" id="radio_8" name="management_level" />
+            <label for="radio_8" class="radio"><span>Entry</span></label>
+
+            <input type="radio" value="Training" id="radio_9" name="management_level" />
+            <label for="radio_9" class="radio"><span>Training</span></label>
+
+            <input type="radio" value="Unpaid" id="radio_10" name="management_level" />
+            <label for="radio_10" class="radio"><span>Unpaid</span></label>
+          </div>
+        </div>
+        <div class="question">
+          <p> Please select your ideal lead's role </p>
+          <div class="question-answer">
+            <input type="radio" value="customer service" id="radio_11" name="lead_role"/>
+            <label for="radio_11" class="radio"><span>customer service</span></label>
+
+            <input type="radio" value="Design" id="radio_12" name="lead_role" />
+            <label for="radio_12" class="radio"><span>Design</span></label>
+
+            <input type="radio" value="Education" id="radio_13" name="lead_role" />
+            <label for="radio_13" class="radio"><span>Education</span></label>
+
+            <input type="radio" value="Engineering" id="radio_14" name="lead_role" />
+            <label for="radio_14" class="radio"><span>Engineering</span></label>
+
+            <input type="radio" value="Finance" id="radio_15" name="lead_role" />
+            <label for="radio_15" class="radio"><span>Finance</span></label>
+
+            <input type="radio" value="Health" id="radio_16" name="lead_role" />
+            <label for="radio_16" class="radio"><span>Health</span></label>
+
+            <input type="radio" value="Human resources" id="radio_17" name="lead_role" />
+            <label for="radio_17" class="radio"><span>Human resources</span></label>
+
+            <input type="radio" value="Legal" id="radio_18" name="lead_role" />
+            <label for="radio_18" class="radio"><span>Legal</span></label>
+
+            <input type="radio" value="Marketing" id="radio_19" name="lead_role" />
+            <label for="radio_19" class="radio"><span>Marketing</span></label>
+
+            <input type="radio" value="Media" id="radio_20" name="lead_role" />
+            <label for="radio_20" class="radio"><span>Media</span></label>
+
+            <input type="radio" value="Operations" id="radio_21" name="lead_role" />
+            <label for="radio_21" class="radio"><span>Operations</span></label>
+
+            <input type="radio" value="Public relations" id="radio_22" name="lead_role" />
+            <label for="radio_22" class="radio"><span>Public relations</span></label>
+
+            <input type="radio" value="Real estate" id="radio_23" name="lead_role" />
+            <label for="radio_23" class="radio"><span>Real estate</span></label>
+
+            <input type="radio" value="Sales" id="radio_24" name="lead_role" />
+            <label for="radio_24" class="radio"><span>Sales</span></label>
+
+            <input type="radio" value="Trades" id="radio_25" name="lead_role" />
+            <label for="radio_25" class="radio"><span>Trades</span></label>
+          </div>
+        </div>
+        <div class="question">
+          <p>Please select your ideal lead's company size</p>
+          <div class="question-answer">
+            <input type="radio" value="1-10" id="radio_26" name="company_size"/>
+            <label for="radio_26" class="radio"><span>1-10</span></label>
+
+            <input type="radio" value="11-50" id="radio_27" name="company_size" />
+            <label for="radio_27" class="radio"><span>11-50</span></label>
+
+            <input type="radio" value="51-200" id="radio_28" name="company_size" />
+            <label for="radio_28" class="radio"><span>51-200</span></label>
+
+            <input type="radio" value="201-500" id="radio_29" name="company_size" />
+            <label for="radio_29" class="radio"><span>201-500</span></label>
+
+            <input type="radio" value="501-1000" id="radio_30" name="company_size" />
+            <label for="radio_30" class="radio"><span>501-1000</span></label>
+
+            <input type="radio" value="1001-5000" id="radio_31" name="company_size" />
+            <label for="radio_31" class="radio"><span>1001-5000</span></label>
+
+            <input type="radio" value="5001-10000" id="radio_32" name="company_size" />
+            <label for="radio_32" class="radio"><span>5001-10000</span></label>
+
+            <input type="radio" value="10000+" id="radio_33" name="company_size" />
+            <label for="radio_33" class="radio"><span>10000+</span></label>
+          </div>
+        </div>
+        <div class="question">
+          <p> Please select your ideal prospect's industry </p>
+          <div class="question-answer">
+            <input type="radio" value="Accouinting" id="radio_34" name="lead_industry"/>
+            <label for="radio_34" class="radio"><span>Accouinting</span></label>
+
+            <input type="radio" value="Airline/Aviation" id="radio_35" name="lead_industry" />
+            <label for="radio_35" class="radio"><span>Airline/Aviation</span></label>
+
+            <input type="radio" value="Alternative_dispute_resolution" id="radio_36" name="lead_industry" />
+            <label for="radio_36" class="radio"><span>Alternative_dispute_resolution</span></label>
+
+            <input type="radio" value="Alternative_medicine" id="radio_37" name="lead_industry" />
+            <label for="radio_37" class="radio"><span>Alternative_medicine</span></label>
+
+            <input type="radio" value="Animation" id="radio_38" name="lead_industry" />
+            <label for="radio_38" class="radio"><span>Animation</span></label>
+
+            <input type="radio" value="Apparel/Fashion" id="radio_39" name="lead_industry" />
+            <label for="radio_39" class="radio"><span>Apparel/Fashion</span></label>
+
+            <input type="radio" value="Architecture&planning" id="radio_40" name="lead_industry" />
+            <label for="radio_40" class="radio"><span>Architecture&planning</span></label>
+
+            <input type="radio" value="Arts&crafts" id="radio_41" name="lead_industry" />
+            <label for="radio_41" class="radio"><span>Arts&crafts</span></label>
+
+            <input type="radio" value="Automotive" id="radio_42" name="lead_industry" />
+            <label for="radio_42" class="radio"><span>Automotive</span></label>
+
+            <input type="radio" value="Aviation&aerospace" id="radio_43" name="lead_industry" />
+            <label for="radio_43" class="radio"><span>Aviation&aerospace</span></label>
+
+            <input type="radio" value="Banking" id="radio_44" name="lead_industry" />
+            <label for="radio_44" class="radio"><span>Banking</span></label>
+
+            <input type="radio" value="Bio-tech" id="radio_45" name="lead_industry" />
+            <label for="radio_45" class="radio"><span>Bio-tech</span></label>
+
+            <input type="radio" value="Broadcast_media" id="radio_46" name="lead_industry" />
+            <label for="radio_46" class="radio"><span>Broadcast_media</span></label>
+
+            <input type="radio" value="Building_technology" id="radio_47" name="lead_industry" />
+            <label for="radio_47" class="radio"><span>Building_technology</span></label>
+
+            <input type="radio" value="Business_suplies&equipments" id="radio_48" name="lead_industry" />
+            <label for="radio_48" class="radio"><span>Business_suplies&equipments</span></label>
+          </div>
+        </div>
+
+        <h2>Tell us a little more about yourself professionally</h2>
+        <div class="item">
+          <p>Please provide a brief sentence of who you are, beginning with the phrase "who is"...</p>
+          <input type="text" name="who_is" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="item">
+          <p>Please provide a list of the service(s) you'd like to sell to the client profile provided in the earlier section</p>
+          <input type="text" name="list_of_sevices" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="item">
+          <p>In one sentence describe your offer/guarantee? In other words, why should this lead meet with you?</p>
+          <input type="text" name="offer/guarantee" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="item">
+          <p>Provide a brief list of past success/clients? We're looking to add social proof to your pitchThis question is required.</p>
+          <input type="text" name="past_success/clients" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="item">
+          <p>Break down the previous statement into a one-line elevator pitch</p>
+          <input type="text" name="one-line_elevator" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        
+
+        <h2>Tell us about your biz dev operations</h2>
+        <div class="item">
+          <p>How many months does your average sales cycle take?</p>
+          <input type="number" name="month_average_sales_cycle" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+
+        <div class="item">
+          <p>How many people in your organization are responsible for business development?</p>
+          <input type="number" name="organisation_development_people" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+
+        <div class="item">
+          <p>On average, how many prospects does your team contact directly each month</p>
+          <input type="number" name="prospects_per_month" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+
+        <div class="item">
+          <p>On average, how many leads does your team generate each month? </p>
+          <input type="number" name="leads_per_month" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+
+        <div class="item">
+          <p>On average, how many qualified leads does your team generate each month?</p>
+          <input type="number" name="qualified_leads_per_month" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+
+        <div class="item">
+          <p>On average, what is your team's close rate on qualified leads?</p>
+          <input type="number" name="average_team_close_rate_on_qualified_leads" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+
+        <div class="item">
+          <p>What is your average deal size? </p>
+          <input type="number" name="average_deal_size" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+
+        <div class="question">
+          <p>How are you contacting prospects?</p>
+          <div class="question-answer">
+            <input type="radio" value="Cold calling" id="radio_49" name="contacting_prospects"/>
+            <label for="radio_49" class="radio"><span>Cold calling</span></label>
+
+            <input type="radio" value="one-on-one email" id="radio_50" name="contacting_prospects"/>
+            <label for="radio_50" class="radio"><span>one-on-one email</span></label>
+
+            <input type="radio" value="Email blasts" id="radio_51" name="contacting_prospects"/>
+            <label for="radio_51" class="radio"><span>Email blasts</span></label>
+
+            <input type="radio" value="Texts" id="radio_52" name="contacting_prospects"/>
+            <label for="radio_52" class="radio"><span>Texts</span></label>
+
+            <input type="radio" value="Social media DMs" id="radio_53" name="contacting_prospects"/>
+            <label for="radio_53" class="radio"><span>Social media DMs</span></label>
+
+            <input type="radio" value="Paid ADs" id="radio_54" name="contacting_prospects"/>
+            <label for="radio_54" class="radio"><span>Paid ADs</span></label>
+          </div>
+        </div>
+
+        <div class="item">
+          <p>On average, how much does each prospect's contact information cost you? </p>
+          <input type="number" name="prospect_contact_information_cost" required/>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+
+        <div class="btn-block">
+          <button type="submit" href="/">Submit</button>
+        </div>
+      </form>
+    </div>
+
+
+{% endblock content%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      

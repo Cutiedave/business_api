@@ -1,0 +1,112 @@
+{% extends 'main.html'%}
+{% block content%}
+{% load static %}
+
+    {% if messages %}
+    {% for message in messages%}
+    {{ message }}
+    {% endfor %}
+    {% endif %}
+
+    <script src="{% static 'js/table_dash.js' %}"></script> 
+    <link rel="stylesheet" href="{% static 'styles/table_dash.css' %}">
+
+
+	<div class="pricing-container">
+		<div class="pricing-switcher">
+			<p class="fieldset">
+				<input type="radio" name="duration-1" value="monthly" id="monthly-1" checked>
+				<label for="monthly-1">Monthly</label>
+				<input type="radio" name="duration-1" value="yearly" id="yearly-1">
+				<label for="yearly-1">Yearly</label>
+				<span class="switch"></span>
+			</p>
+		</div>
+		<ul class="pricing-list bounce-invert">
+			<li>
+				<ul class="pricing-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<header class="pricing-header">
+							<h2>Current plan cost</h2>
+							<div class="price">
+								<span class="currency">$</span>
+								<span class="value">{{data.Annual_Organization_BDR_Costs|floatformat:0}}</span>
+								<span class="duration">yr</span>
+							</div>
+						</header>
+						<div class="pricing-body">
+							<ul class="pricing-features">
+								<li><em>${{data.Daily_Organization_BDR_Costs|floatformat:0}} </em> cost per day</li>
+                                <li><em>{{data.Contacts_Monthly|floatformat:0 }}</em> Contacts per month</li>
+                                <li><em>${{data.Organization_Avg_Cost_Per_Lead|floatformat:0 }}</em> Avg. cost per lead</li>
+								<li><em>${{data.Avg_Organization_BDR_Cost_to_Generate_Sale|floatformat:0 }}</em> Avg. cost to generate sale</li>
+                                <li><em>{{data.Contact_to_Lead_Rate|floatformat:0 }}</em> Contacts to lead rate</li>
+                                <li><em>{{data.contacts_to_generate_each_lead|floatformat:0 }}</em> Contacts to generate lead</li>
+                                <li><em>${{data.organization_unfruitful_costs_monthly|floatformat:0 }}</em> Monthly unfruitful costs </li>
+							</ul>
+						</div>
+						<footer class="pricing-footer">
+							<a class="select" href="#">Sign Up</a>
+						</footer>
+					</li>
+				</ul>
+			</li>
+			<li class="exclusive">
+				<ul class="pricing-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<header class="pricing-header">
+							<h2>ABDD cost</h2>
+							<div class="price">
+								<span class="currency">$</span>
+								<span class="value">{{data.ABDD_cost_per_year|floatformat:0 }}</span>
+								<span class="duration">yr</span>
+							</div>
+						</header>
+						<div class="pricing-body">
+							<ul class="pricing-features">
+								<li><em>${{data.ABDD_cost_per_day|floatformat:0}} </em> cost per day</li>
+                                <li><em>{{data.ABDD_contacts_per_month|floatformat:0 }}</em> Contacts per month</li>
+                                <li><em>${{data.ABDD_Avg_Cost_Per_Lead|floatformat:1 }}</em> Avg. cost per lead</li>
+								<li><em>${{data.Avg_ABDD_Cost_to_Generate_Sale|floatformat:1 }}</em> Avg. cost to generate sale</li>
+								<li><em>{{data.CPL_Reduction|floatformat:0}}</em> CPL Reduction</li>
+								<li><em>{{data.ABDD_Lead_Generation_Rate|floatformat:0}}</em> ABDD_Lead_Generation_Rate</li>
+                                <li><em>${{data.savings_per_month|floatformat:0 }}</em> savings_per_month</li>
+                                <li><em>${{data.savings_per_year|floatformat:0}}</em> savings per year</li>
+							</ul>
+						</div>
+						<footer class="pricing-footer">
+							<a class="select" href="#">Sign Up</a>
+						</footer>
+					</li>
+					<li data-type="yearly" class="is-hidden">
+						<header class="pricing-header">
+							<h2>Exclusive</h2>
+							<div class="price">
+								<span class="currency">$</span>
+								<span class="value">630</span>
+								<span class="duration">yr</span>
+							</div>
+						</header>
+						<div class="pricing-body">
+							<ul class="pricing-features">
+								<li><em>15</em> Email Accounts</li>
+								<li><em>3</em> Template Styles</li>
+								<li><em>40</em> Products Loaded</li>
+								<li><em>7</em> Images per Product</li>
+								<li><em>Unlimited</em> Bandwidth</li>
+								<li><em>24/7</em> Support</li>
+							</ul>
+						</div>
+						<footer class="pricing-footer">
+							<a class="select" href="#">Sign Up</a>
+						</footer>
+					</li>
+				</ul>
+			</li>
+
+		</ul>
+	</div>
+
+
+
+{% endblock content%}

@@ -1,0 +1,39 @@
+{% extends 'main.html'%}
+{% block content%}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login & Registration Form</title>
+    <!---Custom CSS File--->
+    <link rel="stylesheet" href="{% static 'styles/form.css' %}">
+</head>
+<body>
+<div class="container">
+    <input type="checkbox" id="check">
+        <div class="login form">
+            <header>Login</header>
+            {% if messages %}
+            {% for message in messages%}
+            {{ message }}
+            {% endfor %}
+            {% endif %}
+            <form method='post'>
+                {% csrf_token %}
+                <input type="text" placeholder="Enter your username" name="username">
+                <input type="password" placeholder="Enter your password" name="password">
+                <a href="#">Forgot password?</a>
+                <button type="submit" class="button" > submit </button>
+            </form>
+            <div class="signup">
+                <span class="signup">Don't have an account?
+                <label for="check"><a href="{% url 'register' %}">Signup</a></a></label>
+                </span>
+            </div>
+        </div>
+</div>
+</body>
+
+
+{% endblock content%}
