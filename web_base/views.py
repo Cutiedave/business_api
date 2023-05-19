@@ -14,6 +14,8 @@ import numpy as np
 import json
 import os
 
+print('on')
+
 load_dotenv()
 
 def business_case_data(sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, 
