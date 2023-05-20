@@ -13,6 +13,8 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.decorators import api_view
 
+from django.http import JsonResponse
+
 from .models import Business_case_data
 from .serializers import MepSerializer
 
@@ -408,8 +410,20 @@ def business_case_data(sales_team_size, monthly_prospects, monthly_leads, monthl
 @ensure_csrf_cookie
 @api_view(['POST'])
 def get_response_typeform(requests):
-    data = requests.data
+    jsondata = requests.body
+
+    data = json.loads(jsondata)
+
+    print("")
+    print("")
+    print("")
     print(data)
+    print("")
+    print("")
+    print("")
+
+    return JsonResponse(data)
+
     # sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, qualified_lead_close_rate, avg_deal_size,seller_name, seller_company = get_basic_info(requests)
 
     
