@@ -408,9 +408,7 @@ def business_case_data(sales_team_size, monthly_prospects, monthly_leads, monthl
 @ensure_csrf_cookie
 @api_view(['POST'])
 def get_response_typeform(requests):
-    print(requests.data)
-    jsondata = requests.body
-    data = json.loads(jsondata)
+    data = json.loads(requests.data)
     print(data)
     # sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, qualified_lead_close_rate, avg_deal_size,seller_name, seller_company = get_basic_info(requests)
 
