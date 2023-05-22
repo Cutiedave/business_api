@@ -85,7 +85,7 @@ from .serializers import MepSerializer
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.csrf import ensure_csrf_cookieprospect
+# from django.views.decorators.csrf import ensure_csrf_cookieprospect
 
 
 def get_basic_info(requests):
