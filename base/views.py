@@ -470,7 +470,6 @@ def get_response_typeform(requests):
             seller_name=business_data['seller_name'], company=business_data['seller_company']
     )
 
-    print(business_data)
 
     users=Business_case_data.objects.last()
     serializer=MepSerializer(users)
