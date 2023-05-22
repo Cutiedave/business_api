@@ -85,7 +85,7 @@ from .serializers import MepSerializer
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import ensure_csrf_cookieprospect
 
 
 def get_basic_info(requests):
@@ -377,7 +377,7 @@ def business_case_data(sales_team_size, monthly_prospects, monthly_leads, monthl
 
 
 
-    return ({"avg_bdr_salary":avg_bdr_salary, "avg_training_cost":avg_training_cost, "benefit_cost":benefit_cost, "annual_bdr_costs":annual_bdr_costs, "daily_bdr_cost":daily_bdr_cost, "hourly_bdr_cost":hourly_bdr_cost, \
+    return ({"Rev_share":rev_share ,"accounts_needed":accounts_needed ,"avg_bdr_salary":avg_bdr_salary, "avg_training_cost":avg_training_cost, "benefit_cost":benefit_cost, "annual_bdr_costs":annual_bdr_costs, "daily_bdr_cost":daily_bdr_cost, "hourly_bdr_cost":hourly_bdr_cost, \
             
             "monthly_prospects":monthly_prospects, "monthly_leads":monthly_leads, "org_prospect_conversion":org_prospect_conversion*100, "org_prospect_to_lead":org_prospect_to_lead, "org_lead_to_close":org_lead_to_close, \
             
@@ -419,6 +419,8 @@ def get_response_typeform(requests):
                    qualified_lead_close_rate, avg_deal_size, seller_name, seller_company)
     
     Business_case_data.objects.create(
+            Rev_share=business_data['Rev_share'],
+            Accounts_needed=business_data['accounts_needed'],
             Avg_BDR_Salary=business_data['avg_bdr_salary'], Avg_BDR_Training_Costs=business_data['avg_training_cost'], 
             Avg_BDR_Benefits=business_data['benefit_cost'], Annual_Organization_BDR_Costs=business_data['annual_bdr_costs'], 
             Daily_Organization_BDR_Costs=business_data['daily_bdr_cost'], Hourly_Organization_BDR_Costs=business_data['hourly_bdr_cost'], \

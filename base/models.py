@@ -67,6 +67,13 @@ class Business_case_data(models.Model):
     # seller informatiom
     seller_name = models.CharField(max_length=200, default='seller')
     company = models.CharField(max_length=200, default='test')
+
+    # accounts needed
+    Accounts_needed = models.FloatField()
+
+    # rev share
+    Rev_share = models.FloatField()
+
     
     def __str__(self):
         return self.company
