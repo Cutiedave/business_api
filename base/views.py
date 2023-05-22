@@ -90,10 +90,11 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 def get_basic_info(requests):
     jsondata = requests.body
-    data = json.loads(jsondata)
+    last_res = json.loads(jsondata)
 
-    response = data
-    last_res = response['form_response']['answers']
+    # response = data
+    # last_res = response['form_response']['answers']
+
     #----------------------------------------------------------------------------------------------------------------
     
     #execute email/text send
@@ -101,27 +102,27 @@ def get_basic_info(requests):
     run_live = False
 
     # Set seller information
-    seller_first_name = last_res[0]["text"]
-    seller_last_name = last_res[1]["text"]
-    seller_phone = last_res[2]["phone_number"]
-    seller_email = last_res[3]["email"]
+    seller_first_name = last_res["firstName"]
+    seller_last_name = last_res["lastName"]
+    seller_phone = last_res["phoneNumber"]
+    seller_email = last_res["email"]
     lead_email = seller_email
-    seller_company = last_res[4]["text"]
-    seller_position = last_res[5]["text"]
+    seller_company = last_res["companyName"]
+    seller_position = last_res["position"]
 
-    seller_sales_cycle = int(last_res[15]["number"])
-    sales_team_size = int(last_res[16]["number"])
-    monthly_prospects = int(last_res[17]["number"])
-    monthly_leads = int(last_res[18]["number"])
-    monthly_qual_leads = int(last_res[19]["number"])
-    qualified_lead_close_rate = int(last_res[20]["number"])/100
-    avg_deal_size = int(last_res[21]["number"])
-    contact_channels = str(last_res[22]["choices"]["labels"])
-    contact_channels = contact_channels.replace("'", "")
-    contact_channels = contact_channels.replace("[", "")
-    contact_channels = contact_channels.replace("]", "")
+    seller_sales_cycle = int(last_res["averageSalesCycle"])
+    sales_team_size = int(last_res["peopleInYourOrganisation"])
+    monthly_prospects = int(last_res["howManyProspects"])
+    monthly_leads = int(last_res["howManyLeads"])
+    monthly_qual_leads = int(last_res["howManyQualifiedLeads"])
+    qualified_lead_close_rate = int(last_res["teamCloseRate"])/100
+    avg_deal_size = int(last_res["averageDealSize"])
+    contact_channels = str(last_res[22]["contacting"])
+    # contact_channels = contact_channels.replace("'", "")
+    # contact_channels = contact_channels.replace("[", "")
+    # contact_channels = contact_channels.replace("]", "")
     #contact_cost = float(last_res[23]["text"])
-    contact_cost = float(last_res[23]["number"])
+    contact_cost = float(last_res["prospectContactInfo"])
 
     print('Seller: ' + seller_first_name + ' ' + seller_last_name)
     print('Seller Company: ' + seller_company)
@@ -410,83 +411,69 @@ def business_case_data(sales_team_size, monthly_prospects, monthly_leads, monthl
 @ensure_csrf_cookie
 @api_view(['POST'])
 def get_response_typeform(requests):
-    jsondata = requests.body
-
-    data = json.loads(jsondata)
-
-    print("")
-    print("")
-    print("")
-    print(data)
-    print("")
-    print("")
-    print("")
-
-    return JsonResponse(data)
-
-    # sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, qualified_lead_close_rate, avg_deal_size,seller_name, seller_company = get_basic_info(requests)
+    sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, qualified_lead_close_rate, avg_deal_size,seller_name, seller_company = get_basic_info(requests)
 
     
     
-    # business_data = business_case_data(sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, 
-    #                qualified_lead_close_rate, avg_deal_size, seller_name, seller_company)
+    business_data = business_case_data(sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, 
+                   qualified_lead_close_rate, avg_deal_size, seller_name, seller_company)
     
-    # Business_case_data.objects.create(
-    #         Avg_BDR_Salary=business_data['avg_bdr_salary'], Avg_BDR_Training_Costs=business_data['avg_training_cost'], 
-    #         Avg_BDR_Benefits=business_data['benefit_cost'], Annual_Organization_BDR_Costs=business_data['annual_bdr_costs'], 
-    #         Daily_Organization_BDR_Costs=business_data['daily_bdr_cost'], Hourly_Organization_BDR_Costs=business_data['hourly_bdr_cost'], \
+    Business_case_data.objects.create(
+            Avg_BDR_Salary=business_data['avg_bdr_salary'], Avg_BDR_Training_Costs=business_data['avg_training_cost'], 
+            Avg_BDR_Benefits=business_data['benefit_cost'], Annual_Organization_BDR_Costs=business_data['annual_bdr_costs'], 
+            Daily_Organization_BDR_Costs=business_data['daily_bdr_cost'], Hourly_Organization_BDR_Costs=business_data['hourly_bdr_cost'], \
             
-    #         Contacts_Monthly=business_data['monthly_prospects'], Leads_Monthly=business_data['monthly_leads'], 
-    #         Contact_to_Lead_Rate=business_data['org_prospect_conversion'], contacts_to_generate_each_lead=business_data['org_prospect_to_lead'], 
+            Contacts_Monthly=business_data['monthly_prospects'], Leads_Monthly=business_data['monthly_leads'], 
+            Contact_to_Lead_Rate=business_data['org_prospect_conversion'], contacts_to_generate_each_lead=business_data['org_prospect_to_lead'], 
             
-    #         leads_needed_to_generate_each_sale=business_data['org_lead_to_close'], \
+            leads_needed_to_generate_each_sale=business_data['org_lead_to_close'], \
             
-    #         ABDD_contacts_per_hour=business_data['abdd_hourly_rate'], ABDD_contacts_per_day=business_data['abdd_daily_rate'], 
+            ABDD_contacts_per_hour=business_data['abdd_hourly_rate'], ABDD_contacts_per_day=business_data['abdd_daily_rate'], 
             
-    #         ABDD_contacts_per_month=business_data['abdd_monthly_rate'], \
+            ABDD_contacts_per_month=business_data['abdd_monthly_rate'], \
             
-    #         ABDD_cost_per_year=business_data['org_abdd_annual_cost'], ABDD_cost_per_month=business_data['org_abdd_monthly_cost'], 
+            ABDD_cost_per_year=business_data['org_abdd_annual_cost'], ABDD_cost_per_month=business_data['org_abdd_monthly_cost'], 
             
-    #         ABDD_cost_per_day=business_data['org_abdd_daily_cost'], ABDD_cost_per_hour=business_data['org_abdd_hourly_cost'], 
+            ABDD_cost_per_day=business_data['org_abdd_daily_cost'], ABDD_cost_per_hour=business_data['org_abdd_hourly_cost'], 
             
-    #         ABDD_cost_per_minute=business_data['org_abdd_min_cost'], ABDD_cost_per_second=business_data['org_abdd_sec_cost'], 
+            ABDD_cost_per_minute=business_data['org_abdd_min_cost'], ABDD_cost_per_second=business_data['org_abdd_sec_cost'], 
 
-    #         savings_per_month=business_data['bdr_vs_abbd_monthly_savings'], savings_per_year=business_data['bdr_vs_abbd_annual_savings'], 
+            savings_per_month=business_data['bdr_vs_abbd_monthly_savings'], savings_per_year=business_data['bdr_vs_abbd_annual_savings'], 
             
-    #         saving_rate=business_data['savings_percent'],
-
-
-    #         unfruitful_contact_rate=business_data['unfruitful_contact_rate'], organization_unfruitful_contacts_monthly=business_data['team_monthly_unfruitful'], 
-            
-    #         organization_unfruitful_contacts_daily=business_data['team_daily_unfruitful'], organization_unfruitful_contacts_hourly=business_data['team_hourly_unfruitful'],
+            saving_rate=business_data['savings_percent'],
 
 
-    #         organization_unfruitful_costs_monthly=business_data['team_monthly_unfruitful_costs'], 
+            unfruitful_contact_rate=business_data['unfruitful_contact_rate'], organization_unfruitful_contacts_monthly=business_data['team_monthly_unfruitful'], 
             
-    #         organization_unfruitful_costs_hourly=business_data['team_hourly_unfruitful_costs'], 
+            organization_unfruitful_contacts_daily=business_data['team_daily_unfruitful'], organization_unfruitful_contacts_hourly=business_data['team_hourly_unfruitful'],
+
+
+            organization_unfruitful_costs_monthly=business_data['team_monthly_unfruitful_costs'], 
             
-    #         organization_unfruitful_costs_daily=business_data['team_daily_unfruitful_costs'],
-
-    #         Organization_Lead_Generation_Rate_daily=business_data['team_days_per_lead'], 
+            organization_unfruitful_costs_hourly=business_data['team_hourly_unfruitful_costs'], 
             
-    #         Organization_Lead_Generation_Rate_hourly=business_data['team_hours_per_lead'], 
+            organization_unfruitful_costs_daily=business_data['team_daily_unfruitful_costs'],
 
-    #         ABDD_Lead_Generation_Rate=business_data['abdd_lead_rate_monthly'], Organization_Avg_Cost_Per_Lead=business_data['lead_cost'], 
+            Organization_Lead_Generation_Rate_daily=business_data['team_days_per_lead'], 
             
-    #         ABDD_Avg_Cost_Per_Lead=business_data['abdd_cpl'], CPL_Reduction=business_data['cpl_reduction'],
+            Organization_Lead_Generation_Rate_hourly=business_data['team_hours_per_lead'], 
 
-    #         Organization_Sell_Generation_Rate=business_data['org_sell_gen_day'],
+            ABDD_Lead_Generation_Rate=business_data['abdd_lead_rate_monthly'], Organization_Avg_Cost_Per_Lead=business_data['lead_cost'], 
+            
+            ABDD_Avg_Cost_Per_Lead=business_data['abdd_cpl'], CPL_Reduction=business_data['cpl_reduction'],
 
-    #         Avg_Organization_BDR_Cost_to_Generate_Sale=business_data['cost_per_likely_sell'], Avg_ABDD_Cost_to_Generate_Sale=business_data['abdd_cps'],
+            Organization_Sell_Generation_Rate=business_data['org_sell_gen_day'],
 
-    #         seller_name=business_data['seller_name'], company=business_data['seller_company']
-    # )
+            Avg_Organization_BDR_Cost_to_Generate_Sale=business_data['cost_per_likely_sell'], Avg_ABDD_Cost_to_Generate_Sale=business_data['abdd_cps'],
 
-    # print(business_data)
+            seller_name=business_data['seller_name'], company=business_data['seller_company']
+    )
+
+    print(business_data)
     
     
-    # business_data['Access-Control-Allow-Origin'] = 'https://30b4-213-255-147-146.ngrok-free.app'
-    # return Response(business_data)
+    business_data['Access-Control-Allow-Origin'] = 'https://30b4-213-255-147-146.ngrok-free.app'
+    return Response(business_data)
     
 
 class BusinessListView(generics.ListAPIView):
