@@ -471,10 +471,13 @@ def get_response_typeform(requests):
     )
 
     print(business_data)
+
+    users=Business_case_data.objects.last()
+    serializer=MepSerializer(users)
     
     
-    business_data['Access-Control-Allow-Origin'] = 'https://30b4-213-255-147-146.ngrok-free.app'
-    return Response(business_data)
+    #business_data['Access-Control-Allow-Origin'] = 'https://30b4-213-255-147-146.ngrok-free.app'
+    return Response(serializer.data)
     
 
 class BusinessListView(generics.ListAPIView):
