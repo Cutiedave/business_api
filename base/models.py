@@ -69,10 +69,10 @@ class Business_case_data(models.Model):
     company = models.CharField(max_length=200, default='test')
 
     # accounts needed
-    Accounts_needed = models.FloatField()
+    Accounts_needed = models.FloatField( default='test')
 
     # rev share
-    Rev_share = models.FloatField()
+    Rev_share = models.FloatField( default='test')
 
     
     def __str__(self):
