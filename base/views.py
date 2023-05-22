@@ -117,7 +117,7 @@ def get_basic_info(requests):
     monthly_qual_leads = int(last_res["howManyQualifiedLeads"])
     qualified_lead_close_rate = int(last_res["teamCloseRate"])/100
     avg_deal_size = int(last_res["averageDealSize"])
-    contact_channels = str(last_res[22]["contacting"])
+    contact_channels = str(last_res["contacting"])
     # contact_channels = contact_channels.replace("'", "")
     # contact_channels = contact_channels.replace("[", "")
     # contact_channels = contact_channels.replace("]", "")
