@@ -123,6 +123,8 @@ def get_basic_info(requests):
     # contact_channels = contact_channels.replace("]", "")
     #contact_cost = float(last_res[23]["text"])
     contact_cost = float(last_res["prospectContactInfo"])
+    print(last_res)
+
 
     print('Seller: ' + seller_first_name + ' ' + seller_last_name)
     print('Seller Company: ' + seller_company)
