@@ -74,9 +74,20 @@ def seller_form(requests):
             
             # return redirect('seller_form')
 
-        return render(requests,'web_base/seller_form.html')
     # else:
     #     return redirect('login')
+    else:
+        if os.environ.get('mode')=='DEVELOPMENT':
+            base_url='http://localhost:8000'
+        else:
+            base_url=os.environ.get('BASE_DOMAIN','http://localhost:8000')
+
+        url=f'{base_url}/api/v1/detail/'
+
+        res = req.get( url)
+        data = res.json()
+
+        return render(requests, 'web_base/table_page.html', {'data':data})
 
 
 @decorators.unauthenticated_user
