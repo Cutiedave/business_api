@@ -1,1008 +1,422 @@
-{% extends 'main.html' %}
+{% load static %}
+<html lang="en">
 
-{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon"  href="{% static 'img/icon_1.webp' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Visual</title>
+    <!-- <script type="module" crossorigin="" src="{% static 'js/form.js' %}"></script> -->
+    <link rel="stylesheet" href="{% static 'styles/form.css' %}">
+    <style></style>
+</head>
 
+<body>
+    <div id="root">
+        <div>
+            <section class="hero-container">
+                <div>
+                    <h1 class="primary-heading">Manage your sales</h1>
+                    <p class="hero-text">We provide you with comprehensive resources, tools, and guidance to help you
+                        calculate, analyze, and interpret sales ROI accurately. Whether you're a sales professional,
+                        business owner, or sales manager.</p>
+                    <div class="hero-nav"><button class="btn-hero">Get Started</button>
+                        <p>Estimated time to complete: <span>10-15 minutes</span></p>
+                    </div>
+                </div>
+                <div><img class="hero-image" src="{% static 'img/from_img.svg' %}"></div>
+            </section>
+            <section class="form-section">
+                <form action="{% url 'seller_form' %}" method='post' >
+                    {% csrf_token %}
+                    <div class="form-box">
+                        <div class="form-basic">
+                            <label>
+                                <p>First Name*</p><input name="firstName" class="input" type="text" id="firstName" required="" value="">
+                            </label><label>
+                                <p>Last Name*</p><input name="lastName" class="input" type="text" id="lastName" required="" value="">
+                            </label><label>
+                                <p>Phone Number*</p><input name="phoneNumber" class="input" type="phonenumber" id="phoneNumber" required=""
+                                    value="">
+                            </label><label>
+                                <p>Work Email*</p><input name="email" class="input" type="email" id="email" required="" value="">
+                            </label><label>
+                                <p>Company Name*</p><input name="companyName" class="input" type="text" id="companyName" required=""
+                                    value="">
+                            </label>
+                            <label>
+                                <p>What is your position/title?This question is required. *</p><input class="input"
+                                    name="position" type="text" id="position" required="" value="">
+                            </label>
+                        </div>
+                        <div class="form-basic-2">
+                            <h2>Tell us a little about your ideal prospect.</h2>
+                            <p class="form-sub">This info will be used to generate your Prospect Report &amp; outreach
+                                messages in real-time during our demo.</p>
+                            <div class="select">
+                                <p class="select-label">Please select your ideal lead's management level*</p>
+                                <select
+                                    id="level" name="level">
+                                    <option>--select options--</option>
+                                    <option>owner</option>
+                                    <option>partner</option>
+                                    <option>cxo</option>
+                                    <option>vice-president-vp</option>
+                                    <option>director</option>
+                                    <option>manager</option>
+                                    <option>senior</option>
+                                    <option>entry</option>
+                                    <option>training</option>
+                                    <option>unpaid</option>
+                                </select>
+                            </div>
+                            <div class="select">
+                                <p class="select-label">Please select your ideal lead's role*</p>
+                                <select name="role" id="role">
+                                    <option>--select options--</option>
+                                    <option>customer service</option>
+                                    <option>design</option>
+                                    <option>education</option>
+                                    <option>engineering</option>
+                                    <option>finance</option>
+                                    <option>health</option>
+                                    <option>human resources</option>
+                                    <option>legal</option>
+                                    <option>marketing</option>
+                                    <option>media</option>
+                                    <option>operations</option>
+                                    <option>public relations</option>
+                                    <option>real estate</option>
+                                    <option>sales</option>
+                                    <option>trades</option>
+                                </select>
+                            </div>
+                            <div class="select">
+                                <p class="select-label">Please select your ideal lead's company size*</p>
+                                <select
+                                    id="size" name="size">
+                                    <option>--select options--</option>
+                                    <option>1-10</option>
+                                    <option>11-50</option>
+                                    <option>51-200</option>
+                                    <option>201-500</option>
+                                    <option>501-1000</option>
+                                    <option>1001-5000</option>
+                                    <option>5001-10000</option>
+                                    <option>10001+</option>
+                                </select>
+                            </div>
+                            <div class="select">
+                                <p class="select-label">Please select your ideal prospect's industry*</p><select
+                                    id="industry" name="industry">
+                                    <option>--select options--</option>
+                                    <option>accounting</option>
+                                    <option>airlines/aviation</option>
+                                    <option>alternative dispute resolution</option>
+                                    <option>alternative medicine</option>
+                                    <option>animation</option>
+                                    <option>apparel &amp; fashion</option>
+                                    <option>architecture &amp; planning</option>
+                                    <option>arts and crafts</option>
+                                    <option>automotive</option>
+                                    <option>aviation &amp; aerospace</option>
+                                    <option>banking</option>
+                                    <option>biotechnology</option>
+                                    <option>broadcast media</option>
+                                    <option>building materials</option>
+                                    <option>business supplies and equipment</option>
+                                    <option>capital markets</option>
+                                    <option>chemicals</option>
+                                    <option>civic &amp; social organization</option>
+                                    <option>civil engineering</option>
+                                    <option>commercial real estate</option>
+                                    <option>computer &amp; network security</option>
+                                    <option>computer games</option>
+                                    <option>computer hardware</option>
+                                    <option>computer networking</option>
+                                    <option>computer software</option>
+                                    <option>construction</option>
+                                    <option>consumer electronics</option>
+                                    <option>consumer goods</option>
+                                    <option>consumer services</option>
+                                    <option>cosmetics</option>
+                                    <option>dairy</option>
+                                    <option>defense &amp; space</option>
+                                    <option>design</option>
+                                    <option>e-learning</option>
+                                    <option>education management</option>
+                                    <option>electrical/electronic manufacturing</option>
+                                    <option>entertainment</option>
+                                    <option>environmental services</option>
+                                    <option>events services</option>
+                                    <option>executive office</option>
+                                    <option>facilities services</option>
+                                    <option>farming</option>
+                                    <option>financial services</option>
+                                    <option>fine art</option>
+                                    <option>fishery</option>
+                                    <option>food &amp; beverages</option>
+                                    <option>food production</option>
+                                    <option>fund-raising</option>
+                                    <option>furniture</option>
+                                    <option>gambling &amp; casinos</option>
+                                    <option>glass, ceramics, &amp; concrete</option>
+                                    <option>government administration</option>
+                                    <option>government relations</option>
+                                    <option>graphic design</option>
+                                    <option>health, wellness and fitness</option>
+                                    <option>higher education</option>
+                                    <option>hospital &amp; health care</option>
+                                    <option>hospitality</option>
+                                    <option>human resources</option>
+                                    <option>import and export</option>
+                                    <option>individual &amp; family services</option>
+                                    <option>industrial automation</option>
+                                    <option>information services</option>
+                                    <option>information technology and services</option>
+                                    <option>insurance</option>
+                                    <option>international affairs</option>
+                                    <option>international trade and development</option>
+                                    <option>internet</option>
+                                    <option>investment banking</option>
+                                    <option>investment management</option>
+                                    <option>judiciary</option>
+                                    <option>law enforcement</option>
+                                    <option>law practice</option>
+                                    <option>legal services</option>
+                                    <option>legislative office</option>
+                                    <option>leisure, travel, &amp; tourism</option>
+                                    <option>libraries</option>
+                                    <option>logistics and supply chain</option>
+                                    <option>luxury goods &amp; jewelry</option>
+                                    <option>machinery</option>
+                                    <option>management consulting</option>
+                                    <option>maritime</option>
+                                    <option>market research</option>
+                                    <option>marketing and advertising</option>
+                                    <option>mechanical or industrial engineering</option>
+                                    <option>media production</option>
+                                    <option>medical devices</option>
+                                    <option>medical practice</option>
+                                    <option>mental health care</option>
+                                    <option>military</option>
+                                    <option>mining &amp; metals</option>
+                                    <option>motion pictures and film</option>
+                                    <option>museums and institutions</option>
+                                    <option>music</option>
+                                    <option>nanotechnology</option>
+                                    <option>newspapers</option>
+                                    <option>non-profit organization management</option>
+                                    <option>oil &amp; energy</option>
+                                    <option>online media</option>
+                                    <option>outsourcing/offshoring</option>
+                                    <option>package/freight delivery</option>
+                                    <option>packaging and containers</option>
+                                    <option>paper &amp; forest products</option>
+                                    <option>performing arts</option>
+                                    <option>pharmaceuticals</option>
+                                    <option>philanthropy</option>
+                                    <option>photography</option>
+                                    <option>plastics</option>
+                                    <option>political organization</option>
+                                    <option>primary/secondary education</option>
+                                    <option>printing</option>
+                                    <option>professional training &amp; coaching</option>
+                                    <option>program development</option>
+                                    <option>public policy</option>
+                                    <option>public relations and communications</option>
+                                    <option>public safety</option>
+                                    <option>publishing</option>
+                                    <option>railroad manufacture</option>
+                                    <option>ranching</option>
+                                    <option>real estate</option>
+                                    <option>recreational facilities and services</option>
+                                    <option>religious institutions</option>
+                                    <option>renewables &amp; environment</option>
+                                    <option>research</option>
+                                    <option>restaurants</option>
+                                    <option>retail</option>
+                                    <option>security and investigations</option>
+                                    <option>semiconductors</option>
+                                    <option>shipbuilding</option>
+                                    <option>sporting goods</option>
+                                    <option>sports</option>
+                                    <option>staffing and recruiting</option>
+                                    <option>supermarkets</option>
+                                    <option>telecommunications</option>
+                                    <option>textiles</option>
+                                    <option>think tanks</option>
+                                    <option>tobacco</option>
+                                    <option>translation and localization</option>
+                                    <option>transportation/trucking/railroad</option>
+                                    <option>utilities</option>
+                                    <option>venture capital &amp; private equity</option>
+                                    <option>veterinary</option>
+                                    <option>warehousing</option>
+                                    <option>wholesale</option>
+                                    <option>wine and spirits</option>
+                                    <option>wireless</option>
+                                    <option>writing and editing</option>
+                                </select>
+                            </div>
+                            <button onclick="myFunction()" class="btn-hero next">Next</button>
+                        </div>
+                        <div class="into--scroll" id="shid" style="display: none;">
+                            <div class="react-reveal opacity1"
+                                style="animation-fill-mode: both; animation-duration: 1000ms; animation-delay: 0ms; animation-iteration-count: 1; opacity: 1; animation-name: react-reveal-981427072311194-1;">
+                                <h2 class="second-form--1">Tell us a little more about yourself professionally.</h2>
+                                <p class="second-form-text--1">Don't overthink your answers! This is just a demo.</p>
+                                <label class="textarea-label">
+                                    <p class="text-title">Please provide a brief sentence of who you are, beginning with
+                                        the phrase "who is"...*</p><span>(My example) who is an award-winning digital
+                                        marketing consultant &amp; founder of Ben Ijah LLC.</span><textarea
+                                        class="text-area-form" type="text" id="whoYouAre"
+                                        placeholder="Type your answer here..." required=""></textarea>
+                                </label><label class="textarea-label">
+                                    <p class="text-title">Please provide a list of the service(s) you'd like to sell to
+                                        the client profile provided in the earlier section *</p><span>(My example)
+                                        Human-Guided, AI-Driven lead generation software that automates the entire B2B
+                                        biz dev process and reduces acquisition costs.</span><textarea
+                                        class="text-area-form" type="text" id="listOfService"
+                                        placeholder="Type your answer here..." required=""></textarea>
+                                </label><label class="textarea-label">
+                                    <p class="text-title">In one sentence describe your offer/guarantee? In other words,
+                                        why should this lead meet with you? *</p><span>(My example) We guarantee our
+                                        system saves your business time and/or money generating B2B leads or your money
+                                        back</span><textarea class="text-area-form" type="text" id="describeYourOffer"
+                                        placeholder="Type your answer here..." required=""></textarea>
+                                </label><label class="textarea-label">
+                                    <p class="text-title">Provide a brief list of past success/clients? We're looking to
+                                        add social proof to your pitchThis question is required. *</p><span>(My example)
+                                        has generated millions of dollars across numerous industries with clients
+                                        including Kareem Abdul-Jabbar &amp; Fix It Bathworks, also personally developed
+                                        an AI-driven software stack that researches prospects then contacts them with
+                                        bespoke messaging based on that research.</span><textarea class="text-area-form"
+                                        type="text" id="ListOfPastSuccess" placeholder="Type your answer here..."
+                                        required=""></textarea>
+                                </label><label class="textarea-label">
+                                    <p class="text-title">Break down the previous statement into a one-line elevator
+                                        pitch. *</p><span>(My example) I've generated millions of dollars in numerous
+                                        industries and developed an AI-driven BDR guaranteed to save your sales team
+                                        time &amp; money.</span><textarea class="text-area-form" type="text"
+                                        id="previousStatement" placeholder="Type your answer here..."
+                                        required=""></textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="react-reveal opacity1 into--scroll" id="shid" style="display: none;"
+                            style="animation-fill-mode: both; animation-duration: 1000ms; animation-delay: 0ms; animation-iteration-count: 1; opacity: 1; animation-name: react-reveal-981427072311194-1;">
+                            <h2 class="second-form--2">Tell us about your biz dev operations</h2>
+                            <p class="second-form-text--2">This doesn't need to be exact. We'll use this information to
+                                create your business case.</p>
+                            <label class="textarea-label">
+                                <p class="text-title">How many months does your average sales cycle take? *</p>
+                                <span>Only positive numbers are required</span>
+                                <input class="text-area-form" name="averageSalesCycle"
+                                    type="number" id="averageSalesCycle" placeholder="Type your answer here..."
+                                    required="" value="">
+                            </label>
 
+                            <label class="textarea-label">
+                                <p class="text-title">How many people in your organization are responsible for business
+                                    development? *</p><span>If you alone handle all biz dev &amp; sales, list
+                                    1.</span>
+                                    <input name="peopleInYourOrganisation" class="text-area-form" type="number" id="peopleInYourOrganisation"
+                                    placeholder="Type your answer here..." required="" value="">
+                            </label>
+                            
+                            <label class="textarea-label">
+                                <p class="text-title">On average, how many prospects does your team contact directly
+                                    each month? *</p><span>Please do not include PPC or SMM marketing
+                                    campaigns.</span>
+                                    <input name="howManyProspects" class="text-area-form" type="number" id="howManyProspects"
+                                    placeholder="Type your answer here..." required="" value="">
+                            </label>
+                            
+                            <label class="textarea-label">
+                                <p class="text-title">On average, how many leads does your team generate each month? *
+                                </p><span>Only positive numbers are required</span>
+                                <input class="text-area-form" name="howManyLeads"
+                                    type="number" id="howManyLeads" placeholder="Type your answer here..." required=""
+                                    value="">
+                            </label>
+                            
+                            <label class="textarea-label">
+                                <p class="text-title">On average, how many qualified leads does your team generate each
+                                    month? *</p><span>Only positive numbers are required</span>
+                                    <input name="howManyQualifiedLeads"
+                                    class="text-area-form" type="number" id="howManyQualifiedLeads"
+                                    placeholder="Type your answer here..." required="" value="">
+                            </label>
+                            
+                            <label class="textarea-label">
+                                <p class="text-title">On average, what is your team's close rate on qualified leads? *
+                                </p><span>Provide percent as a number. Ex. if 50% list 50</span>
+                                <input name="teamCloseRate"
+                                    class="text-area-form" type="number" id="teamCloseRate"
+                                    placeholder="Type your answer here..." required="" value="">
+                            </label>
+                            
+                            <label class="textarea-label">
+                                <p class="text-title">What is your average deal size? *</p><span>Provide amount as
+                                    number. Ex. if $50,000 list 50,000</span>
+                                    <input name="averageDealSize" class="text-area-form" type="number"
+                                    id="averageDealSize" placeholder="Type your answer here..." required="" value="">
+                            </label>
+                            
+                            <label class="textarea-label">
+                                <p class="text-title">On average, how much does each prospect's contact information cost
+                                    you? *</p><span>If you don't pay for contact info, list 0</span>
+                                    <input name="prospectcontactcost"
+                                    class="text-area-form" type="number" id="prospectContactInfo"
+                                    placeholder="Type your answer here..." required="" value="">
+                            </label>
 
-<!-- <div class="page-content" style="margin-top: 200px;"> -->
-	<div class="elementor elementor-15846" style="padding: 0px 0px 0px 0px;"> 
-        <section class="elementor-section elementor-top-section elementor-element elementor-element-546c04d elementor-section-full_width elementor-section-content-middle elementor-section-stretched " data-id="546c04d" data-element_type="section" data-settings="{&quot;stretch_section&quot;:&quot;section-stretched&quot;,&quot;background_background&quot;:&quot;classic&quot;}" style="width: 1451px;" style="padding: 0px 0px 0px 0px;">
-          <div class="elementor-container elementor-column-gap-wide">
-            <div class="elementor-row">
-        <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-9c6ebee" data-id="9c6ebee" data-element_type="column">
-        <div class="elementor-column-wrap elementor-element-populated">
-            <div class="elementor-widget-wrap">
-          <div class="elementor-element elementor-element-4865d67 elementor-widget elementor-widget-heading" data-id="4865d67" data-element_type="widget" data-widget_type="heading.default">
-      <div class="elementor-widget-container">
-    <h1 class="elementor-heading-title elementor-size-default">Meet Your Autonomous Biz Dev Department</h1>		</div>
-      </div>
-      <div class="elementor-element elementor-element-3346b8f elementor-widget elementor-widget-text-editor" data-id="3346b8f" data-element_type="widget" data-widget_type="text-editor.default">
-      <div class="elementor-widget-container">
-              <div class="elementor-text-editor elementor-clearfix">
-      <p>Our Human-Guided, AI-Driven software stack automates 90% of buisness development activities. Enabling more productive &amp; predictable sales teams.</p>					</div>
-          </div>
-      </div>
-      <div class="elementor-element elementor-element-e56f97f elementor-align-left elementor-tablet-align-center elementor-widget__width-inherit elementor-widget-tablet__width-inherit elementor-widget-mobile__width-inherit elementor-widget elementor-widget-button" data-id="e56f97f" data-element_type="widget" data-widget_type="button.default">
-      <div class="elementor-widget-container">
-        <div class="elementor-button-wrapper">
-    <a href="https://calendly.com/ben-ijah/demo-abdd" class="elementor-button-link elementor-button elementor-size-lg" role="button">
-          <span class="elementor-button-content-wrapper">
-            <span class="elementor-button-icon elementor-align-icon-left">
-      <i aria-hidden="true" class="far fa-calendar-alt"></i>			</span>
-          <span class="elementor-button-text">Book Demo</span>
-  </span>
-        </a>
-  </div>
-      </div>
-      </div>
-          </div>
+                            <p class="text-title title-check">How are you contacting prospects? *</p>
+                            <div class="checkbox">
+                                <div><input class="thecheckbox" name="contacting" type="checkbox"
+                                        value="Cold Calling"><label class="checkbox-label">Cold Calling</label></div>
+                                <div><input class="thecheckbox" name="contacting" type="checkbox"
+                                        value="One-On-One Email"><label class="checkbox-label">One-On-One Email</label>
+                                </div>
+                                <div><input class="thecheckbox" name="contacting" type="checkbox"
+                                        value="Email Blasts"><label class="checkbox-label">Email Blasts</label></div>
+                                <div><input class="thecheckbox" name="contacting" type="checkbox" value="Text"><label
+                                        class="checkbox-label">Text</label></div>
+                                <div><input class="thecheckbox" name="contacting" type="checkbox"
+                                        value="Social Media DM's"><label class="checkbox-label">Social Media
+                                        DM's</label></div>
+                                <div><input class="thecheckbox" name="contacting" type="checkbox" value="Paid Ads"><label
+                                        class="checkbox-label">Paid Ads</label></div>
+                            </div>
+                        </div>
+                    </div><button href="/seller_form/" type="submit" class="btn-hero opacity1">Submit</button>
+                </form>
+            </section>
         </div>
-        </div>
-      <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-b732323 elementor-hidden-mobile elementor-hidden-tablet" data-id="b732323" data-element_type="column">
-    <div class="elementor-column-wrap elementor-element-populated">
-            <div class="elementor-widget-wrap">
-          <div class="elementor-element elementor-element-34d29ad elementor-widget elementor-widget-image animated fadeIn" data-id="34d29ad" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;}" data-widget_type="image.default">
-      <div class="elementor-widget-container">
-              <div class="elementor-image">
-                      <img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3856d06aa4f94ae5fb28_brix-templates-hero-image.png?fit=1348%2C1330&amp;ssl=1" title="644c3856d06aa4f94ae5fb28_brix-templates-hero-image" alt="644c3856d06aa4f94ae5fb28_brix-templates-hero-image" class="jetpack-lazy-image jetpack-lazy-image--handled" data-lazy-loaded="1" loading="eager"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3856d06aa4f94ae5fb28_brix-templates-hero-image.png?fit=1348%2C1330&amp;ssl=1" title="644c3856d06aa4f94ae5fb28_brix-templates-hero-image" alt="644c3856d06aa4f94ae5fb28_brix-templates-hero-image" loading="lazy"  /></noscript>														</div>
-          </div>
-      </div>
-          </div>
-        </div>
-  </div>
-            </div>
-          </div>
-        </section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-bae9b35 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="bae9b35" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-0df56ff" data-id="0df56ff" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-ea68b6c elementor-widget elementor-widget-video" data-id="ea68b6c" data-element_type="widget" data-settings="{&quot;video_type&quot;:&quot;hosted&quot;,&quot;autoplay&quot;:&quot;yes&quot;,&quot;mute&quot;:&quot;yes&quot;,&quot;controls&quot;:&quot;yes&quot;}" data-widget_type="video.default">
-				<div class="elementor-widget-container">
-					<div class="e-hosted-video elementor-wrapper elementor-open-inline">
-					<video class="elementor-video" src="https://benijah.com/abdd-homepage-explainer-mp4/" autoplay="" controls="" muted="muted" controlslist="nodownload"></video>
-				</div>
-				</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		    </section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-bd6799a elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="bd6799a" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5257cc6" data-id="5257cc6" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-c7f97a0 elementor-invisible elementor-widget elementor-widget-heading" data-id="c7f97a0" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;}" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h3 class="elementor-heading-title elementor-size-default">We Aren't Simply A Software<br>Company Or Consulting Firm</h3>		</div>
-				</div>
-				<div class="elementor-element elementor-element-f81cafa elementor-invisible elementor-widget elementor-widget-image" data-id="f81cafa" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;}" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img data-attachment-id="15913" data-permalink="https://benijah.com/abdd/644c4826c707cf5cdf873087_62cb9c9fb01eb4a0ada0215e_receive-payment/" data-orig-file="https://benijah.com/wp-content/uploads/2023/05/644c4826c707cf5cdf873087_62cb9c9fb01eb4a0ada0215e_receive-payment.svg" data-orig-size="519,408" data-comments-opened="0" data-image-meta="[]" data-image-title="644c4826c707cf5cdf873087_62cb9c9fb01eb4a0ada0215e_receive payment" data-image-description="" data-image-caption="" data-medium-file="https://benijah.com/wp-content/uploads/2023/05/644c4826c707cf5cdf873087_62cb9c9fb01eb4a0ada0215e_receive-payment.svg" data-large-file="https://benijah.com/wp-content/uploads/2023/05/644c4826c707cf5cdf873087_62cb9c9fb01eb4a0ada0215e_receive-payment.svg" decoding="async" width="519" height="408" src="https://benijah.com/wp-content/uploads/2023/05/644c4826c707cf5cdf873087_62cb9c9fb01eb4a0ada0215e_receive-payment.svg" class="attachment-large size-large wp-image-15913 jetpack-lazy-image" alt="" data-lazy-src="https://benijah.com/wp-content/uploads/2023/05/644c4826c707cf5cdf873087_62cb9c9fb01eb4a0ada0215e_receive-payment.svg?is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">														</div>
-						</div>
-				</div>
-				<div class="elementor-element elementor-element-034b89f elementor-invisible elementor-widget elementor-widget-heading" data-id="034b89f" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;}" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h3 class="elementor-heading-title elementor-size-default">We Enable Curated Sales<br>Experiences, At Scale</h3>		</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		    </section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-3917321 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="3917321" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-7692985" data-id="7692985" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-a10c6af elementor-widget elementor-widget-heading" data-id="a10c6af" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default">Reach More Leads.<br>More Effectively.<br>At Lower Costs.</h2>		</div>
-				</div>
-				<section class="elementor-section elementor-inner-section elementor-element elementor-element-f79fda6 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="f79fda6" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-7868034 elementor-invisible" data-id="7868034" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInLeft&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-909139d elementor-widget elementor-widget-heading" data-id="909139d" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h3 class="elementor-heading-title elementor-size-default">Contacts</h3>		</div>
-				</div>
-				<div class="elementor-element elementor-element-c4da6fe elementor-widget elementor-widget-heading" data-id="c4da6fe" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h4 class="elementor-heading-title elementor-size-default">Drop Expensive Contact Database Subscriptions</h4>		</div>
-				</div>
-				<div class="elementor-element elementor-element-cd1f34c elementor-widget elementor-widget-text-editor" data-id="cd1f34c" data-element_type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-text-editor elementor-clearfix">
-				<p>Our software locates the right contacts, at your ideal companies for you.</p>					</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-4297afe elementor-invisible" data-id="4297afe" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeIn&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-df0d8cb elementor-widget elementor-widget-image" data-id="df0d8cb" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img data-attachment-id="15905" data-permalink="https://benijah.com/abdd/644c3bc2e432185c87298cce_multiple-users-features-mini-illustration-brix-templates/" data-orig-file="https://benijah.com/wp-content/uploads/2023/05/644c3bc2e432185c87298cce_multiple-users-features-mini-illustration-brix-templates.svg" data-orig-size="388,264" data-comments-opened="0" data-image-meta="[]" data-image-title="644c3bc2e432185c87298cce_multiple-users-features-mini-illustration-brix-templates" data-image-description="" data-image-caption="" data-medium-file="https://benijah.com/wp-content/uploads/2023/05/644c3bc2e432185c87298cce_multiple-users-features-mini-illustration-brix-templates.svg" data-large-file="https://benijah.com/wp-content/uploads/2023/05/644c3bc2e432185c87298cce_multiple-users-features-mini-illustration-brix-templates.svg" decoding="async" width="388" height="264" src="https://benijah.com/wp-content/uploads/2023/05/644c3bc2e432185c87298cce_multiple-users-features-mini-illustration-brix-templates.svg" class="attachment-large size-large wp-image-15905 jetpack-lazy-image" alt="" data-lazy-src="https://benijah.com/wp-content/uploads/2023/05/644c3bc2e432185c87298cce_multiple-users-features-mini-illustration-brix-templates.svg?is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-inner-section elementor-element elementor-element-0504406 elementor-reverse-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="0504406" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-460821f elementor-invisible" data-id="460821f" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeIn&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-a8d8a0e elementor-widget elementor-widget-image" data-id="a8d8a0e" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img data-attachment-id="15902" data-permalink="https://benijah.com/abdd/644c3bc2e43218704d298cca_granular-permissions-features-mini-illustration-brix-templates/" data-orig-file="https://benijah.com/wp-content/uploads/2023/05/644c3bc2e43218704d298cca_granular-permissions-features-mini-illustration-brix-templates.svg" data-orig-size="388,264" data-comments-opened="0" data-image-meta="[]" data-image-title="644c3bc2e43218704d298cca_granular-permissions-features-mini-illustration-brix-templates" data-image-description="" data-image-caption="" data-medium-file="https://benijah.com/wp-content/uploads/2023/05/644c3bc2e43218704d298cca_granular-permissions-features-mini-illustration-brix-templates.svg" data-large-file="https://benijah.com/wp-content/uploads/2023/05/644c3bc2e43218704d298cca_granular-permissions-features-mini-illustration-brix-templates.svg" decoding="async" width="388" height="264" src="https://benijah.com/wp-content/uploads/2023/05/644c3bc2e43218704d298cca_granular-permissions-features-mini-illustration-brix-templates.svg" class="attachment-large size-large wp-image-15902 jetpack-lazy-image" alt="" data-lazy-src="https://benijah.com/wp-content/uploads/2023/05/644c3bc2e43218704d298cca_granular-permissions-features-mini-illustration-brix-templates.svg?is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-545fb70 elementor-invisible" data-id="545fb70" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInRight&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-7be2bf3 elementor-widget elementor-widget-heading" data-id="7be2bf3" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h3 class="elementor-heading-title elementor-size-default">prospecting</h3>		</div>
-				</div>
-				<div class="elementor-element elementor-element-33326d9 elementor-widget elementor-widget-heading" data-id="33326d9" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h4 class="elementor-heading-title elementor-size-default">AI-Driven Prospecting, Included</h4>		</div>
-				</div>
-				<div class="elementor-element elementor-element-2de6681 elementor-widget elementor-widget-text-editor" data-id="2de6681" data-element_type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-text-editor elementor-clearfix">
-				<p>Once a contact is located, our software conducts an analysis of your prospective lead and business.</p>					</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-inner-section elementor-element elementor-element-7b75518 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7b75518" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-1916991 elementor-invisible" data-id="1916991" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInLeft&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-a99bc93 elementor-widget elementor-widget-heading" data-id="a99bc93" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h3 class="elementor-heading-title elementor-size-default">cold outreach</h3>		</div>
-				</div>
-				<div class="elementor-element elementor-element-93f4c96 elementor-widget elementor-widget-heading" data-id="93f4c96" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h4 class="elementor-heading-title elementor-size-default">Scalable, Truly Personalized Cold Outreach</h4>		</div>
-				</div>
-				<div class="elementor-element elementor-element-c96de2c elementor-widget elementor-widget-text-editor" data-id="c96de2c" data-element_type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-text-editor elementor-clearfix">
-				<p>Leads are contacted via email &amp; text with messaging personalized based on analysis conducted on them and their company.</p>					</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-83c2736 elementor-invisible" data-id="83c2736" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeIn&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-f27f823 elementor-widget elementor-widget-image" data-id="f27f823" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img data-attachment-id="15919" data-permalink="https://benijah.com/abdd/644c3b96a49897abac16d763_sections-calendar-illustration-brix-templates-2/" data-orig-file="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b96a49897abac16d763_sections-calendar-illustration-brix-templates-2.png?fit=1362%2C1106&amp;ssl=1" data-orig-size="1362,1106" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="644c3b96a49897abac16d763_sections-calendar-illustration-brix-templates-2" data-image-description="" data-image-caption="" data-medium-file="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b96a49897abac16d763_sections-calendar-illustration-brix-templates-2.png?fit=480%2C390&amp;ssl=1" data-large-file="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b96a49897abac16d763_sections-calendar-illustration-brix-templates-2.png?fit=800%2C649&amp;ssl=1" decoding="async" width="800" height="649" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b96a49897abac16d763_sections-calendar-illustration-brix-templates-2.png?fit=800%2C649&amp;ssl=1" class="attachment-large size-large wp-image-15919 jetpack-lazy-image" alt="" data-lazy-srcset="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b96a49897abac16d763_sections-calendar-illustration-brix-templates-2.png?w=1362&amp;ssl=1 1362w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b96a49897abac16d763_sections-calendar-illustration-brix-templates-2.png?resize=480%2C390&amp;ssl=1 480w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b96a49897abac16d763_sections-calendar-illustration-brix-templates-2.png?resize=1200%2C974&amp;ssl=1 1200w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b96a49897abac16d763_sections-calendar-illustration-brix-templates-2.png?resize=768%2C624&amp;ssl=1 768w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b96a49897abac16d763_sections-calendar-illustration-brix-templates-2.png?fit=800%2C649&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-inner-section elementor-element elementor-element-3ddc98f elementor-reverse-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="3ddc98f" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ee356a0 elementor-invisible" data-id="ee356a0" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeIn&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-24bfb7c elementor-widget elementor-widget-image" data-id="24bfb7c" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img data-attachment-id="15895" data-permalink="https://benijah.com/abdd/644c3b6fdead4767670bfde2_icon-brix-template-desktop/" data-orig-file="https://benijah.com/wp-content/uploads/2023/05/644c3b6fdead4767670bfde2_icon-brix-template-Desktop.svg" data-orig-size="72,72" data-comments-opened="0" data-image-meta="[]" data-image-title="644c3b6fdead4767670bfde2_icon-brix-template-Desktop" data-image-description="" data-image-caption="" data-medium-file="https://benijah.com/wp-content/uploads/2023/05/644c3b6fdead4767670bfde2_icon-brix-template-Desktop.svg" data-large-file="https://benijah.com/wp-content/uploads/2023/05/644c3b6fdead4767670bfde2_icon-brix-template-Desktop.svg" decoding="async" width="72" height="72" src="https://benijah.com/wp-content/uploads/2023/05/644c3b6fdead4767670bfde2_icon-brix-template-Desktop.svg" class="attachment-large size-large wp-image-15895 jetpack-lazy-image" alt="" data-lazy-src="https://benijah.com/wp-content/uploads/2023/05/644c3b6fdead4767670bfde2_icon-brix-template-Desktop.svg?is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">														</div>
-						</div>
-				</div>
-				<div class="elementor-element elementor-element-f596eef elementor-widget elementor-widget-image" data-id="f596eef" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img data-attachment-id="15931" data-permalink="https://benijah.com/abdd/644c3b6fdead47a9d90bfde3_sections-tasks-illustration-brix-templates-2/" data-orig-file="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b6fdead47a9d90bfde3_sections-tasks-illustration-brix-templates-2.png?fit=1280%2C1148&amp;ssl=1" data-orig-size="1280,1148" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="644c3b6fdead47a9d90bfde3_sections-tasks-illustration-brix-templates-2" data-image-description="" data-image-caption="" data-medium-file="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b6fdead47a9d90bfde3_sections-tasks-illustration-brix-templates-2.png?fit=480%2C431&amp;ssl=1" data-large-file="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b6fdead47a9d90bfde3_sections-tasks-illustration-brix-templates-2.png?fit=800%2C717&amp;ssl=1" decoding="async" width="800" height="717" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b6fdead47a9d90bfde3_sections-tasks-illustration-brix-templates-2.png?fit=800%2C717&amp;ssl=1" class="attachment-large size-large wp-image-15931 jetpack-lazy-image" alt="" data-lazy-srcset="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b6fdead47a9d90bfde3_sections-tasks-illustration-brix-templates-2.png?w=1280&amp;ssl=1 1280w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b6fdead47a9d90bfde3_sections-tasks-illustration-brix-templates-2.png?resize=480%2C431&amp;ssl=1 480w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b6fdead47a9d90bfde3_sections-tasks-illustration-brix-templates-2.png?resize=1200%2C1076&amp;ssl=1 1200w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b6fdead47a9d90bfde3_sections-tasks-illustration-brix-templates-2.png?resize=768%2C689&amp;ssl=1 768w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3b6fdead47a9d90bfde3_sections-tasks-illustration-brix-templates-2.png?fit=800%2C717&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">														</div>
-						</div>
-				</div>
-				<div class="elementor-element elementor-element-659f0c7 elementor-widget elementor-widget-image" data-id="659f0c7" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img data-attachment-id="15896" data-permalink="https://benijah.com/abdd/644c3b6fdead472ffd0bfde1_icon-brix-template-mobile/" data-orig-file="https://benijah.com/wp-content/uploads/2023/05/644c3b6fdead472ffd0bfde1_icon-brix-template-Mobile.svg" data-orig-size="72,72" data-comments-opened="0" data-image-meta="[]" data-image-title="644c3b6fdead472ffd0bfde1_icon-brix-template-Mobile" data-image-description="" data-image-caption="" data-medium-file="https://benijah.com/wp-content/uploads/2023/05/644c3b6fdead472ffd0bfde1_icon-brix-template-Mobile.svg" data-large-file="https://benijah.com/wp-content/uploads/2023/05/644c3b6fdead472ffd0bfde1_icon-brix-template-Mobile.svg" decoding="async" width="72" height="72" src="https://benijah.com/wp-content/uploads/2023/05/644c3b6fdead472ffd0bfde1_icon-brix-template-Mobile.svg" class="attachment-large size-large wp-image-15896 jetpack-lazy-image" alt="" data-lazy-src="https://benijah.com/wp-content/uploads/2023/05/644c3b6fdead472ffd0bfde1_icon-brix-template-Mobile.svg?is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-20dbd7e elementor-invisible" data-id="20dbd7e" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInRight&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-5a03c50 elementor-widget elementor-widget-heading" data-id="5a03c50" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h3 class="elementor-heading-title elementor-size-default">CRM &amp; Unified Chat</h3>		</div>
-				</div>
-				<div class="elementor-element elementor-element-4d787d5 elementor-widget elementor-widget-heading" data-id="4d787d5" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h4 class="elementor-heading-title elementor-size-default">Human Intervention from Anywhere</h4>		</div>
-				</div>
-				<div class="elementor-element elementor-element-4e67fe6 elementor-widget elementor-widget-text-editor" data-id="4e67fe6" data-element_type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-text-editor elementor-clearfix">
-				<p>CRM &amp; Unified Chat allow sales pros to easily review conversations &amp; respond to messages from various channels through a single interface avaiable on mobile app &amp; desktop.</p>					</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-inner-section elementor-element elementor-element-ec244d0 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="ec244d0" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-d23bdb0 elementor-invisible" data-id="d23bdb0" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInLeft&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-676c5ed elementor-widget elementor-widget-heading" data-id="676c5ed" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h3 class="elementor-heading-title elementor-size-default">Analytics</h3>		</div>
-				</div>
-				<div class="elementor-element elementor-element-39f7b79 elementor-widget elementor-widget-heading" data-id="39f7b79" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h4 class="elementor-heading-title elementor-size-default">Data-Driven Process Improvements</h4>		</div>
-				</div>
-				<div class="elementor-element elementor-element-feeef18 elementor-widget elementor-widget-text-editor" data-id="feeef18" data-element_type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-text-editor elementor-clearfix">
-				<p>Leverage Premium Engineering &amp; Marketing support as well as a dedicated Account Manager to continuously improve your sales process.</p>					</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-023413f elementor-invisible" data-id="023413f" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeIn&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-eedfca7 elementor-widget elementor-widget-image" data-id="eedfca7" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img data-attachment-id="15932" data-permalink="https://benijah.com/abdd/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2/" data-orig-file="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?fit=2620%2C1204&amp;ssl=1" data-orig-size="2620,1204" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2" data-image-description="" data-image-caption="" data-medium-file="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?fit=480%2C221&amp;ssl=1" data-large-file="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?fit=800%2C367&amp;ssl=1" decoding="async" width="800" height="367" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?fit=800%2C367&amp;ssl=1" class="attachment-large size-large wp-image-15932 jetpack-lazy-image" alt="" data-lazy-srcset="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?w=2620&amp;ssl=1 2620w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?resize=480%2C221&amp;ssl=1 480w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?resize=1200%2C551&amp;ssl=1 1200w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?resize=768%2C353&amp;ssl=1 768w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?resize=1536%2C706&amp;ssl=1 1536w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?resize=2048%2C941&amp;ssl=1 2048w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?w=1600&amp;ssl=1 1600w, https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?w=2400&amp;ssl=1 2400w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c3c94c707cf41cb86607c_cta-v7-image-brixtemplates-2.png?fit=800%2C367&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-inner-section elementor-element elementor-element-33052e6 elementor-reverse-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="33052e6" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ba9508e elementor-invisible" data-id="ba9508e" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeIn&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-65cecbc elementor-widget elementor-widget-image" data-id="65cecbc" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img data-attachment-id="15924" data-permalink="https://benijah.com/abdd/644c4826c707cfcd40873086_62d573d3aa465c7c94f4e959_update-image-min-2/" data-orig-file="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c4826c707cfcd40873086_62d573d3aa465c7c94f4e959_Update-Image-min-2.png?fit=912%2C992&amp;ssl=1" data-orig-size="912,992" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="644c4826c707cfcd40873086_62d573d3aa465c7c94f4e959_Update Image-min 2" data-image-description="" data-image-caption="" data-medium-file="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c4826c707cfcd40873086_62d573d3aa465c7c94f4e959_Update-Image-min-2.png?fit=441%2C480&amp;ssl=1" data-large-file="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c4826c707cfcd40873086_62d573d3aa465c7c94f4e959_Update-Image-min-2.png?fit=800%2C800&amp;ssl=1" decoding="async" width="800" height="800" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c4826c707cfcd40873086_62d573d3aa465c7c94f4e959_Update-Image-min-2.png?fit=800%2C800&amp;ssl=1" class="attachment-large size-large wp-image-15924 jetpack-lazy-image" alt="" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c4826c707cfcd40873086_62d573d3aa465c7c94f4e959_Update-Image-min-2.png?fit=800%2C800&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-66c077a elementor-invisible" data-id="66c077a" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInRight&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-7c39a92 elementor-widget elementor-widget-heading" data-id="7c39a92" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h3 class="elementor-heading-title elementor-size-default">Premium Support</h3>		</div>
-				</div>
-				<div class="elementor-element elementor-element-2e1367c elementor-widget elementor-widget-heading" data-id="2e1367c" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h4 class="elementor-heading-title elementor-size-default">Marketing Partner, Sales KPIs</h4>		</div>
-				</div>
-				<div class="elementor-element elementor-element-2799e72 elementor-widget elementor-widget-text-editor" data-id="2799e72" data-element_type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-text-editor elementor-clearfix">
-				<p>Marketing KPIs rarely drive revenue. Our focus is on enabling your sales team to generate new business revenue &amp; operate more efficiently.</p>					</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<div class="elementor-element elementor-element-04e11f2 elementor-align-center elementor-widget__width-inherit elementor-widget-tablet__width-inherit elementor-widget-mobile__width-inherit elementor-widget elementor-widget-button" data-id="04e11f2" data-element_type="widget" data-widget_type="button.default">
-				<div class="elementor-widget-container">
-					<div class="elementor-button-wrapper">
-			<a href="https://calendly.com/ben-ijah/demo-abdd" class="elementor-button-link elementor-button elementor-size-lg" role="button">
-						<span class="elementor-button-content-wrapper">
-							<span class="elementor-button-icon elementor-align-icon-left">
-				<i aria-hidden="true" class="far fa-calendar-alt"></i>			</span>
-						<span class="elementor-button-text">Book Demo</span>
-		</span>
-					</a>
-		</div>
-				</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		    </section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-289be30 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="289be30" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-64e3779" data-id="64e3779" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-46b77b0 elementor-widget elementor-widget-heading" data-id="46b77b0" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default">Integrations</h2>		</div>
-				</div>
-				<div class="elementor-element elementor-element-8865458 elementor-widget elementor-widget-text-editor" data-id="8865458" data-element_type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-text-editor elementor-clearfix">
-				<p>We’re focused on developing the next generation of B2B sales tools including integrations with popular platforms to ensure the legitimacy of your tech stack’s data.</p>					</div>
-						</div>
-				</div>
-				<section class="elementor-section elementor-inner-section elementor-element elementor-element-841502e elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="841502e" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-26ae9ab" data-id="26ae9ab" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-74a6f69 elementor-widget elementor-widget-image" data-id="74a6f69" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/OpenAI_Logo.svg.png?fit=2560%2C630&amp;ssl=1" title="OpenAI_Logo.svg" alt="OpenAI_Logo.svg" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/OpenAI_Logo.svg.png?fit=2560%2C630&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/OpenAI_Logo.svg.png?fit=2560%2C630&amp;ssl=1" title="OpenAI_Logo.svg" alt="OpenAI_Logo.svg" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-4139953" data-id="4139953" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-c1296fc elementor-widget elementor-widget-image" data-id="c1296fc" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/Salesforce.com_logo.svg.png?fit=2560%2C1791&amp;ssl=1" title="Salesforce.com_logo.svg" alt="Salesforce.com_logo.svg" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/Salesforce.com_logo.svg.png?fit=2560%2C1791&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/Salesforce.com_logo.svg.png?fit=2560%2C1791&amp;ssl=1" title="Salesforce.com_logo.svg" alt="Salesforce.com_logo.svg" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-6a7a6d1" data-id="6a7a6d1" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-70c205b elementor-widget elementor-widget-image" data-id="70c205b" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/2560px-Zendesk_logo.svg.png?fit=2560%2C1827&amp;ssl=1" title="2560px-Zendesk_logo.svg" alt="2560px-Zendesk_logo.svg" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/2560px-Zendesk_logo.svg.png?fit=2560%2C1827&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/2560px-Zendesk_logo.svg.png?fit=2560%2C1827&amp;ssl=1" title="2560px-Zendesk_logo.svg" alt="2560px-Zendesk_logo.svg" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-6aa70b8" data-id="6aa70b8" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-bcc841a elementor-widget elementor-widget-image" data-id="bcc841a" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/Webflow_logo.svg.png?fit=2560%2C643&amp;ssl=1" title="Webflow_logo.svg" alt="Webflow_logo.svg" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/Webflow_logo.svg.png?fit=2560%2C643&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/Webflow_logo.svg.png?fit=2560%2C643&amp;ssl=1" title="Webflow_logo.svg" alt="Webflow_logo.svg" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-4b038df" data-id="4b038df" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-b81d071 elementor-widget elementor-widget-image" data-id="b81d071" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/share.png?fit=1200%2C630&amp;ssl=1" title="share" alt="share" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/share.png?fit=1200%2C630&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/share.png?fit=1200%2C630&amp;ssl=1" title="share" alt="share" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-inner-section elementor-element elementor-element-f40e8b0 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="f40e8b0" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-9e2d743" data-id="9e2d743" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-2167038 elementor-widget elementor-widget-image" data-id="2167038" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f3869e29b4ccb52d318_156931-p-130x130q80.png?fit=130%2C130&amp;ssl=1" title="644c1f3869e29b4ccb52d318_156931-p-130x130q80" alt="644c1f3869e29b4ccb52d318_156931-p-130x130q80" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f3869e29b4ccb52d318_156931-p-130x130q80.png?fit=130%2C130&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f3869e29b4ccb52d318_156931-p-130x130q80.png?fit=130%2C130&amp;ssl=1" title="644c1f3869e29b4ccb52d318_156931-p-130x130q80" alt="644c1f3869e29b4ccb52d318_156931-p-130x130q80" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-9ebd842" data-id="9ebd842" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-b1bb11f elementor-widget elementor-widget-image" data-id="b1bb11f" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f384cb675e16d6c7570_1200px-Typeform_Logo.svg-p-130x130q80.png?fit=130%2C84&amp;ssl=1" title="644c1f384cb675e16d6c7570_1200px-Typeform_Logo.svg-p-130x130q80" alt="644c1f384cb675e16d6c7570_1200px-Typeform_Logo.svg-p-130x130q80" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f384cb675e16d6c7570_1200px-Typeform_Logo.svg-p-130x130q80.png?fit=130%2C84&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f384cb675e16d6c7570_1200px-Typeform_Logo.svg-p-130x130q80.png?fit=130%2C84&amp;ssl=1" title="644c1f384cb675e16d6c7570_1200px-Typeform_Logo.svg-p-130x130q80" alt="644c1f384cb675e16d6c7570_1200px-Typeform_Logo.svg-p-130x130q80" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-6ad34af" data-id="6ad34af" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-8ae50f7 elementor-widget elementor-widget-image" data-id="8ae50f7" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f38d931463773b050e9_2560px-Slack_Technologies_Logo.svg-p-130x130q80.png?fit=130%2C33&amp;ssl=1" title="644c1f38d931463773b050e9_2560px-Slack_Technologies_Logo.svg-p-130x130q80" alt="644c1f38d931463773b050e9_2560px-Slack_Technologies_Logo.svg-p-130x130q80" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f38d931463773b050e9_2560px-Slack_Technologies_Logo.svg-p-130x130q80.png?fit=130%2C33&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f38d931463773b050e9_2560px-Slack_Technologies_Logo.svg-p-130x130q80.png?fit=130%2C33&amp;ssl=1" title="644c1f38d931463773b050e9_2560px-Slack_Technologies_Logo.svg-p-130x130q80" alt="644c1f38d931463773b050e9_2560px-Slack_Technologies_Logo.svg-p-130x130q80" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-a012bfc" data-id="a012bfc" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-9db1884 elementor-widget elementor-widget-image" data-id="9db1884" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f37d93146802cb050b9_05fqDQUuRXgFxdx8qWP0fkY-5.fit_scale.size_760x427.v1569471903-p-130x130q80.png?fit=130%2C73&amp;ssl=1" title="644c1f37d93146802cb050b9_05fqDQUuRXgFxdx8qWP0fkY-5.fit_scale.size_760x427.v1569471903-p-130x130q80" alt="644c1f37d93146802cb050b9_05fqDQUuRXgFxdx8qWP0fkY-5.fit_scale.size_760x427.v1569471903-p-130x130q80" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f37d93146802cb050b9_05fqDQUuRXgFxdx8qWP0fkY-5.fit_scale.size_760x427.v1569471903-p-130x130q80.png?fit=130%2C73&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f37d93146802cb050b9_05fqDQUuRXgFxdx8qWP0fkY-5.fit_scale.size_760x427.v1569471903-p-130x130q80.png?fit=130%2C73&amp;ssl=1" title="644c1f37d93146802cb050b9_05fqDQUuRXgFxdx8qWP0fkY-5.fit_scale.size_760x427.v1569471903-p-130x130q80" alt="644c1f37d93146802cb050b9_05fqDQUuRXgFxdx8qWP0fkY-5.fit_scale.size_760x427.v1569471903-p-130x130q80" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-5df3952" data-id="5df3952" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-120b646 elementor-widget elementor-widget-image" data-id="120b646" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f311a5f84abcd891a1a_calendly-p-130x130q80.webp?fit=130%2C68&amp;ssl=1" title="644c1f311a5f84abcd891a1a_calendly-p-130x130q80" alt="644c1f311a5f84abcd891a1a_calendly-p-130x130q80" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f311a5f84abcd891a1a_calendly-p-130x130q80.webp?fit=130%2C68&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/05/644c1f311a5f84abcd891a1a_calendly-p-130x130q80.webp?fit=130%2C68&amp;ssl=1" title="644c1f311a5f84abcd891a1a_calendly-p-130x130q80" alt="644c1f311a5f84abcd891a1a_calendly-p-130x130q80" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-inner-section elementor-element elementor-element-f784294 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="f784294" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-9ee9a2c" data-id="9ee9a2c" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-477a9c8 elementor-widget elementor-widget-image" data-id="477a9c8" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/Mailchimp-Logo-2018-present.png?fit=3840%2C2160&amp;ssl=1" title="Mailchimp-Logo-2018-present" alt="Mailchimp-Logo-2018-present" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/Mailchimp-Logo-2018-present.png?fit=3840%2C2160&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/Mailchimp-Logo-2018-present.png?fit=3840%2C2160&amp;ssl=1" title="Mailchimp-Logo-2018-present" alt="Mailchimp-Logo-2018-present" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-e7ffc4a" data-id="e7ffc4a" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-c7c8b14 elementor-widget elementor-widget-image" data-id="c7c8b14" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/19342e108131957.Y3JvcCwzMzI3LDI2MDMsMCww.jpg?fit=404%2C316&amp;ssl=1" title="19342e108131957.Y3JvcCwzMzI3LDI2MDMsMCww" alt="19342e108131957.Y3JvcCwzMzI3LDI2MDMsMCww" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/19342e108131957.Y3JvcCwzMzI3LDI2MDMsMCww.jpg?fit=404%2C316&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/19342e108131957.Y3JvcCwzMzI3LDI2MDMsMCww.jpg?fit=404%2C316&amp;ssl=1" title="19342e108131957.Y3JvcCwzMzI3LDI2MDMsMCww" alt="19342e108131957.Y3JvcCwzMzI3LDI2MDMsMCww" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-a4e7961" data-id="a4e7961" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-f161cdf elementor-widget elementor-widget-image" data-id="f161cdf" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/Zoom-Logo.png?fit=3840%2C2160&amp;ssl=1" title="Zoom-Logo" alt="Zoom-Logo" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/Zoom-Logo.png?fit=3840%2C2160&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/Zoom-Logo.png?fit=3840%2C2160&amp;ssl=1" title="Zoom-Logo" alt="Zoom-Logo" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-5dc2d2a" data-id="5dc2d2a" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-c8b1727 elementor-widget elementor-widget-image" data-id="c8b1727" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/Outlook.jpg?fit=1280%2C720&amp;ssl=1" title="Outlook" alt="Outlook" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/Outlook.jpg?fit=1280%2C720&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/Outlook.jpg?fit=1280%2C720&amp;ssl=1" title="Outlook" alt="Outlook" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-8835194" data-id="8835194" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-81b7cb9 elementor-widget elementor-widget-image" data-id="81b7cb9" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/WordPress-logotype-alternative.png?fit=2000%2C1080&amp;ssl=1" title="WordPress-logotype-alternative" alt="WordPress-logotype-alternative" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/WordPress-logotype-alternative.png?fit=2000%2C1080&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/WordPress-logotype-alternative.png?fit=2000%2C1080&amp;ssl=1" title="WordPress-logotype-alternative" alt="WordPress-logotype-alternative" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-inner-section elementor-element elementor-element-bbbc569 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="bbbc569" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-bd77888" data-id="bd77888" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-cf1a4ac elementor-widget elementor-widget-image" data-id="cf1a4ac" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/Black_Wix_Logo.jpg?fit=1200%2C510&amp;ssl=1" title="Black_Wix_Logo" alt="Black_Wix_Logo" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/Black_Wix_Logo.jpg?fit=1200%2C510&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/Black_Wix_Logo.jpg?fit=1200%2C510&amp;ssl=1" title="Black_Wix_Logo" alt="Black_Wix_Logo" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-d5b7a13" data-id="d5b7a13" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-3be0778 elementor-widget elementor-widget-image" data-id="3be0778" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/facebook-ads-2.png?fit=516%2C344&amp;ssl=1" title="facebook-ads-2" alt="facebook-ads-2" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/facebook-ads-2.png?fit=516%2C344&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/facebook-ads-2.png?fit=516%2C344&amp;ssl=1" title="facebook-ads-2" alt="facebook-ads-2" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-3d36b80" data-id="3d36b80" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-1e58617 elementor-widget elementor-widget-image" data-id="1e58617" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2022/11/google-calendar-1440x430-v2.jpg?fit=1039%2C312&amp;ssl=1" title="google-calendar-1440×430-v2" alt="google-calendar-1440x430-v2" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2022/11/google-calendar-1440x430-v2.jpg?fit=1039%2C312&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2022/11/google-calendar-1440x430-v2.jpg?fit=1039%2C312&amp;ssl=1" title="google-calendar-1440&#215;430-v2" alt="google-calendar-1440x430-v2" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-abed621" data-id="abed621" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-94d640e elementor-widget elementor-widget-image" data-id="94d640e" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/zoho-logo-512px.png?fit=512%2C177&amp;ssl=1" title="zoho-logo-512px" alt="zoho-logo-512px" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/zoho-logo-512px.png?fit=512%2C177&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/zoho-logo-512px.png?fit=512%2C177&amp;ssl=1" title="zoho-logo-512px" alt="zoho-logo-512px" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-e34e4b8" data-id="e34e4b8" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-f644534 elementor-widget elementor-widget-image" data-id="f644534" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/python-logo-master-v3-TM-flattened.png?fit=601%2C203&amp;ssl=1" title="python-logo-master-v3-TM-flattened" alt="python-logo-master-v3-TM-flattened" data-lazy-src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/python-logo-master-v3-TM-flattened.png?fit=601%2C203&amp;ssl=1&amp;is-pending-load=1" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class=" jetpack-lazy-image"><noscript><img data-lazy-fallback="1" decoding="async" src="https://i0.wp.com/benijah.com/wp-content/uploads/2023/01/python-logo-master-v3-TM-flattened.png?fit=601%2C203&amp;ssl=1" title="python-logo-master-v3-TM-flattened" alt="python-logo-master-v3-TM-flattened" loading="lazy"  /></noscript>														</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		    </section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-fe9c0ac elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="fe9c0ac" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3184cf0" data-id="3184cf0" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<section class="elementor-section elementor-inner-section elementor-element elementor-element-ccd516a elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="ccd516a" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-8bdad7c" data-id="8bdad7c" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-f9fd24d elementor-widget elementor-widget-heading" data-id="f9fd24d" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<p class="elementor-heading-title elementor-size-default"><a href="https://benijah.com/abdd-demo-prep/" target="_blank">Prep Video</a></p>		</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-413c0a4" data-id="413c0a4" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-7c27f86 elementor-widget elementor-widget-heading" data-id="7c27f86" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<p class="elementor-heading-title elementor-size-default"><a href="{% url 'seller_form' %}" target="_blank">Demo Form</a></p>		</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-5f72508" data-id="5f72508" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-afad2e6 elementor-widget elementor-widget-heading" data-id="afad2e6" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<p class="elementor-heading-title elementor-size-default"><a href="mailto:support@benijah.com" target="_blank">Contact Sales</a></p>		</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		    </section>
-	</div>
-</div>
+    </div>
 
 
-<div class="post-tags">
-  </div>
+    <script>
+        function myFunction() {
+          var x = document.getElementsByClassName("into--scroll");
+          if (x[0].style.display === "none") {
+            x[0].style.display = "block";
+          } else {
+            x[0].style.display = "none";
+          }
 
+          if (x[1].style.display === "none") {
+            x[1].style.display = "block";
+          } else {
+            x[1].style.display = "none";
+          }
+        }
+    </script>
+</body>
 
-<section id="comments" class="comments-area">
-</section><!-- .comments-area -->
-
-<footer id="site-footer" class="site-footer" role="contentinfo">
-</footer>
-
-<!--  -->
-<style>
-			.sd-social-icon .sd-content ul li a.sd-button>span {
-				margin-left: 0;
-			}
-		</style><script defer="" id="bilmur" data-provider="wordpress.com" data-service="atomic" src="https://s0.wp.com/wp-content/js/bilmur.min.js?m=202319"></script>
-<!--googleoff: all--><div id="cookie-law-info-bar" data-nosnippet="true" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-family: inherit; bottom: 0px; position: fixed; display: block;"><span>This website uses cookies to improve your experience. We'll assume you're ok with this, but you can opt-out if you wish. <a role="button" class="cli_settings_button" style="margin: 5px 20px; color: rgb(31, 56, 198);">Cookie settings</a><a role="button" data-cli_action="accept" id="cookie_action_close_header" class="medium cli-plugin-button cli-plugin-main-button cookie_action_close_header cli_action_button wt-cli-accept-btn" style="display: inline-block; margin: 5px; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);">ACCEPT</a></span></div><div id="cookie-law-info-again" style="display: none; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); position: fixed; font-family: inherit; width: auto; bottom: 0px; right: 100px;" data-nosnippet="true"><span id="cookie_hdr_showagain">Privacy &amp; Cookies Policy</span></div><div class="cli-modal" data-nosnippet="true" id="cliSettingsPopup" tabindex="-1" role="dialog" aria-labelledby="cliSettingsPopup" aria-hidden="true">
-  <div class="cli-modal-dialog" role="document">
-	<div class="cli-modal-content cli-bar-popup">
-		  <button type="button" class="cli-modal-close" id="cliModalClose">
-			<svg class="" viewBox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"></path><path d="M0 0h24v24h-24z" fill="none"></path></svg>
-			<span class="wt-cli-sr-only">Close</span>
-		  </button>
-		  <div class="cli-modal-body">
-			<div class="cli-container-fluid cli-tab-container">
-	<div class="cli-row">
-		<div class="cli-col-12 cli-align-items-stretch cli-px-0">
-			<div class="cli-privacy-overview">
-				<h4>Privacy Overview</h4>				<div class="cli-privacy-content">
-					<div class="cli-privacy-content-text">This website uses cookies to improve your experience while you navigate through the website. Out of these cookies, the cookies that are categorized as necessary are stored on your browser as they are essential for the working of basic functionalities...</div>
-				</div>
-				<a class="cli-privacy-readmore" aria-label="Show more" role="button" data-readmore-text="Show more" data-readless-text="Show less"></a>			</div>
-		</div>
-		<div class="cli-col-12 cli-align-items-stretch cli-px-0 cli-tab-section-container">
-												<div class="cli-tab-section">
-						<div class="cli-tab-header">
-							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="necessary" data-toggle="cli-toggle-tab">
-								Necessary							</a>
-															<div class="wt-cli-necessary-checkbox">
-									<input type="checkbox" class="cli-user-preference-checkbox" id="wt-cli-checkbox-necessary" data-id="checkbox-necessary" checked="checked">
-									<label class="form-check-label" for="wt-cli-checkbox-necessary">Necessary</label>
-								</div>
-								<span class="cli-necessary-caption">Always Enabled</span>
-													</div>
-						<div class="cli-tab-content">
-							<div class="cli-tab-pane cli-fade" data-id="necessary">
-								<div class="wt-cli-cookie-description">
-									Necessary cookies are absolutely essential for the website to function properly. This category only includes cookies that ensures basic functionalities and security features of the website. These cookies do not store any personal information.								</div>
-							</div>
-						</div>
-					</div>
-																	<div class="cli-tab-section">
-						<div class="cli-tab-header">
-							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="non-necessary" data-toggle="cli-toggle-tab">
-								Non-necessary							</a>
-															<div class="cli-switch">
-									<input type="checkbox" id="wt-cli-checkbox-non-necessary" class="cli-user-preference-checkbox" data-id="checkbox-non-necessary" checked="checked">
-									<label for="wt-cli-checkbox-non-necessary" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">Non-necessary</span></label>
-								</div>
-													</div>
-						<div class="cli-tab-content">
-							<div class="cli-tab-pane cli-fade" data-id="non-necessary">
-								<div class="wt-cli-cookie-description">
-									Any cookies that may not be particularly necessary for the website to function and is used specifically to collect user personal data via analytics, ads, other embedded contents are termed as non-necessary cookies. It is mandatory to procure user consent prior to running these cookies on your website.								</div>
-							</div>
-						</div>
-					</div>
-										</div>
-	</div>
-</div>
-		  </div>
-		  <div class="cli-modal-footer">
-			<div class="wt-cli-element cli-container-fluid cli-tab-container">
-				<div class="cli-row">
-					<div class="cli-col-12 cli-align-items-stretch cli-px-0">
-						<div class="cli-tab-footer wt-cli-privacy-overview-actions">
-						
-															<a id="wt-cli-privacy-save-btn" role="button" tabindex="0" data-cli-action="accept" class="wt-cli-privacy-btn cli_setting_save_button wt-cli-privacy-accept-btn cli-btn">SAVE &amp; ACCEPT</a>
-													</div>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-  </div>
-</div>
-<div class="cli-modal-backdrop cli-fade cli-settings-overlay"></div>
-<div class="cli-modal-backdrop cli-fade cli-popupbar-overlay"></div>
-<!--googleon: all-->		<div id="jp-carousel-loading-overlay">
-			<div id="jp-carousel-loading-wrapper">
-				<span id="jp-carousel-library-loading">&nbsp;</span>
-			</div>
-		</div>
-		<div class="jp-carousel-overlay" style="display: none;">
-
-		<div class="jp-carousel-container">
-			<!-- The Carousel Swiper -->
-			<div class="jp-carousel-wrap swiper-container jp-carousel-swiper-container jp-carousel-transitions" itemscope="" itemtype="https://schema.org/ImageGallery">
-				<div class="jp-carousel swiper-wrapper"></div>
-				<div class="jp-swiper-button-prev swiper-button-prev">
-					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<mask id="maskPrev" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="9" height="12">
-							<path d="M16.2072 16.59L11.6496 12L16.2072 7.41L14.8041 6L8.8335 12L14.8041 18L16.2072 16.59Z" fill="white"></path>
-						</mask>
-						<g mask="url(#maskPrev)">
-							<rect x="0.579102" width="23.8823" height="24" fill="#FFFFFF"></rect>
-						</g>
-					</svg>
-				</div>
-				<div class="jp-swiper-button-next swiper-button-next">
-					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<mask id="maskNext" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="8" height="12">
-							<path d="M8.59814 16.59L13.1557 12L8.59814 7.41L10.0012 6L15.9718 12L10.0012 18L8.59814 16.59Z" fill="white"></path>
-						</mask>
-						<g mask="url(#maskNext)">
-							<rect x="0.34375" width="23.8822" height="24" fill="#FFFFFF"></rect>
-						</g>
-					</svg>
-				</div>
-			</div>
-			<!-- The main close buton -->
-			<div class="jp-carousel-close-hint">
-				<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<mask id="maskClose" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="15" height="14">
-						<path d="M19.3166 6.41L17.9135 5L12.3509 10.59L6.78834 5L5.38525 6.41L10.9478 12L5.38525 17.59L6.78834 19L12.3509 13.41L17.9135 19L19.3166 17.59L13.754 12L19.3166 6.41Z" fill="white"></path>
-					</mask>
-					<g mask="url(#maskClose)">
-						<rect x="0.409668" width="23.8823" height="24" fill="#FFFFFF"></rect>
-					</g>
-				</svg>
-			</div>
-			<!-- Image info, comments and meta -->
-			<div class="jp-carousel-info">
-				<div class="jp-carousel-info-footer">
-					<div class="jp-carousel-pagination-container">
-						<div class="jp-swiper-pagination swiper-pagination"></div>
-						<div class="jp-carousel-pagination"></div>
-					</div>
-					<div class="jp-carousel-photo-title-container">
-						<h2 class="jp-carousel-photo-caption"></h2>
-					</div>
-					<div class="jp-carousel-photo-icons-container">
-						<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-info" aria-label="Toggle photo metadata visibility">
-							<span class="jp-carousel-icon">
-								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<mask id="maskInfo" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
-										<path fill-rule="evenodd" clip-rule="evenodd" d="M12.7537 2C7.26076 2 2.80273 6.48 2.80273 12C2.80273 17.52 7.26076 22 12.7537 22C18.2466 22 22.7046 17.52 22.7046 12C22.7046 6.48 18.2466 2 12.7537 2ZM11.7586 7V9H13.7488V7H11.7586ZM11.7586 11V17H13.7488V11H11.7586ZM4.79292 12C4.79292 16.41 8.36531 20 12.7537 20C17.142 20 20.7144 16.41 20.7144 12C20.7144 7.59 17.142 4 12.7537 4C8.36531 4 4.79292 7.59 4.79292 12Z" fill="white"></path>
-									</mask>
-									<g mask="url(#maskInfo)">
-										<rect x="0.8125" width="23.8823" height="24" fill="#FFFFFF"></rect>
-									</g>
-								</svg>
-							</span>
-						</a>
-												<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-comments" aria-label="Toggle photo comments visibility">
-							<span class="jp-carousel-icon">
-								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<mask id="maskComments" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
-										<path fill-rule="evenodd" clip-rule="evenodd" d="M4.3271 2H20.2486C21.3432 2 22.2388 2.9 22.2388 4V16C22.2388 17.1 21.3432 18 20.2486 18H6.31729L2.33691 22V4C2.33691 2.9 3.2325 2 4.3271 2ZM6.31729 16H20.2486V4H4.3271V18L6.31729 16Z" fill="white"></path>
-									</mask>
-									<g mask="url(#maskComments)">
-										<rect x="0.34668" width="23.8823" height="24" fill="#FFFFFF"></rect>
-									</g>
-								</svg>
-
-								<span class="jp-carousel-has-comments-indicator" aria-label="This image has comments."></span>
-							</span>
-						</a>
-											</div>
-				</div>
-				<div class="jp-carousel-info-extra">
-					<div class="jp-carousel-info-content-wrapper">
-						<div class="jp-carousel-photo-title-container">
-							<h2 class="jp-carousel-photo-title"></h2>
-						</div>
-						<div class="jp-carousel-comments-wrapper">
-															<div id="jp-carousel-comments-loading">
-									<span>Loading Comments...</span>
-								</div>
-								<div class="jp-carousel-comments"></div>
-								<div id="jp-carousel-comment-form-container">
-									<span id="jp-carousel-comment-form-spinner">&nbsp;</span>
-									<div id="jp-carousel-comment-post-results"></div>
-																														<form id="jp-carousel-comment-form">
-												<label for="jp-carousel-comment-form-comment-field" class="screen-reader-text">Write a Comment...</label>
-												<textarea name="comment" class="jp-carousel-comment-form-field jp-carousel-comment-form-textarea" id="jp-carousel-comment-form-comment-field" placeholder="Write a Comment..."></textarea>
-												<div id="jp-carousel-comment-form-submit-and-info-wrapper">
-													<div id="jp-carousel-comment-form-commenting-as">
-																													<fieldset>
-																<label for="jp-carousel-comment-form-email-field">Email</label>
-																<input type="text" name="email" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-email-field">
-															</fieldset>
-															<fieldset>
-																<label for="jp-carousel-comment-form-author-field">Name</label>
-																<input type="text" name="author" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-author-field">
-															</fieldset>
-															<fieldset>
-																<label for="jp-carousel-comment-form-url-field">Website</label>
-																<input type="text" name="url" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-url-field">
-															</fieldset>
-																											</div>
-													<input type="submit" name="submit" class="jp-carousel-comment-form-button" id="jp-carousel-comment-form-button-submit" value="Post Comment">
-												</div>
-											</form>
-																											</div>
-													</div>
-						<div class="jp-carousel-image-meta">
-							<div class="jp-carousel-title-and-caption">
-								<div class="jp-carousel-photo-info">
-									<h3 class="jp-carousel-caption" itemprop="caption description"></h3>
-								</div>
-
-								<div class="jp-carousel-photo-description"></div>
-							</div>
-							<ul class="jp-carousel-image-exif" style="display: none;"></ul>
-							<a class="jp-carousel-image-download" target="_blank" style="display: none;">
-								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="3" width="19" height="18">
-										<path fill-rule="evenodd" clip-rule="evenodd" d="M5.84615 5V19H19.7775V12H21.7677V19C21.7677 20.1 20.8721 21 19.7775 21H5.84615C4.74159 21 3.85596 20.1 3.85596 19V5C3.85596 3.9 4.74159 3 5.84615 3H12.8118V5H5.84615ZM14.802 5V3H21.7677V10H19.7775V6.41L9.99569 16.24L8.59261 14.83L18.3744 5H14.802Z" fill="white"></path>
-									</mask>
-									<g mask="url(#mask0)">
-										<rect x="0.870605" width="23.8823" height="24" fill="#FFFFFF"></rect>
-									</g>
-								</svg>
-								<span class="jp-carousel-download-text"></span>
-							</a>
-							<div class="jp-carousel-image-map" style="display: none;"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		</div>
-		<link rel="stylesheet" id="e-animations-css" href="https://benijah.com/wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=3.13.2" media="all">
-<script src="https://benijah.com/wp-content/plugins/jetpack/jetpack_vendor/automattic/jetpack-image-cdn/dist/image-cdn.js?minify=false&amp;ver=132249e245926ae3e188" id="jetpack-photon-js"></script>
-<script src="https://benijah.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=5.7.6" id="swv-js"></script>
-<script id="contact-form-7-js-extra">
-var wpcf7 = {"api":{"root":"https:\/\/benijah.com\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};
-</script>
-<script src="https://benijah.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.7.6" id="contact-form-7-js"></script>
-<script id="pojo-a11y-js-extra">
-var PojoA11yOptions = {"focusable":"","remove_link_target":"","add_role_links":"","enable_save":"","save_expiration":""};
-</script>
-<script src="https://benijah.com/wp-content/plugins/pojo-accessibility/assets/js/app.min.js?ver=1.0.0" id="pojo-a11y-js"></script>
-<script src="https://benijah.com/wp-content/plugins/jetpack/jetpack_vendor/automattic/jetpack-lazy-images/dist/intersection-observer.js?minify=false&amp;ver=83ec8aa758f883d6da14" id="jetpack-lazy-images-polyfill-intersectionobserver-js"></script>
-<script id="jetpack-lazy-images-js-extra">
-var jetpackLazyImagesL10n = {"loading_warning":"Images are still loading. Please cancel your print and try again."};
-</script>
-<script src="https://benijah.com/wp-content/plugins/jetpack/jetpack_vendor/automattic/jetpack-lazy-images/dist/lazy-images.js?minify=false&amp;ver=de7a5ed9424adbf44f32" id="jetpack-lazy-images-js"></script>
-<script src="https://benijah.com/wp-content/plugins/jetpack/modules/likes/queuehandler.js?ver=12.2-a.5" id="jetpack_likes_queuehandler-js"></script>
-<script defer="" src="https://stats.wp.com/e-202319.js" id="jetpack-stats-js"></script>
-<script id="jetpack-stats-js-after">
-_stq = window._stq || [];
-_stq.push([ "view", {v:'ext',blog:'172476432',post:'15846',tz:'-7',srv:'benijah.com',hp:'atomic',ac:'2',amp:'0',j:'1:12.2-a.5'} ]);
-_stq.push([ "clickTrackerInit", "172476432", "15846" ]);
-</script>
-<script src="https://c0.wp.com/c/6.2/wp-includes/js/wp-embed.min.js" id="wp-embed-js"></script>
-<script id="jetpack-carousel-js-extra">
-var jetpackSwiperLibraryPath = {"url":"https:\/\/benijah.com\/wp-content\/plugins\/jetpack\/_inc\/build\/carousel\/swiper-bundle.min.js"};
-var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/benijah.com\/wp-admin\/admin-ajax.php","nonce":"0bdbbc4a1b","display_exif":"1","display_comments":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"0","login_url":"https:\/\/benijah.com\/wp-login.php?redirect_to=https%3A%2F%2Fbenijah.com%2Fabdd%2F","blog_id":"1","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"]};
-</script>
-<script src="https://benijah.com/wp-content/plugins/jetpack/_inc/build/carousel/jetpack-carousel.min.js?ver=12.2-a.5" id="jetpack-carousel-js"></script>
-<script src="https://benijah.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.13.0" id="elementor-pro-webpack-runtime-js"></script>
-<script src="https://benijah.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.13.2" id="elementor-webpack-runtime-js"></script>
-<script src="https://benijah.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.13.2" id="elementor-frontend-modules-js"></script>
-<script src="https://c0.wp.com/c/6.2/wp-includes/js/dist/vendor/wp-polyfill-inert.min.js" id="wp-polyfill-inert-js"></script>
-<script src="https://c0.wp.com/c/6.2/wp-includes/js/dist/vendor/regenerator-runtime.min.js" id="regenerator-runtime-js"></script>
-<script src="https://c0.wp.com/c/6.2/wp-includes/js/dist/vendor/wp-polyfill.min.js" id="wp-polyfill-js"></script>
-<script src="https://c0.wp.com/c/6.2/wp-includes/js/dist/hooks.min.js" id="wp-hooks-js"></script>
-<script src="https://c0.wp.com/c/6.2/wp-includes/js/dist/i18n.min.js" id="wp-i18n-js"></script>
-<script id="wp-i18n-js-after">
-wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
-</script>
-<script id="elementor-pro-frontend-js-before">
-var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/benijah.com\/wp-admin\/admin-ajax.php","nonce":"8fb4fe3bd3","urls":{"assets":"https:\/\/benijah.com\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/benijah.com\/wp-json\/"},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"}},
-"facebook_sdk":{"lang":"en_US","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/benijah.com\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
-</script>
-<script src="https://benijah.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.13.0" id="elementor-pro-frontend-js"></script>
-<script src="https://benijah.com/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2" id="elementor-waypoints-js"></script>
-<script src="https://c0.wp.com/c/6.2/wp-includes/js/jquery/ui/core.min.js" id="jquery-ui-core-js"></script>
-<script src="https://benijah.com/wp-content/plugins/elementor/assets/lib/swiper/swiper.min.js?ver=5.3.6" id="swiper-js"></script>
-<script src="https://benijah.com/wp-content/plugins/elementor/assets/lib/share-link/share-link.min.js?ver=3.13.2" id="share-link-js"></script>
-<script src="https://benijah.com/wp-content/plugins/elementor/assets/lib/dialog/dialog.min.js?ver=4.9.0" id="elementor-dialog-js"></script>
-<script id="elementor-frontend-js-before">
-var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},
-"version":"3.13.2","is_static":false,"experimentalFeatures":{"a11y_improvements":true,"additional_custom_breakpoints":true,"theme_builder_v2":true,"landing-pages":true,"page-transitions":true,"notes":true,"loop":true,"form-submissions":true,"e_scroll_snap":true},"urls":{"assets":"https:\/\/benijah.com\/wp-content\/plugins\/elementor\/assets\/"},"swiperClass":"swiper-container","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":15846,"title":"The%20Autonomous%20Biz%20Dev%20Department","excerpt":"","featuredImage":"https:\/\/i0.wp.com\/benijah.com\/wp-content\/uploads\/2023\/05\/644c3856d06aa4f94ae5fb28_brix-templates-hero-image.png?fit=800%2C789&ssl=1"}};
-</script>
-<script src="https://benijah.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.13.2" id="elementor-frontend-js"></script><span id="elementor-device-mode" class="elementor-screen-only"></span>
-<script src="https://benijah.com/wp-content/plugins/elementor-pro/assets/js/preloaded-elements-handlers.min.js?ver=3.13.0" id="pro-preloaded-elements-handlers-js"></script><svg style="display: none;" class="e-font-icon-svg-symbols"></svg>
-<script src="https://benijah.com/wp-content/plugins/elementor/assets/js/preloaded-modules.min.js?ver=3.13.2" id="preloaded-modules-js"></script><svg style="display: none;" class="e-font-icon-svg-symbols"></svg>
-<script src="https://benijah.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.13.0" id="e-sticky-js"></script>
-		
-				
-		
-
-
-<img src="https://pixel.wp.com/g.gif?v=ext&amp;blog=172476432&amp;post=15846&amp;tz=-7&amp;srv=benijah.com&amp;hp=atomic&amp;ac=2&amp;amp=0&amp;j=1%3A12.2-a.5&amp;host=benijah.com&amp;ref=https%3A%2F%2Fbenijah.com%2Fabdd%2F&amp;fcp=4471&amp;rand=0.46064459495919396" alt="" width="6" height="5" id="wpstats">
-</div>
-{% endblock content %}
+</html>

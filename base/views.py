@@ -91,7 +91,8 @@ from django.views.decorators.csrf import csrf_protect
 def get_basic_info(requests):
     jsondata = requests.body
     last_res = json.loads(jsondata)
-
+    print('#####################')
+    print(last_res)
     # response = data
     # last_res = response['form_response']['answers']
 
@@ -106,7 +107,7 @@ def get_basic_info(requests):
     seller_last_name = last_res["lastName"]
     seller_phone = last_res["phoneNumber"]
     seller_email = last_res["email"]
-    lead_email = seller_email
+    lead_email = last_res["email"]
     seller_company = last_res["companyName"]
     seller_position = last_res["position"]
 
@@ -122,7 +123,7 @@ def get_basic_info(requests):
     # contact_channels = contact_channels.replace("[", "")
     # contact_channels = contact_channels.replace("]", "")
     #contact_cost = float(last_res[23]["text"])
-    contact_cost = float(last_res["prospectContactInfo"])
+    contact_cost = float(last_res["prospectcontactcost"])
     print(last_res)
 
 
