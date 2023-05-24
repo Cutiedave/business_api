@@ -84,7 +84,7 @@ def seller_form(requests):
 
         url=f'{base_url}/api/v1/detail/'
 
-        res = req.get( url)
+        res = req.get(url)
         data = res.json()
 
         return render(requests, 'web_base/table_page.html', {'data':data})
