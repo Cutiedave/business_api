@@ -55,11 +55,12 @@ def seller_form(requests):
 
         }
 
-        if os.environ.get('mode')=='DEVELOPMENT':
-            base_url='http://localhost:8000'
-        else:
-            base_url=os.environ.get('BASE_DOMAIN','http://localhost:8000')
-        url=f'{base_url}/api/v1/webhook/'
+#         if os.environ.get('mode')=='DEVELOPMENT':
+#             base_url='http://localhost:8000'
+#         else:
+#             base_url=os.environ.get('BASE_DOMAIN','http://localhost:8000')
+#         url=f'{base_url}/api/v1/webhook/'
+        url='https://businessapi-production.up.railway.app/api/v1/webhook/'
 
 
         res = req.post( url, json=data)
@@ -77,12 +78,13 @@ def seller_form(requests):
     # else:
     #     return redirect('login')
     else:
-        if os.environ.get('mode')=='DEVELOPMENT':
-            base_url='http://localhost:8000'
-        else:
-            base_url=os.environ.get('BASE_DOMAIN','http://localhost:8000')
+#         if os.environ.get('mode')=='DEVELOPMENT':
+#             base_url='http://localhost:8000'
+#         else:
+#             base_url=os.environ.get('BASE_DOMAIN','http://localhost:8000')
 
-        url=f'{base_url}/api/v1/detail/'
+#         url=f'{base_url}/api/v1/detail/'
+        url='https://businessapi-production.up.railway.app/api/v1/detail/'
 
         res = req.get(url)
         data = res.json()
