@@ -237,7 +237,7 @@
 							</tr>
 							<tr>
 								<td class="content--title">Team monthly unfruitful cost</td>
-								<td class="content--text">$ {{data.organization_unfruitful_costs_monthly}}</td>
+								<td class="content--text">$ {{data.organization_unfruitful_costs_monthly|floatformat:1}}</td>
 								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 										xmlns="http://www.w3.org/2000/svg"
@@ -249,7 +249,7 @@
 							</tr>
 							<tr class="switch-color">
 								<td class="content--title">Team daily unfruitful cost</td>
-								<td class="content--text">$ {{data.organization_unfruitful_costs_daily}}</td>
+								<td class="content--text">$ {{data.organization_unfruitful_costs_daily|floatformat:1}}</td>
 								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 										xmlns="http://www.w3.org/2000/svg"
@@ -261,7 +261,7 @@
 							</tr>
 							<tr>
 								<td class="content--title">Team hourly unfruitful cost</td>
-								<td class="content--text">$ {{data.organization_unfruitful_costs_hourly}}</td>
+								<td class="content--text">$ {{data.organization_unfruitful_costs_hourly|floatformat:1}}</td>
 								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 										xmlns="http://www.w3.org/2000/svg"
@@ -273,7 +273,7 @@
 							</tr>
 							<tr class="switch-color">
 								<td class="content--title">Unfruitful contact rate</td>
-								<td class="content--text">{{data.unfruitful_contact_rate}}</td>
+								<td class="content--text">{{data.unfruitful_contact_rate|floatformat:0}}</td>
 								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 										xmlns="http://www.w3.org/2000/svg"
