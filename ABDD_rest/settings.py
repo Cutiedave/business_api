@@ -40,7 +40,7 @@ REST_FRAMEWORK = {
 
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://mep-backend2-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://mep-backend2-production.up.railway.app', 'https://businessapi-production.up.railway.app']
 CORS_ALLOW_ALL_ORIGINS = True
 
 
