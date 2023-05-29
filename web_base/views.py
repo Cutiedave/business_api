@@ -4,7 +4,6 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 #from django.utils import simplejson
 from django.core import serializers
 from .templates import decorators
@@ -14,7 +13,7 @@ import numpy as np
 import json
 import os
 
-from base.models import Business_case_data
+from base.models import Business_case_data, MyUser
 from base.serializers import MepSerializer
 
 load_dotenv()
@@ -34,6 +33,8 @@ def get_basic_info(last_res):
     lead_email = last_res["email"]
     seller_company = last_res["companyName"]
     seller_position = last_res["position"]
+
+    email = last_res['email']
 
     seller_sales_cycle = int(last_res["averageSalesCycle"])
     sales_team_size = int(last_res["peopleInYourOrganisation"])
@@ -62,10 +63,10 @@ def get_basic_info(last_res):
     print('Contact Channels: ' + str(contact_channels))
     print('Contact Cost: $' + str(contact_cost))
 
-    return (sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, 
+    return (email ,sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, 
                        qualified_lead_close_rate, avg_deal_size, seller_first_name + ' ' + seller_last_name, seller_company)
 
-def business_case_data(sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, 
+def business_case_data(email, sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, 
                        qualified_lead_close_rate, avg_deal_size, seller_name, seller_company):
     print('Organization Biz Dev Costs:')
     avg_bdr_salary = 49500
@@ -302,7 +303,7 @@ def business_case_data(sales_team_size, monthly_prospects, monthly_leads, monthl
 
 
 
-    return ({"Rev_share":rev_share ,"accounts_needed":accounts_needed ,"avg_bdr_salary":avg_bdr_salary, "avg_training_cost":avg_training_cost, "benefit_cost":benefit_cost, "annual_bdr_costs":annual_bdr_costs, "daily_bdr_cost":daily_bdr_cost, "hourly_bdr_cost":hourly_bdr_cost, \
+    return ({"email":email ,"Rev_share":rev_share ,"accounts_needed":accounts_needed ,"avg_bdr_salary":avg_bdr_salary, "avg_training_cost":avg_training_cost, "benefit_cost":benefit_cost, "annual_bdr_costs":annual_bdr_costs, "daily_bdr_cost":daily_bdr_cost, "hourly_bdr_cost":hourly_bdr_cost, \
             
             "monthly_prospects":monthly_prospects, "monthly_leads":monthly_leads, "org_prospect_conversion":org_prospect_conversion*100, "org_prospect_to_lead":org_prospect_to_lead, "org_lead_to_close":org_lead_to_close, \
             
@@ -335,118 +336,151 @@ def business_case_data(sales_team_size, monthly_prospects, monthly_leads, monthl
 def home(request):
     return render(request,'web_base/home.html')
 
+def dashboard_detail(requests,email):
+    if not requests.user.is_authenticated:
+        return redirect('login')
+    else:
+        if requests.user.is_admin:
+            users=Business_case_data.objects.filter(email=email).first()
+            if not users:
+                messages.error(requests, 'No data available, please fill the data form')
+                return redirect('home_web_base')
+            serializer=MepSerializer(users)
+            return render(requests, 'web_base/table_page.html',{'data':serializer.data})
+
+        if requests.user.email != email:
+            messages.error(requests, 'Not allowed on this account, check email')
+            return redirect('home_web_base')
+        else:
+            users=Business_case_data.objects.filter(email=email).first()
+            if not users:
+                messages.error(requests, 'No data available, please fill the data form')
+                return redirect('home_web_base')
+            serializer=MepSerializer(users)
+            return render(requests, 'web_base/table_page.html',{'data':serializer.data})
+
+
+
 
 def seller_form(requests):
-    #if requests.user.is_authenticated:
-    if requests.method=='POST':
+    if requests.user.is_authenticated:
+        if requests.method=='POST':
 
-        data = {
-        'user':None,
-        'firstName': requests.POST.get('firstName'),
-        'lastName': requests.POST.get('lastName'),
-        'seller_name': requests.POST.get('firstName')+ ' '+requests.POST.get('lastName'),
-        'phoneNumber': requests.POST.get('phoneNumber'),
-        'email': requests.POST.get('email'),
-        'lead_email': requests.POST.get('email'),
-        'companyName': requests.POST.get('companyName'),
-        'position': requests.POST.get('position'),
-
-
-        'level': requests.POST.get('level'),
-        'role': requests.POST.get('role'),
-        'size': requests.POST.get('size'),
-        'industry': requests.POST.get('industry'),
-
-        'averageSalesCycle': float(requests.POST.get('averageSalesCycle')),
-        'peopleInYourOrganisation': float(requests.POST.get('peopleInYourOrganisation')),
-        'howManyProspects': float(requests.POST.get('howManyProspects')),
-        'howManyLeads': float(requests.POST.get('howManyLeads')),
-        'howManyQualifiedLeads': float(requests.POST.get('howManyQualifiedLeads')),
-        'teamCloseRate': float(requests.POST.get('teamCloseRate')),
-        'averageDealSize': float(requests.POST.get('averageDealSize')),
-        'prospectcontactcost': float(requests.POST.get('prospectcontactcost')),
-        'contacting': requests.POST.get('contacting'),
-
-        }
-
-        sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, qualified_lead_close_rate, avg_deal_size,seller_name, seller_company = get_basic_info(data)
-        
-        business_data = business_case_data(sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, 
-                    qualified_lead_close_rate, avg_deal_size, seller_name, seller_company)
-        
-        Business_case_data.objects.create(
-                Rev_share=business_data['Rev_share'],
-                Accounts_needed=business_data['accounts_needed'],
-                Avg_BDR_Salary=business_data['avg_bdr_salary'], Avg_BDR_Training_Costs=business_data['avg_training_cost'], 
-                Avg_BDR_Benefits=business_data['benefit_cost'], Annual_Organization_BDR_Costs=business_data['annual_bdr_costs'], 
-                Daily_Organization_BDR_Costs=business_data['daily_bdr_cost'], Hourly_Organization_BDR_Costs=business_data['hourly_bdr_cost'], \
-                
-                Contacts_Monthly=business_data['monthly_prospects'], Leads_Monthly=business_data['monthly_leads'], 
-                Contact_to_Lead_Rate=business_data['org_prospect_conversion'], contacts_to_generate_each_lead=business_data['org_prospect_to_lead'], 
-                
-                leads_needed_to_generate_each_sale=business_data['org_lead_to_close'], \
-                
-                ABDD_contacts_per_hour=business_data['abdd_hourly_rate'], ABDD_contacts_per_day=business_data['abdd_daily_rate'], 
-                
-                ABDD_contacts_per_month=business_data['abdd_monthly_rate'], \
-                
-                ABDD_cost_per_year=business_data['org_abdd_annual_cost'], ABDD_cost_per_month=business_data['org_abdd_monthly_cost'], 
-                
-                ABDD_cost_per_day=business_data['org_abdd_daily_cost'], ABDD_cost_per_hour=business_data['org_abdd_hourly_cost'], 
-                
-                ABDD_cost_per_minute=business_data['org_abdd_min_cost'], ABDD_cost_per_second=business_data['org_abdd_sec_cost'], 
-
-                savings_per_month=business_data['bdr_vs_abbd_monthly_savings'], savings_per_year=business_data['bdr_vs_abbd_annual_savings'], 
-                
-                saving_rate=business_data['savings_percent'],
+            data = {
+            'firstName': requests.POST.get('firstName'),
+            'lastName': requests.POST.get('lastName'),
+            'seller_name': requests.POST.get('firstName')+ ' '+requests.POST.get('lastName'),
+            'phoneNumber': requests.POST.get('phoneNumber'),
+            'email': requests.POST.get('email'),
+            'lead_email': requests.POST.get('email'),
+            'companyName': requests.POST.get('companyName'),
+            'position': requests.POST.get('position'),
 
 
-                unfruitful_contact_rate=business_data['unfruitful_contact_rate'], organization_unfruitful_contacts_monthly=business_data['team_monthly_unfruitful'], 
-                
-                organization_unfruitful_contacts_daily=business_data['team_daily_unfruitful'], organization_unfruitful_contacts_hourly=business_data['team_hourly_unfruitful'],
+            'level': requests.POST.get('level'),
+            'role': requests.POST.get('role'),
+            'size': requests.POST.get('size'),
+            'industry': requests.POST.get('industry'),
 
+            'averageSalesCycle': float(requests.POST.get('averageSalesCycle')),
+            'peopleInYourOrganisation': float(requests.POST.get('peopleInYourOrganisation')),
+            'howManyProspects': float(requests.POST.get('howManyProspects')),
+            'howManyLeads': float(requests.POST.get('howManyLeads')),
+            'howManyQualifiedLeads': float(requests.POST.get('howManyQualifiedLeads')),
+            'teamCloseRate': float(requests.POST.get('teamCloseRate')),
+            'averageDealSize': float(requests.POST.get('averageDealSize')),
+            'prospectcontactcost': float(requests.POST.get('prospectcontactcost')),
+            'contacting': requests.POST.get('contacting'),
 
-                organization_unfruitful_costs_monthly=business_data['team_monthly_unfruitful_costs'], 
-                
-                organization_unfruitful_costs_hourly=business_data['team_hourly_unfruitful_costs'], 
-                
-                organization_unfruitful_costs_daily=business_data['team_daily_unfruitful_costs'],
+            }
 
-                Organization_Lead_Generation_Rate_daily=business_data['team_days_per_lead'], 
-                
-                Organization_Lead_Generation_Rate_hourly=business_data['team_hours_per_lead'], 
-
-                ABDD_Lead_Generation_Rate=business_data['abdd_lead_rate_monthly'], Organization_Avg_Cost_Per_Lead=business_data['lead_cost'], 
-                
-                ABDD_Avg_Cost_Per_Lead=business_data['abdd_cpl'], CPL_Reduction=business_data['cpl_reduction'],
-
-                Organization_Sell_Generation_Rate=business_data['org_sell_gen_day'],
-
-                Avg_Organization_BDR_Cost_to_Generate_Sale=business_data['cost_per_likely_sell'], Avg_ABDD_Cost_to_Generate_Sale=business_data['abdd_cps'],
-
-                seller_name=business_data['seller_name'], company=business_data['seller_company']
-        )
-
-
-        users=Business_case_data.objects.last()
-        serializer=MepSerializer(users)
-
-        return render(requests, 'web_base/table_page.html', {'data':serializer.data})
+            email, sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, qualified_lead_close_rate, avg_deal_size,seller_name, seller_company = get_basic_info(data)
+            
+            business_data = business_case_data(email ,sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, 
+                        qualified_lead_close_rate, avg_deal_size, seller_name, seller_company)
+            
+            if (Business_case_data.objects.filter(email=business_data['email']).exists()==True):
+                # users=Business_case_data.objects.get(email=requests.user.email)
+                # serializer=MepSerializer(users)
+                # return render(requests, 'web_base/table_page.html', {'data':serializer.data})
+                messages.error(requests, 'Data already saved, please check dashboard')
+                return redirect('home_web_base')
+            
+            user_key=MyUser.objects.get(email=business_data['email'])
 
             
+            Business_case_data.objects.create(
+                    user = user_key,
+                    Rev_share=business_data['Rev_share'],
+                    email=requests.user.email,
+                    Accounts_needed=business_data['accounts_needed'],
+                    Avg_BDR_Salary=business_data['avg_bdr_salary'], Avg_BDR_Training_Costs=business_data['avg_training_cost'], 
+                    Avg_BDR_Benefits=business_data['benefit_cost'], Annual_Organization_BDR_Costs=business_data['annual_bdr_costs'], 
+                    Daily_Organization_BDR_Costs=business_data['daily_bdr_cost'], Hourly_Organization_BDR_Costs=business_data['hourly_bdr_cost'], \
+                    
+                    Contacts_Monthly=business_data['monthly_prospects'], Leads_Monthly=business_data['monthly_leads'], 
+                    Contact_to_Lead_Rate=business_data['org_prospect_conversion'], contacts_to_generate_each_lead=business_data['org_prospect_to_lead'], 
+                    
+                    leads_needed_to_generate_each_sale=business_data['org_lead_to_close'], \
+                    
+                    ABDD_contacts_per_hour=business_data['abdd_hourly_rate'], ABDD_contacts_per_day=business_data['abdd_daily_rate'], 
+                    
+                    ABDD_contacts_per_month=business_data['abdd_monthly_rate'], \
+                    
+                    ABDD_cost_per_year=business_data['org_abdd_annual_cost'], ABDD_cost_per_month=business_data['org_abdd_monthly_cost'], 
+                    
+                    ABDD_cost_per_day=business_data['org_abdd_daily_cost'], ABDD_cost_per_hour=business_data['org_abdd_hourly_cost'], 
+                    
+                    ABDD_cost_per_minute=business_data['org_abdd_min_cost'], ABDD_cost_per_second=business_data['org_abdd_sec_cost'], 
 
-            
-            # return redirect('seller_form')
+                    savings_per_month=business_data['bdr_vs_abbd_monthly_savings'], savings_per_year=business_data['bdr_vs_abbd_annual_savings'], 
+                    
+                    saving_rate=business_data['savings_percent'],
 
-    # else:
-    #     return redirect('login')
+
+                    unfruitful_contact_rate=business_data['unfruitful_contact_rate'], organization_unfruitful_contacts_monthly=business_data['team_monthly_unfruitful'], 
+                    
+                    organization_unfruitful_contacts_daily=business_data['team_daily_unfruitful'], organization_unfruitful_contacts_hourly=business_data['team_hourly_unfruitful'],
+
+
+                    organization_unfruitful_costs_monthly=business_data['team_monthly_unfruitful_costs'], 
+                    
+                    organization_unfruitful_costs_hourly=business_data['team_hourly_unfruitful_costs'], 
+                    
+                    organization_unfruitful_costs_daily=business_data['team_daily_unfruitful_costs'],
+
+                    Organization_Lead_Generation_Rate_daily=business_data['team_days_per_lead'], 
+                    
+                    Organization_Lead_Generation_Rate_hourly=business_data['team_hours_per_lead'], 
+
+                    ABDD_Lead_Generation_Rate=business_data['abdd_lead_rate_monthly'], Organization_Avg_Cost_Per_Lead=business_data['lead_cost'], 
+                    
+                    ABDD_Avg_Cost_Per_Lead=business_data['abdd_cpl'], CPL_Reduction=business_data['cpl_reduction'],
+
+                    Organization_Sell_Generation_Rate=business_data['org_sell_gen_day'],
+
+                    Avg_Organization_BDR_Cost_to_Generate_Sale=business_data['cost_per_likely_sell'], Avg_ABDD_Cost_to_Generate_Sale=business_data['abdd_cps'],
+
+                    seller_name=business_data['seller_name'], company=business_data['seller_company']
+            )
+
+
+            users=Business_case_data.objects.filter(email=requests.user.email).first()
+            if not users:
+                messages.error(requests, 'No data available, please fill the data form')
+                return redirect('home_web_base')
+            serializer=MepSerializer(users)
+            return render(requests, 'web_base/table_page.html',{'data':serializer.data})
+
+        else:
+            users=Business_case_data.objects.filter(email=requests.user.email).first()
+            if not users:
+                messages.error(requests, 'No data available, please fill the data form')
+                return redirect('home_web_base')
+            serializer=MepSerializer(users)
+            return render(requests, 'web_base/table_page.html',{'data':serializer.data})
     else:
-        users=Business_case_data.objects.last()
-        serializer=MepSerializer(users)
-
-
-        return render(requests, 'web_base/table_page.html', {'data':serializer.data})
-
+        return redirect('login')
 
 @decorators.unauthenticated_user
 def Login(requests):
@@ -454,18 +488,20 @@ def Login(requests):
         return redirect('home_web_base')
     
     if requests.method=='POST':
-        username=requests.POST.get('username').lower()
+        email=requests.POST.get('email').lower()
         password=requests.POST.get('password')
 
         try:
-            user= User.objects.get(username=username)
+            user= MyUser.objects.get(email=email)
         except:
             messages.error(requests, 'Invalid user')
-
-        user = authenticate(requests, username=username, password=password)
+            return render(requests, 'web_base/login_page.html')
+            
+        user = authenticate(requests, email=email, password=password)
 
         if user is None:
             messages.error(requests, 'password is incorrect')
+            return render(requests, 'web_base/login_page.html')
         else:
             login(requests, user)
             return redirect('home_web_base')
@@ -484,26 +520,32 @@ def register(requests):
 
     if requests.method=='POST':
         #user=UserCreationForm(requests.POST)
-        pw=requests.POST.get('password')
-        pw2=requests.POST.get('confirm_password')
-        if pw != pw2:
-            messages.error(requests, 'password mismatch')
+        pw = requests.POST.get('password')
+        email = requests.POST.get('email').lower()
+        full_name = requests.POST.get('Full name').capitalize()
+        # pw2=requests.POST.get('confirm_password')
+        # if pw != pw2:
+        #     messages.error(requests, 'password mismatch')
 
-            return render(requests,'web_base/signup.html')
-        if (User.objects.filter(username=requests.POST.get('username')).exists()==True):
+            # return render(requests,'web_base/signup.html')
+        if (MyUser.objects.filter(email=requests.POST.get('email')).exists()==True):
              messages.error(requests, 'username already exists')
-             return render(requests,'web_base/signup.html')           
+             return render(requests,'web_base/login_page.html') 
+
+        if (MyUser.objects.filter(email=email).exists()==True):
+             messages.error(requests, 'username already exists')
+             return render(requests,'web_base/login_page.html')           
             
-        userform=User.objects.create_user(username=requests.POST.get('username').lower(),password=requests.POST.get('password'),first_name=requests.POST.get('First Name'), email=requests.POST.get('email'))
+        userform=MyUser.objects.create_user(email=email,password=pw,full_name=full_name)
         #if userform.is_valid():
         userform.save()
 
-        messages.success(requests,'Account successfully created')
+        messages.success(requests,'Account successfully created, please login')
         return redirect('login')
         # else:
         #     messages.error(requests, 'invalid details')
         #     return redirect('login')
-    return render(requests,'web_base/signup.html')
+    return render(requests,'web_base/login_page.html', {'color':'blues'})
 
 # def profile(request,pk):
 #     return HttpResponse('welcome '+User.objects.get(id=pk).username)

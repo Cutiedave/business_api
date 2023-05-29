@@ -1,5 +1,6 @@
+{% extends 'main.html'%}
+{% block content%}
 {% load static %}
-<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
@@ -11,340 +12,340 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Pricing Visual</title>
 	<script type="module" crossorigin="" src="/assets/index-8385eafe.js"></script>
-	<link rel="stylesheet" href="{% static 'styles/form.css' %}">
-	<style></style>
 </head>
 
-<body>
-	<div id="root">
-		<div>
-			<div>
-				<section class="container ">
-					<h2 class="welcome--name">Hi, <span>{{data.seller_name}}</span></h2>
-					<h2 class="welcome--name">company: <span>{{data.company}}</span></h2>
-					<div class="visual--grid">
-						<div class="visual--output">
-							<div class="visual--high-value">
-								<div>Your Current plan costs</div>${{data.Annual_Organization_BDR_Costs}}<div>Per year</div>
-							</div><img src="{% static 'img/chart.svg' %}">
-							<div class="visual--low-value">
-								<div>ABDD costs you</div>${{data.ABDD_cost_per_year}}<div>Per year</div>
-							</div>
-						</div><img src="{% static 'img/sale.svg' %}">
-					</div>
-					<table>
-						<thead>
-							<th></th>
-							<th class="table-head table-head-1">Current plan</th>
-							<th class="table-head table-head-2">ABDD</th>
-						</thead>
-						<tbody>
-							<tr class="switch-color">
-								<td class="content--title">annual cost</td>
-								<td class="content--text">$ {{data.Annual_Organization_BDR_Costs}}</td>
-								<td class="content--text">$ {{data.ABDD_cost_per_year}}</td>
-							</tr>
-							<tr>
-								<td class="content--title">daily cost</td>
-								<td class="content--text">$ {{data.Daily_Organization_BDR_Costs|floatformat:1}}</td>
-								<td class="content--text">$ {{data.ABDD_cost_per_day|floatformat:1}}</td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">hourly cost</td>
-								<td class="content--text">$ {{data.Hourly_Organization_BDR_Costs|floatformat:1}}</td>
-								<td class="content--text">$ {{data.ABDD_cost_per_hour|floatformat:1}}</td>
-							</tr>
-							<tr>
-								<td class="content--title">monthly cost</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-								<td class="content--text">$ {{data.ABDD_cost_per_month|floatformat:1}}</td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">Average BDR salary</td>
-								<td class="content--text">$ {{data.Avg_BDR_Salary|floatformat:1}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr>
-								<td class="content--title">Average training cost</td>
-								<td class="content--text">$ {{data.Avg_BDR_Training_Costs|floatformat:1}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">Benefit cost</td>
-								<td class="content--text">$ {{data.Avg_BDR_Benefits|floatformat:1}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr>
-								<td class="content--title">Organisation cost per lead</td>
-								<td class="content--text">$ {{data.Organization_Avg_Cost_Per_Lead|floatformat:1}}</td>
-								<td class="content--text">$ {{data.ABDD_Avg_Cost_Per_Lead|floatformat:1}}</td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">Organisation cost per likely sale</td>
-								<td class="content--text">$ {{data.Avg_Organization_BDR_Cost_to_Generate_Sale|floatformat:1}}</td>
-								<td class="content--text">$ {{data.Avg_ABDD_Cost_to_Generate_Sale|floatformat:1}}</td>
-							</tr>
-							<tr>
-								<td class="content--title">Days to generate lead</td>
-								<td class="content--text">$ {{data.Organization_Lead_Generation_Rate_daily|floatformat:0}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">Hours to generate lead</td>
-								<td class="content--text">$ {{data.Organization_Lead_Generation_Rate_hourly|floatformat:0}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr>
-								<td class="content--title">Monthly lead generation rate</td>
-								<td class="content--text">$ {{data.Leads_Monthly}}</td>
-								<td class="content--text">$ {{data.ABDD_Lead_Generation_Rate}}</td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">monthly prospect</td>
-								<td class="content--text">$ {{data.Contacts_Monthly}}</td>
-								<td class="content--text">$ {{data.ABDD_contacts_per_month}}</td>
-							</tr>
-							<tr>
-								<td class="content--title">contact hourly rate</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-								<td class="content--text">$ {{data.ABDD_contacts_per_hour}}</td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">contact daily rate</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-								<td class="content--text">$ {{data.ABDD_contacts_per_day}}</td>
-							</tr>
-							<tr>
-								<td class="content--title">contact to generate lead</td>
-								<td class="content--text">$ {{data.contacts_to_generate_each_lead}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">Monthly lead conversion rate</td>
-								<td class="content--text">$ {{data.Contact_to_Lead_Rate}}</td>
-								<td class="content--text">$ {{data.ABDD_Lead_Generation_Rate}}</td>
-							</tr>
-							<tr>
-								<td class="content--title">Organisation lead to close</td>
-								<td class="content--text">{{data.leads_needed_to_generate_each_sale|floatformat:0}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">Team monthly unfruitful contacts</td>
-								<td class="content--text">{{data.organization_unfruitful_contacts_monthly}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr>
-								<td class="content--title">Team daily unfruitful contacts</td>
-								<td class="content--text">{{data.organization_unfruitful_contacts_daily|floatformat:0}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">Team hourly unfruitful contacts</td>
-								<td class="content--text">{{data.organization_unfruitful_contacts_hourly|floatformat:0}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr>
-								<td class="content--title">Team monthly unfruitful cost</td>
-								<td class="content--text">$ {{data.organization_unfruitful_costs_monthly|floatformat:1}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">Team daily unfruitful cost</td>
-								<td class="content--text">$ {{data.organization_unfruitful_costs_daily|floatformat:1}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr>
-								<td class="content--title">Team hourly unfruitful cost</td>
-								<td class="content--text">$ {{data.organization_unfruitful_costs_hourly|floatformat:1}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">Unfruitful contact rate</td>
-								<td class="content--text">{{data.unfruitful_contact_rate|floatformat:0}}</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-							</tr>
-							<tr>
-								<td class="content--title">BDR vs ABBD monthly savings</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-								<td class="content--text">$ {{data.savings_per_month|floatformat:1}}</td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">BDR vs ABBD Annual savings</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-								<td class="content--text">$ {{data.savings_per_year|floatformat:1}}</td>
-							</tr>
-							<tr>
-								<td class="content--title">savings percent</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-								<td class="content--text">{{data.saving_rate}}%</td>
-							</tr>
-							<tr class="switch-color">
-								<td class="content--title">CPI reduction</td>
-								<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
-										viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: red; height: 1.5rem; width: 1.5rem;">
-										<path fill-rule="evenodd" clip-rule="evenodd"
-											d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-											fill="currentColor"></path>
-									</svg></td>
-								<td class="content--text">{{data.CPL_Reduction}}%</td>
-							</tr>
-						</tbody>
-						<thead>
-							<th class="thead--bottom"></th>
-							<th class="table-head table-head-1" rowspan="2">$ {{data.Annual_Organization_BDR_Costs}}<span> Per year</span></th>
-							<th class="table-head table-head-2" rowspan="2">$ {{data.ABDD_cost_per_year}}<span> Per year</span></th>
-						</thead>
-					</table>
-				</section>
-			</div><button class="btn btn-hero">Back to Home</button>
+
+<h2 style=" color: rgb(78, 28, 85); font-size: large; padding-bottom: 10px; font-weight: 500; position: relative;">company: {{data.company}}</h2>
+<h2 style=" color: rgb(78, 28, 85); font-size: large; padding-bottom: 10px; font-weight: 500; position: relative;">Email: {{data.email}}</h2>
+
+
+
+<div class="dash">
+	<section class="container">
+		<div class="visual--grid">
+			<div class="visual--output">
+				<div class="visual--high-value">
+					<div>Your Current plan costs</div>${{data.Annual_Organization_BDR_Costs}}<div>Per year</div>
+				</div>
+				<img src="{% static 'img/chart.svg' %}">
+				<div class="visual--low-value">
+					<div>ABDD costs you</div>${{data.ABDD_cost_per_year}}<div>Per year</div>
+				</div>
+			</div><img src="{% static 'img/sale.svg' %}">
 		</div>
-	</div>
+		<table>
+			<thead>
+				<th></th>
+				<th class="table-head table-head-1">Current plan</th>
+				<th class="table-head table-head-2">ABDD</th>
+			</thead>
+			<tbody>
+				<tr class="switch-color">
+					<td class="content--title">annual cost</td>
+					<td class="content--text">$ {{data.Annual_Organization_BDR_Costs}}</td>
+					<td class="content--text">$ {{data.ABDD_cost_per_year}}</td>
+				</tr>
+				<tr>
+					<td class="content--title">daily cost</td>
+					<td class="content--text">$ {{data.Daily_Organization_BDR_Costs|floatformat:1}}</td>
+					<td class="content--text">$ {{data.ABDD_cost_per_day|floatformat:1}}</td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">hourly cost</td>
+					<td class="content--text">$ {{data.Hourly_Organization_BDR_Costs|floatformat:1}}</td>
+					<td class="content--text">$ {{data.ABDD_cost_per_hour|floatformat:1}}</td>
+				</tr>
+				<tr>
+					<td class="content--title">monthly cost</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+					<td class="content--text">$ {{data.ABDD_cost_per_month|floatformat:1}}</td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">Average BDR salary</td>
+					<td class="content--text">$ {{data.Avg_BDR_Salary|floatformat:1}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr>
+					<td class="content--title">Average training cost</td>
+					<td class="content--text">$ {{data.Avg_BDR_Training_Costs|floatformat:1}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">Benefit cost</td>
+					<td class="content--text">$ {{data.Avg_BDR_Benefits|floatformat:1}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr>
+					<td class="content--title">Organisation cost per lead</td>
+					<td class="content--text">$ {{data.Organization_Avg_Cost_Per_Lead|floatformat:1}}</td>
+					<td class="content--text">$ {{data.ABDD_Avg_Cost_Per_Lead|floatformat:1}}</td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">Organisation cost per likely sale</td>
+					<td class="content--text">$ {{data.Avg_Organization_BDR_Cost_to_Generate_Sale|floatformat:1}}</td>
+					<td class="content--text">$ {{data.Avg_ABDD_Cost_to_Generate_Sale|floatformat:1}}</td>
+				</tr>
+				<tr>
+					<td class="content--title">Days to generate lead</td>
+					<td class="content--text">$ {{data.Organization_Lead_Generation_Rate_daily|floatformat:0}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">Hours to generate lead</td>
+					<td class="content--text">$ {{data.Organization_Lead_Generation_Rate_hourly|floatformat:0}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr>
+					<td class="content--title">Monthly lead generation rate</td>
+					<td class="content--text">$ {{data.Leads_Monthly}}</td>
+					<td class="content--text">$ {{data.ABDD_Lead_Generation_Rate}}</td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">monthly prospect</td>
+					<td class="content--text">$ {{data.Contacts_Monthly}}</td>
+					<td class="content--text">$ {{data.ABDD_contacts_per_month}}</td>
+				</tr>
+				<tr>
+					<td class="content--title">contact hourly rate</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+					<td class="content--text">$ {{data.ABDD_contacts_per_hour}}</td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">contact daily rate</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+					<td class="content--text">$ {{data.ABDD_contacts_per_day}}</td>
+				</tr>
+				<tr>
+					<td class="content--title">contact to generate lead</td>
+					<td class="content--text">$ {{data.contacts_to_generate_each_lead}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">Monthly lead conversion rate</td>
+					<td class="content--text">$ {{data.Contact_to_Lead_Rate}}</td>
+					<td class="content--text">$ {{data.ABDD_Lead_Generation_Rate}}</td>
+				</tr>
+				<tr>
+					<td class="content--title">Organisation lead to close</td>
+					<td class="content--text">{{data.leads_needed_to_generate_each_sale|floatformat:0}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">Team monthly unfruitful contacts</td>
+					<td class="content--text">{{data.organization_unfruitful_contacts_monthly}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr>
+					<td class="content--title">Team daily unfruitful contacts</td>
+					<td class="content--text">{{data.organization_unfruitful_contacts_daily|floatformat:0}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">Team hourly unfruitful contacts</td>
+					<td class="content--text">{{data.organization_unfruitful_contacts_hourly|floatformat:0}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr>
+					<td class="content--title">Team monthly unfruitful cost</td>
+					<td class="content--text">$ {{data.organization_unfruitful_costs_monthly|floatformat:1}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">Team daily unfruitful cost</td>
+					<td class="content--text">$ {{data.organization_unfruitful_costs_daily|floatformat:1}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr>
+					<td class="content--title">Team hourly unfruitful cost</td>
+					<td class="content--text">$ {{data.organization_unfruitful_costs_hourly|floatformat:1}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">Unfruitful contact rate</td>
+					<td class="content--text">{{data.unfruitful_contact_rate|floatformat:0}}</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+				</tr>
+				<tr>
+					<td class="content--title">BDR vs ABBD monthly savings</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+					<td class="content--text">$ {{data.savings_per_month|floatformat:1}}</td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">BDR vs ABBD Annual savings</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+					<td class="content--text">$ {{data.savings_per_year|floatformat:1}}</td>
+				</tr>
+				<tr>
+					<td class="content--title">savings percent</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+					<td class="content--text">{{data.saving_rate}}%</td>
+				</tr>
+				<tr class="switch-color">
+					<td class="content--title">CPI reduction</td>
+					<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
+							viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+							style="color: red; height: 1.5rem; width: 1.5rem;">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+								fill="currentColor"></path>
+						</svg></td>
+					<td class="content--text">{{data.CPL_Reduction}}%</td>
+				</tr>
+			</tbody>
+			<thead>
+				<th class="thead--bottom"></th>
+				<th class="table-head table-head-1" rowspan="2">$ {{data.Annual_Organization_BDR_Costs}}<span> Per year</span></th>
+				<th class="table-head table-head-2" rowspan="2">$ {{data.ABDD_cost_per_year}}<span> Per year</span></th>
+			</thead>
+		</table>
+	</section>
+	<button style="margin: 0;" class="btn btn-hero">Back to Home</button>
+</div>
 
 
 
-</body>
 
-</html>
+
+
+{% endblock content%}

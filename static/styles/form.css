@@ -2,7 +2,13 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 4rem;
-  text-align: center
+  text-align: left
+  
+}
+
+.home-page {
+  text-align: center;
+  margin: 0;
 }
 
 * {
@@ -17,7 +23,17 @@ html {
 
 body {
   font-family: Rubik, sans-serif;
-  background-color: #c3d0e7
+  background-color: #c3d0e7;
+}
+
+.temp {
+  font-family: Rubik, sans-serif;
+  background-color: #c3d0e7;
+  
+}
+
+.dash {
+  text-align: center
 }
 
 table {
@@ -122,6 +138,7 @@ span {
 }
 
 .hero-container {
+  margin: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
@@ -130,7 +147,8 @@ span {
 }
 
 .hero-image {
-  width: 65%
+  width: 65%;
+  height: 100%;
 }
 
 .btn-hero,
@@ -147,6 +165,21 @@ span {
 
 .btn-hero:hover,
 .btn-hero:active {
+  background-color: #6159e6
+}
+
+.btn-hero2 {
+  background-color: #4c45b3;
+  color: #fff;
+  border: none;
+  padding: 1.2rem 3.6rem;
+  cursor: pointer;
+  border-radius: .5rem;
+  font-size: 1.5rem
+}
+
+.btn-hero2:hover,
+.btn-hero2:active {
   background-color: #6159e6
 }
 
