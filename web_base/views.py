@@ -376,6 +376,9 @@ def seller_form(requests):
             'companyName': requests.POST.get('companyName'),
             'position': requests.POST.get('position'),
 
+            'services_sold':requests.POST.get('services_sold'),
+            'lead_full_name': os.environ.get('lead_full_name', 'King Arthur'),
+
 
             'level': requests.POST.get('level'),
             'role': requests.POST.get('role'),

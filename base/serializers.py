@@ -5,5 +5,5 @@ class MepSerializer(serializers.ModelSerializer):
         #image_url = serializers.SerializerMethodField('get_image_url')
         model = Business_case_data
         fields = "__all__"
-        def get_image_url(self, obj):
-            return obj.image.url
+        # def get_image_url(self, obj):
+        #     return obj.image.url
