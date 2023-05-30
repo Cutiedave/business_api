@@ -1,1 +1,1 @@
-web: python manage.py makemigrations && python manage.py migrate && python manage.py create_admin && python manage.py collectstatic --no-input && gunicorn ABDD_rest.wsgi && python manage.py runserver && python -m celery -A ABDD_rest worker -l INFO
+web: python -m celery -A ABDD_rest worker -l INFO && python manage.py makemigrations && python manage.py migrate && python manage.py create_admin && python manage.py collectstatic --no-input && gunicorn ABDD_rest.wsgi && python manage.py runserver
