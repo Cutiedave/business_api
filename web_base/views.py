@@ -301,9 +301,6 @@ def business_case_data(email, sales_team_size, monthly_prospects, monthly_leads,
     print('CPL Reduction: ' + str(cpl_reduction) + '%')
     print('\n\n')
     
-    #Business Case Synopsis 
-    ##### Current State
-    #Annual & Monthly employee costs, contact processing rate, lead generation rate
     
     
     #Time to generate sell
@@ -410,7 +407,7 @@ def dashboard_detail(requests,email):
 
 
 
-
+# logic view
 def seller_form(requests):
     if requests.user.is_authenticated:
         if requests.method=='POST':
@@ -474,15 +471,20 @@ def seller_form(requests):
                                                 averageDealSize, prospectcontactcost,  contacting, position)
             
             if (Business_case_data.objects.filter(email=business_data['email']).exists()==True):
-                # users=Business_case_data.objects.get(email=requests.user.email)
-                # serializer=MepSerializer(users)
-                # return render(requests, 'web_base/table_page.html', {'data':serializer.data})
                 messages.error(requests, 'Data already saved, please check dashboard')
                 return redirect('home_web_base')
             
             user_key=MyUser.objects.get(email=business_data['email'])
 
             business_data['lead_skills'] = lead_skills
+
+
+            # send tasks to celery
+            # send_email.delay(business_data)
+            send_email.apply_async(args=[
+                    business_data
+                ], retry=True
+            )
 
             Business_case_data.objects.create(
                     user = user_key,
