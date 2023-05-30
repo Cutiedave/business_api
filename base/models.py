@@ -129,6 +129,8 @@ class Business_case_data(models.Model):
     # rev share
     Rev_share = models.FloatField( default=0)
 
+    background_email = models.TextField(default='still procesing email, check back again...')
+
     
     def __str__(self):
         return self.email

@@ -47,6 +47,10 @@ AUTH_PROFILE_MODULE = 'base.MyUser'
 
 AUTH_USER_MODEL = 'base.MyUser'
 
+# Celery settings
+CELERY_BROKER_URL = "redis://default:bLVoXmvY0aulFkAc5i30@containers-us-west-35.railway.app:7756"
+CELERY_RESULT_BACKEND = "redis://default:bLVoXmvY0aulFkAc5i30@containers-us-west-35.railway.app:7756"
+
 
 # Application definition
 

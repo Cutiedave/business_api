@@ -10,13 +10,18 @@ from .templates import decorators
 from dotenv import load_dotenv
 import requests as req
 import numpy as np
+import openai
 import json
 import os
 
 from base.models import Business_case_data, MyUser
 from base.serializers import MepSerializer
 
+from .tasks import send_email
+
 load_dotenv()
+
+
 
 
 def get_basic_info(last_res):
@@ -50,6 +55,33 @@ def get_basic_info(last_res):
     #contact_cost = float(last_res[23]["text"])
     contact_cost = float(last_res["prospectcontactcost"])
 
+    position = last_res['position']
+
+    services_sold = last_res['services_sold']
+    lead_full_name = last_res['lead_full_name']
+    lead_full_name_possesive = lead_full_name + "'s'"
+    lead_interest = last_res['lead_interest']
+    lead_social_links = last_res['lead_social_links']
+    lead_experience =  last_res['lead_experience']
+    company_city = last_res['company_city']
+    company_state = last_res['company_state']
+    company_site = last_res['company_site']
+    company = last_res['company']
+    lead_position = last_res['lead_position']
+    industry = last_res['industry']
+    role = last_res['role']
+    size = last_res['size']
+
+    averageSalesCycle = last_res['averageSalesCycle']
+    peopleInYourOrganisation = last_res['peopleInYourOrganisation'],
+    howManyProspects = last_res['howManyProspects'],
+    howManyLeads = last_res['howManyLeads'],
+    howManyQualifiedLeads = last_res['howManyQualifiedLeads'],
+    teamCloseRate = last_res['teamCloseRate'],
+    averageDealSize = last_res['averageDealSize'],
+    prospectcontactcost = last_res['prospectcontactcost'],
+    contacting = last_res['contacting'],
+
 
     print('Seller: ' + seller_first_name + ' ' + seller_last_name)
     print('Seller Company: ' + seller_company)
@@ -64,10 +96,18 @@ def get_basic_info(last_res):
     print('Contact Cost: $' + str(contact_cost))
 
     return (email ,sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, 
-                       qualified_lead_close_rate, avg_deal_size, seller_first_name + ' ' + seller_last_name, seller_company)
+                       qualified_lead_close_rate, avg_deal_size, seller_first_name + ' ' + seller_last_name, seller_company, services_sold,
+                       lead_full_name, lead_full_name_possesive, lead_interest, lead_social_links, lead_experience, company_city, company_state,
+                       company_site, company, lead_position, industry, role, size, averageSalesCycle, peopleInYourOrganisation, howManyProspects,
+                       howManyLeads, howManyQualifiedLeads, teamCloseRate, averageDealSize, prospectcontactcost,  contacting, position
+                       
+                       )
 
 def business_case_data(email, sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, 
-                       qualified_lead_close_rate, avg_deal_size, seller_name, seller_company):
+                       qualified_lead_close_rate, avg_deal_size, seller_name, seller_company , services_sold,
+                       lead_full_name, lead_full_name_possesive, lead_interest, lead_social_links, lead_experience, company_city, company_state,
+                       company_site, company, lead_position, industry, role, size, averageSalesCycle, peopleInYourOrganisation, howManyProspects,
+                       howManyLeads, howManyQualifiedLeads, teamCloseRate, averageDealSize, prospectcontactcost,  contacting, position):
     print('Organization Biz Dev Costs:')
     avg_bdr_salary = 49500
     print('Avg BDR Salary: ${:,.2f}'.format(avg_bdr_salary))
@@ -327,7 +367,16 @@ def business_case_data(email, sales_team_size, monthly_prospects, monthly_leads,
 
             "cost_per_likely_sell":cost_per_likely_sell, "abdd_cps":abdd_cps,
 
-            "seller_name":seller_name, "seller_company":seller_company}
+            "seller_name":seller_name, "seller_company":seller_company, 
+
+            'services_sold': services_sold, 'lead_full_name':lead_full_name, 'lead_full_name_possesive': lead_full_name_possesive,
+            'lead_interest': lead_interest, 'lead_social_links': lead_social_links, 'lead_experience':lead_experience, 'company_city':company_city,
+            'company_state': company_state, 'company_site': company_site, 'company': company, 'lead_position':lead_position, 'industry':industry, 
+            'role':role, 'size':size, 'averageSalesCycle': averageSalesCycle, 'peopleInYourOrganisation': peopleInYourOrganisation, 'howManyProspects': howManyProspects,
+            'howManyLeads': howManyLeads, 'howManyQualifiedLeads':howManyQualifiedLeads, 'teamCloseRate': teamCloseRate, 'averageDealSize': averageDealSize,
+            'prospectcontactcost': prospectcontactcost, 'contacting': contacting
+            
+            }
             )
 
 
@@ -365,22 +414,39 @@ def dashboard_detail(requests,email):
 def seller_form(requests):
     if requests.user.is_authenticated:
         if requests.method=='POST':
+            lead_full_name = os.environ.get('lead_full_name', 'King Arthur')
+            lead_interest = os.environ.get('lead_interest', 'arts')
+            lead_skills = os.environ.get('lead_skills', 'fencing')
+            lead_experience = ''
+            lead_social_links = ''
+            company = ''
+            company_city = ''
+            company_state = ''
+            company_site = ''
 
             data = {
             'firstName': requests.POST.get('firstName'),
             'lastName': requests.POST.get('lastName'),
             'seller_name': requests.POST.get('firstName')+ ' '+requests.POST.get('lastName'),
             'phoneNumber': requests.POST.get('phoneNumber'),
-            'email': requests.POST.get('email'),
+            'email': requests.user.email,
+            # 'email': requests.POST.get('email'),
             'lead_email': requests.POST.get('email'),
             'companyName': requests.POST.get('companyName'),
             'position': requests.POST.get('position'),
 
             'services_sold':requests.POST.get('services_sold'),
-            'lead_full_name': os.environ.get('lead_full_name', 'King Arthur'),
-
-
-            'level': requests.POST.get('level'),
+            'lead_position': requests.POST.get('lead_position'),
+            'lead_full_name': lead_full_name,
+            'lead_full_name_possesive': lead_full_name + "'s'",
+            'lead_interest': lead_interest,
+            'lead_social_links': lead_social_links,
+            'lead_experience': lead_experience,
+            'company_city': company_city,
+            'company_state': company_state,
+            'company_site': company_site,
+            'company': company,
+            
             'role': requests.POST.get('role'),
             'size': requests.POST.get('size'),
             'industry': requests.POST.get('industry'),
@@ -397,10 +463,15 @@ def seller_form(requests):
 
             }
 
-            email, sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, qualified_lead_close_rate, avg_deal_size,seller_name, seller_company = get_basic_info(data)
+            email, sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, qualified_lead_close_rate, avg_deal_size,seller_name, seller_company, services_sold, lead_full_name, lead_full_name_possesive, lead_interest, lead_social_links, lead_experience, company_city, company_state, company_site, company, lead_position, industry, role, size, averageSalesCycle, peopleInYourOrganisation, howManyProspects,howManyLeads, howManyQualifiedLeads, teamCloseRate, averageDealSize, prospectcontactcost,  contacting, position = get_basic_info(data)
             
-            business_data = business_case_data(email ,sales_team_size, monthly_prospects, monthly_leads, monthly_qual_leads, contact_cost, 
-                        qualified_lead_close_rate, avg_deal_size, seller_name, seller_company)
+            business_data = business_case_data(email, sales_team_size, monthly_prospects, monthly_leads, 
+                                               monthly_qual_leads, contact_cost, qualified_lead_close_rate, avg_deal_size,seller_name,
+                                                seller_company, services_sold, lead_full_name, lead_full_name_possesive, lead_interest, 
+                                                lead_social_links, lead_experience, company_city, company_state, company_site, company, 
+                                                lead_position, industry, role, size, averageSalesCycle, peopleInYourOrganisation, 
+                                                howManyProspects,howManyLeads, howManyQualifiedLeads, teamCloseRate, 
+                                                averageDealSize, prospectcontactcost,  contacting, position)
             
             if (Business_case_data.objects.filter(email=business_data['email']).exists()==True):
                 # users=Business_case_data.objects.get(email=requests.user.email)
@@ -411,7 +482,11 @@ def seller_form(requests):
             
             user_key=MyUser.objects.get(email=business_data['email'])
 
-            
+            business_data['lead_skills'] = lead_skills = os.environ.get('lead_skills', 'fencing')
+
+
+            send_email.apply_async(args=[business_data], retry=True)
+            print(business_data)
             Business_case_data.objects.create(
                     user = user_key,
                     Rev_share=business_data['Rev_share'],
