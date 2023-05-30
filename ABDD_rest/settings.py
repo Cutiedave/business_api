@@ -50,7 +50,7 @@ AUTH_PROFILE_MODULE = 'base.MyUser'
 AUTH_USER_MODEL = 'base.MyUser'
 
 # Celery settings
-broker_url="redis://default:bLVoXmvY0aulFkAc5i30@containers-us-west-35.railway.app:7756"
+# REDIS_URL="redis:"
 #CELERY_BROKER_URL = "redis://default:bLVoXmvY0aulFkAc5i30@containers-us-west-35.railway.app:7756"#os.environ.get('CELERY_BROKER_URL',"redis://localhost:6379")
 #CELERY_RESULT_BACKEND = os.environ.get('CELERY_BROKER_URL',"redis://localhost:6379")
 

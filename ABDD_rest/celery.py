@@ -3,9 +3,12 @@
 import os
 import psutil
 from celery import Celery
+from dotenv import load_dotenv
+load_dotenv()
 
-#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ABDD_rest.settings")
-app = Celery("ABDD_rest", broker_url="redis://default:bLVoXmvY0aulFkAc5i30@containers-us-west-35.railway.app:7756/1")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ABDD_rest.settings")
+app = Celery("ABDD_rest", broker_url=os.environ.get('REDIS_URL'), result_backend=os.environ.get('REDIS_URL'))
+
 #app.config_from_object("django.conf:settings")
 app.conf.worker_max_tasks_per_child = 100
 
