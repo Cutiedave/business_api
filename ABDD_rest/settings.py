@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,8 +50,8 @@ AUTH_PROFILE_MODULE = 'base.MyUser'
 AUTH_USER_MODEL = 'base.MyUser'
 
 # Celery settings
-CELERY_BROKER_URL = "redis://default:bLVoXmvY0aulFkAc5i30@containers-us-west-35.railway.app:7756"
-CELERY_RESULT_BACKEND = "redis://default:bLVoXmvY0aulFkAc5i30@containers-us-west-35.railway.app:7756"
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL',"redis://localhost:6379")
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_BROKER_URL',"redis://localhost:6379")
 
 
 # Application definition
