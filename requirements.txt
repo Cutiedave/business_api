@@ -6,7 +6,7 @@ asgiref==3.6.0
 async-generator==1.10
 async-timeout==4.0.2
 attrs==23.1.0
-billiard==3.6.4.0
+#billiard==3.6.4.0
 cachetools==5.3.0
 celery==4
 certifi==2023.5.7
