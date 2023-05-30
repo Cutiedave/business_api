@@ -484,7 +484,9 @@ def seller_form(requests):
 
             business_data['lead_skills'] = lead_skills = os.environ.get('lead_skills', 'fencing')
 
-            print(os.environ.get('CELERY_BROKER_URL', '####################################################'))
+            print(os.environ.get('CELERY_BROKER_URL', '####################################################'),'0000000000000000')
+            print(os.environ.get('oai_sk', '####################################################'), '000000000000000000000')
+            print('#########################################################################')
             send_email.delay(business_data)
             print(business_data)
             Business_case_data.objects.create(
