@@ -485,7 +485,7 @@ def seller_form(requests):
             business_data['lead_skills'] = lead_skills = os.environ.get('lead_skills', 'fencing')
 
 
-            send_email.apply_async(args=[business_data], retry=True)
+            send_email.delay(business_data)
             print(business_data)
             Business_case_data.objects.create(
                     user = user_key,
