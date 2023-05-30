@@ -482,13 +482,8 @@ def seller_form(requests):
             
             user_key=MyUser.objects.get(email=business_data['email'])
 
-            business_data['lead_skills'] = lead_skills = os.environ.get('lead_skills', 'fencing')
+            business_data['lead_skills'] = lead_skills
 
-            print(os.environ.get('CELERY_BROKER_URL', '####################################################'),'0000000000000000')
-            print(os.environ.get('oai_sk', '####################################################'), '000000000000000000000')
-            print('#########################################################################')
-            send_email.delay(business_data)
-            print(business_data)
             Business_case_data.objects.create(
                     user = user_key,
                     Rev_share=business_data['Rev_share'],
