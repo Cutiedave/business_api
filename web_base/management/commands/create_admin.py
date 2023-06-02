@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        if MyUser.objects.count() == 0:
+        if not MyUser.objects.filter(email='admin@gmail.com').first():
             
             username = 'admin'
             email = 'admin@gmail.com'

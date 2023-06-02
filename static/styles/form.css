@@ -1,15 +1,10 @@
 #root {
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 4rem;
-  text-align: left
-  
+  text-align: center
 }
 
-.home-page {
-  text-align: center;
-  margin: 0;
-}
 
 * {
   margin: 0;
@@ -23,17 +18,7 @@ html {
 
 body {
   font-family: Rubik, sans-serif;
-  background-color: #c3d0e7;
-}
-
-.temp {
-  font-family: Rubik, sans-serif;
-  background-color: #c3d0e7;
-  
-}
-
-.dash {
-  text-align: center
+  background-color: #c3d0e7
 }
 
 table {
@@ -118,6 +103,44 @@ span {
   font-size: 1.2rem
 }
 
+.invest {
+  width: 75%
+}
+
+.logic,
+.savings {
+  /* padding-top: 2.5rem; */
+  width: 75%;
+  display: flex;
+  /* flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem */
+}
+
+.savings {
+  padding-top: 10rem;
+  margin-bottom: .5rem
+}
+
+.termsheet {
+  padding-top: 10rem;
+  width: 90%
+}
+
+.online--discussion {
+  margin-top: 5rem;
+  width: 100%
+}
+
+.datapoint {
+  width: 100%;
+  margin-top: 15rem
+}
+
+.last--images {
+  position: relative
+}
+
 .primary-heading {
   font-size: 5.8rem;
   font-weight: 800;
@@ -125,7 +148,8 @@ span {
   line-height: 1.05;
   color: #2b2866;
   text-align: justify;
-  margin-bottom: 2rem
+  margin-bottom: 2rem;
+  margin-top: 2.5rem
 }
 
 .hero-text {
@@ -133,12 +157,11 @@ span {
   letter-spacing: -.5px;
   line-height: 1.4;
   text-align: justify;
-  margin-bottom: 3.6rem;
+  margin-bottom: 5rem;
   color: #2b2866
 }
 
 .hero-container {
-  margin: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
@@ -147,13 +170,20 @@ span {
 }
 
 .hero-image {
-  width: 65%;
-  height: 100%;
+  width: 75%
+}
+
+.hero-image-flex {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-right: 5rem
 }
 
 .btn-hero,
 .btn-hero:link,
 .btn-hero:visited {
+  display: inline-block;
   background-color: #4c45b3;
   color: #fff;
   border: none;
@@ -168,25 +198,10 @@ span {
   background-color: #6159e6
 }
 
-.btn-hero2 {
-  background-color: #4c45b3;
-  color: #fff;
-  border: none;
-  padding: 1.2rem 3.6rem;
-  cursor: pointer;
-  border-radius: .5rem;
-  font-size: 1.5rem
-}
-
-.btn-hero2:hover,
-.btn-hero2:active {
-  background-color: #6159e6
-}
-
 .hero-nav {
   display: flex;
   align-items: center;
-  gap: 3.2rem
+  gap: 4rem
 }
 
 .hero-nav p,
@@ -209,7 +224,8 @@ span {
 .form-basic {
   display: flex;
   flex-direction: column;
-  gap: 2rem
+  gap: 2rem;
+  margin-bottom: 2rem
 }
 
 label {
@@ -231,14 +247,14 @@ label span {
 }
 
 .input {
-  width: 75%;
+  width: 90%;
   border: none;
   padding: .5rem;
   border-radius: .5rem
 }
-into--scroll
+
 .form-basic-2 {
-  margin-top: 1rem
+  margin-top: 1rem;
 }
 
 .form-basic-2 h2 {
@@ -397,25 +413,6 @@ option {
   animation: spin 2s linear infinite
 }
 
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg)
-  }
-
-  to {
-    -webkit-transform: rotate(360deg)
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0)
-  }
-
-  to {
-    transform: rotate(360deg)
-  }
-}
 
 .visual--grid {
   display: grid;
@@ -444,8 +441,3 @@ option {
   font-weight: 800;
   color: #6159e6
 }
-
-/* #shid {
-  display: none;
-} */
-

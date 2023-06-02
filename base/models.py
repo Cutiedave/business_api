@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
@@ -56,9 +57,30 @@ class MyUser(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-class Business_case_data(models.Model):
 
+class Lead(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user_mail = models.EmailField(default='test@gmail.com')
+    lead_full_name = models.CharField(max_length=250)
+    lead_full_name_possesive = models.CharField(max_length=250)
+    lead_interest = models.CharField(max_length=250) 
+    lead_social_links = models.CharField(max_length=250)
+    lead_experience = models.CharField(max_length=250)
+    company_city = models.CharField(max_length=250)
+    company_state = models.CharField(max_length=250)
+    company_site = models.CharField(max_length=250)
+    company = models.CharField(max_length=250)
+    lead_skills = models.CharField(max_length=250)
+    lead_position = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.lead_full_name
+
+
+class Business_case_data(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user= models.ForeignKey(MyUser, null=False , on_delete=models.CASCADE)
+    lead= models.ForeignKey(Lead, null=False , on_delete=models.CASCADE)
     email = models.EmailField(default='test@gmail.com')
     Avg_BDR_Salary = models.FloatField()
     Avg_BDR_Training_Costs = models.CharField(max_length=250)
@@ -66,13 +88,16 @@ class Business_case_data(models.Model):
     Annual_Organization_BDR_Costs = models.FloatField()
     Daily_Organization_BDR_Costs = models.FloatField()
     Hourly_Organization_BDR_Costs = models.FloatField()
+    Monthly_Organization_BDR_Costs = models.FloatField(default=0)
 
     # conversion rates
-    Contacts_Monthly = models.FloatField()
-    Leads_Monthly = models.FloatField()
-    Contact_to_Lead_Rate = models.FloatField()
-    contacts_to_generate_each_lead = models.FloatField()
-    leads_needed_to_generate_each_sale = models.FloatField()
+    Contacts_Monthly = models.FloatField(default=0)
+    Contacts_Daily = models.FloatField(default=0)
+    Contacts_Hourly = models.FloatField(default=0)
+    Leads_Monthly = models.FloatField(default=0)
+    Contact_to_Lead_Rate = models.FloatField(default=0)
+    contacts_to_generate_each_lead = models.FloatField(default=0)
+    leads_needed_to_generate_each_sale = models.FloatField(default=0)
 
     #ABDD processing rates
     ABDD_contacts_per_hour = models.FloatField()
@@ -107,6 +132,7 @@ class Business_case_data(models.Model):
     Organization_Lead_Generation_Rate_hourly = models.FloatField()
 
     # ABDD Conversion Rates
+    ABDD_Lead_Generation_Rate_daily = models.FloatField(default=0)
     ABDD_Lead_Generation_Rate = models.FloatField()
     Organization_Avg_Cost_Per_Lead = models.FloatField()
     ABDD_Avg_Cost_Per_Lead = models.FloatField()
@@ -129,7 +155,16 @@ class Business_case_data(models.Model):
     # rev share
     Rev_share = models.FloatField( default=0)
 
+    # speed
+    org_abdd_process_ratio = models.FloatField( default=0)
+    ind_abdd_process_ratio = models.FloatField( default=0)
+
+    # background sevices
     background_email = models.TextField(default='still procesing email, check back again...')
+    prospect_report = models.TextField(default='still procesing prospect report, check back again...')
+    background_text = models.TextField(default='still procesing prospect text, check back again...')
+
+    dashboard_link = models.CharField(max_length=300, default='email@email.com')
 
     
     def __str__(self):

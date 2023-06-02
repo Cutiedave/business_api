@@ -4,39 +4,76 @@
 
 
 
-<div class="home-page">
+
+
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.next').click(function (e) {
+                
+                var section = $(this).closest("section");
+                var $next = section.next();
+                if ($next.length > 0) {  // check condition first and then hide current section and show next
+                    section.toggle();
+
+                    $next.toggle();
+                }
+                
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#ending').click(function (e) {
+                $('#sub-mit').toggle()
+                
+            });
+        });
+    </script>
+</head>
+
     <section class="hero-container">
         <div>
             <h1 class="primary-heading">Manage your sales</h1>
-            <p class="hero-text">We provide you with comprehensive resources, tools, and guidance to help you
-                calculate, analyze, and interpret sales ROI accurately. Whether you're a sales professional,
-                business owner, or sales manager.</p>
+            <p class="hero-text">We provide you with comprehensive resources, tools, and guidance to help you calculate,
+                analyze, and interpret sales ROI accurately. Whether you're a sales professional, business owner, or
+                sales manager.</p>
+            <div class="hero-nav"><button class="btn-hero">Get Started</button>
+                <p>Estimated time to complete: <span>10-15 minutes</span></p>
+            </div>
         </div>
-        <div style="margin: 0; padding: 0;"><img class="hero-image" src="{% static 'img/from_img.svg' %}"></div>
+        <div class="hero-image-flex"><img class="hero-image" src="{% static 'img/d2.svg' %}"></div>
     </section>
     <section class="form-section">
         <form action="{% url 'dashboard' %}" method='post' >
             {% csrf_token %}
-            <div class="form-box">
-                <div class="form-basic">
-                    <label>
-                        <p>First Name*</p><input name="firstName" class="input" type="text" id="firstName" required="" value="">
-                    </label><label>
-                        <p>Last Name*</p><input name="lastName" class="input" type="text" id="lastName" required="" value="">
-                    </label><label>
-                        <p>Phone Number*</p><input name="phoneNumber" class="input" type="phonenumber" id="phoneNumber" required=""
-                            value="">
-                    </label><label>
-                        <p>Work Email*</p><input name="email" class="input" type="email" id="email" required="" value="">
-                    </label><label>
-                        <p>Company Name*</p><input name="companyName" class="input" type="text" id="companyName" required=""
-                            value="">
-                    </label>
-                    <label>
-                        <p>What is your position/title?*</p><input class="input"
-                            name="position" type="text" id="position" required="" value="">
-                    </label>
-                </div>
+            <div class="form-box"><img class="invest" src="{% static 'img/d4.svg' %}">
+                <section>
+                    <div class="form-basic">
+                        <label>
+                            <p>First Name*</p><input name="firstName" class="input" type="text" id="firstName" required="" value="">
+                        </label><label>
+                            <p>Last Name*</p><input name="lastName" class="input" type="text" id="lastName" required="" value="">
+                        </label><label>
+                            <p>Phone Number*</p><input name="phoneNumber" class="input" type="phonenumber" id="phoneNumber" required=""
+                                value="">
+                        </label><label>
+                            <p>Work Email*</p><input name="email" class="input" type="email" id="email" required="" value="">
+                        </label><label>
+                            <p>Company Name*</p><input name="companyName" class="input" type="text" id="companyName" required=""
+                                value="">
+                        </label>
+                        <label>
+                            <p>What is your position/title?*</p><input class="input"
+                                name="position" type="text" id="position" required="" value="">
+                        </label>
+                    </div>
+                    <button class="btn-hero next">Next</button>
+                </section>
+                <section style="display: none;">
                 <div class="form-basic-2">
                     <h2>Tell us a little about your ideal prospect.</h2>
                     <p class="form-sub">This info will be used to generate your Prospect Report &amp; outreach
@@ -247,12 +284,12 @@
                             <option>writing and editing</option>
                         </select>
                     </div>
-                    <div class="hbn" style="justify-content: center; display: inline-block; ">
-                        <button onclick="myFunction()" class="btn-hero next">Next</button>
-                    </div>
+                    
                 </div>
-
-                <div class="into--scroll" id="shid" style="display: none;">
+                <button class="btn-hero next">Next</button>
+                </section>
+                <section style="display: none;">
+                <div class="into--scroll" id="shid">
                     <div class="react-reveal opacity1"
                         style="animation-fill-mode: both; animation-duration: 1000ms; animation-delay: 0ms; animation-iteration-count: 1; opacity: 1; animation-name: react-reveal-981427072311194-1;">
                         <h2 class="second-form--1">Tell us a little more about yourself professionally.</h2>
@@ -261,7 +298,7 @@
                             <p class="text-title">Please provide a brief sentence of who you are, beginning with
                                 the phrase "who is"...*</p><span>(My example) who is an award-winning digital
                                 marketing consultant &amp; founder of Ben Ijah LLC.</span><textarea
-                                class="text-area-form" type="text" id="whoYouAre"
+                                class="text-area-form" type="text" id="whoYouAre" name="seller_overview"
                                 placeholder="Type your answer here..." required=""></textarea>
                         </label>
                         <label class="textarea-label">
@@ -278,7 +315,7 @@
                             <p class="text-title">In one sentence describe your offer/guarantee? In other words,
                                 why should this lead meet with you? *</p><span>(My example) We guarantee our
                                 system saves your business time and/or money generating B2B leads or your money
-                                back</span><textarea class="text-area-form" type="text" id="describeYourOffer"
+                                back</span><textarea class="text-area-form" name="seller_offer" type="text" id="describeYourOffer"
                                 placeholder="Type your answer here..." required=""></textarea>
                         </label><label class="textarea-label">
                             <p class="text-title">Provide a brief list of past success/clients? We're looking to
@@ -287,7 +324,7 @@
                                 including Kareem Abdul-Jabbar &amp; Fix It Bathworks, also personally developed
                                 an AI-driven software stack that researches prospects then contacts them with
                                 bespoke messaging based on that research.</span><textarea class="text-area-form"
-                                type="text" id="ListOfPastSuccess" placeholder="Type your answer here..."
+                                type="text" name="social_proof" id="ListOfPastSuccess" placeholder="Type your answer here..."
                                 required=""></textarea>
                         </label>
                         <label class="textarea-label">
@@ -295,12 +332,15 @@
                                 pitch. *</p><span>(My example) I've generated millions of dollars in numerous
                                 industries and developed an AI-driven BDR guaranteed to save your sales team
                                 time &amp; money.</span><textarea class="text-area-form" type="text"
-                                id="previousStatement" placeholder="Type your answer here..."
+                                id="previousStatement" name="short_social_proof" placeholder="Type your answer here..."
                                 required=""></textarea>
                         </label>
                     </div>
+                    <button id="ending" class="btn-hero next">Next</button>
                 </div>
-                <div class="react-reveal opacity1 into--scroll" id="shid" style="display: none;"
+                </section>
+                <section id="endopo" class="endopo"  style="display: none;" >
+                <div class="react-reveal opacity1 into--scroll" id="shid" 
                     style="animation-fill-mode: both; animation-duration: 1000ms; animation-delay: 0ms; animation-iteration-count: 1; opacity: 1; animation-name: react-reveal-981427072311194-1;">
                     <h2 class="second-form--2">Tell us about your biz dev operations</h2>
                     <p class="second-form-text--2">This doesn't need to be exact. We'll use this information to
@@ -386,42 +426,10 @@
                                 class="checkbox-label">Paid Ads</label></div>
                     </div>
                 </div>
-            </div><button href="{% url 'dashboard' %}" type="submit" class="btn-hero2" style="display: none;">Submit</button>
+                </section>
+            </div><button type="submit" id="sub-mit" style="display: none;" class="btn-hero opacity1">Submit</button>
         </form>
     </section>
-</div>
-
-
-
-<script>
-    function myFunction() {
-        var x = document.getElementsByClassName("into--scroll");
-        var y = document.getElementsByClassName("btn-hero2");
-        var z = document.getElementsByClassName("hbn");
-        if (x[0].style.display === "none") {
-        x[0].style.display = "block";
-        } else {
-        x[0].style.display = "none";
-        }
-
-        if (x[1].style.display === "none") {
-        x[1].style.display = "block";
-        } else {
-        x[1].style.display = "none";
-        }
-        if (y[0].style.display === "none") {
-        y[0].style.display = "inline-block";
-        } else {
-        y[0].style.display = "none";
-        }
-
-        if (z[0].style.display === "inline-block") {
-        z[0].style.display = "none";
-        } else {
-        z[0].style.display = "inline-block";
-        }
-    }
-</script>
 
 
 {% endblock content%}
