@@ -1,6 +1,6 @@
 nav {
-    margin: 27px auto 0;
-    padding-right: 10px;
+    margin: 27px auto auto;
+    /* padding-right: 10px; */
     margin-bottom: 47px;
     position: relative;
     width: 610px;

@@ -1,10 +1,8 @@
 #root {
-  max-width: 1320px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 4rem;
   text-align: center
 }
-
 
 * {
   margin: 0;
@@ -104,17 +102,13 @@ span {
 }
 
 .invest {
-  width: 75%
+  width: 95%
 }
 
 .logic,
 .savings {
-  /* padding-top: 2.5rem; */
-  width: 75%;
-  display: flex;
-  /* flex-direction: column;
-  gap: 2rem;
-  margin-bottom: 2rem */
+  padding-top: 2.5rem;
+  width: 75%
 }
 
 .savings {
@@ -139,6 +133,80 @@ span {
 
 .last--images {
   position: relative
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 60%
+  }
+  body {
+    width: 600px;
+    padding: 0;
+    margin: 0;
+  }
+  #root {
+    width: 600px;
+    margin-left: 15%;
+    margin-left: 15%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+  }
+
+  
+  .root2 {
+    width: 600px;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+  }
+
+  nav {
+    width: 600px;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+  }
+
+  .container {
+    width: 600px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .invest,
+  .logic {
+    margin-bottom: 3.2rem
+  }
+
+  .termsheet {
+    padding-top: 3.2rem;
+    margin-bottom: 3.2rem
+  }
+
+  .online--discussion,
+  .datapoint,
+  .savings {
+    display: none
+  }
+
+  table {
+    width: 100%
+  }
+
+  .table-head,
+  .content--text {
+    font-size: 1.2rem
+  }
+
+  .table-head span {
+    font-size: 1rem
+  }
+
+  .content--title {
+    padding-left: 1rem;
+    font-size: 1.2rem
+  }
 }
 
 .primary-heading {
@@ -254,7 +322,7 @@ label span {
 }
 
 .form-basic-2 {
-  margin-top: 1rem;
+  margin-top: 1rem
 }
 
 .form-basic-2 h2 {
@@ -413,6 +481,25 @@ option {
   animation: spin 2s linear infinite
 }
 
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg)
+  }
+
+  to {
+    -webkit-transform: rotate(360deg)
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0)
+  }
+
+  to {
+    transform: rotate(360deg)
+  }
+}
 
 .visual--grid {
   display: grid;
@@ -440,4 +527,68 @@ option {
   font-size: 1.4rem;
   font-weight: 800;
   color: #6159e6
+}
+
+@media (max-width: 600px) {
+  .hero-container {
+    display: block;
+    margin-bottom: 4.8rem
+  }
+
+  .hero-image-flex {
+    display: none
+  }
+
+  .form-box {
+    display: block
+  }
+
+  .form-basic-2 {
+    margin: auto
+  }
+
+  .form-sub {
+    max-width: 100%
+  }
+
+  .second-form--1,
+  .second-form--2,
+  .second-form-text--2,
+  .second-form-text--1,
+  .textarea-label,
+  .welcome--name {
+    margin-left: 0
+  }
+
+  .title-check,
+  .checkbox {
+    padding-left: 0
+  }
+
+  .visual--grid {
+    display: block;
+    margin-bottom: 4.8rem
+  }
+
+  .visual--grid img {
+    width: 100%
+  }
+
+  .visual--output {
+    margin-bottom: 0
+  }
+
+  .visual--low-value {
+    left: -8%;
+    bottom: 14%;
+    font-size: 1.3rem;
+    font-weight: 700
+  }
+
+  .visual--high-value {
+    right: -12%;
+    bottom: 80%;
+    font-size: 1.3rem;
+    font-weight: 700
+  }
 }

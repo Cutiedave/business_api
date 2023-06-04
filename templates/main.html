@@ -9,7 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&amp;display=swap"
 		rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Pricing Visual</title>
+	<title>Ben Ijah LLC</title>
 	<!-- <script type="module" crossorigin="" src="{% static 'js/form.js' %}"></script> -->
 	<link rel="stylesheet" href="{% static 'styles/form.css' %}">
 	<link rel="stylesheet" href="{% static 'styles/nav.css' %}">
@@ -43,10 +43,12 @@
 			</div>
 			
 
-						
+			<div class="root2">
+				{% block content%}
+				{% endblock %} 
+			</div>		
 
-			{% block content%}
-			{% endblock %} 
+			
 		</div>
 	</body>
 </html>
