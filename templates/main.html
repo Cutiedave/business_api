@@ -27,7 +27,7 @@
 				{% else %}
 				<a href="{% url 'login' %}">login/register</a>
 				{% endif %}
-				<div class="animation start-home"></div>
+				
 			</nav>
 			{% if request.user.is_authenticated %}	
 			<div  style="color: rgb(78, 28, 85); padding-bottom: 5px; font-size: large; font-weight: 500; text-align: left;">Hi, {{user.full_name}}</div>
