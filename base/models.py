@@ -7,7 +7,6 @@ from django.contrib.auth.models import (
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
-
 class MyUserManager(BaseUserManager):
     def create_user(self, email, full_name, password=None):
         if not email:
@@ -61,17 +60,17 @@ class MyUser(AbstractBaseUser):
 class Lead(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user_mail = models.EmailField(default='test@gmail.com')
-    lead_full_name = models.CharField(max_length=500)
-    lead_full_name_possesive = models.CharField(max_length=500)
+    lead_full_name = models.CharField(max_length=230)
+    lead_full_name_possesive = models.CharField(max_length=250)
     lead_interest = models.TextField() 
     lead_social_links = models.TextField()
     lead_experience = models.TextField()
-    company_city = models.CharField(max_length=500)
-    company_state = models.CharField(max_length=500)
-    company_site = models.CharField(max_length=500)
+    company_city = models.CharField(max_length=200)
+    company_state = models.CharField(max_length=202)
+    company_site = models.CharField(max_length=205)
     company = models.CharField(max_length=500)
     lead_skills = models.TextField()
-    lead_position = models.CharField(max_length=500)
+    lead_position = models.CharField(max_length=206)
 
     def __str__(self):
         return self.lead_full_name
@@ -83,8 +82,8 @@ class Business_case_data(models.Model):
     lead= models.ForeignKey(Lead, null=False , on_delete=models.CASCADE)
     email = models.EmailField(default='test@gmail.com')
     Avg_BDR_Salary = models.FloatField()
-    Avg_BDR_Training_Costs = models.CharField(max_length=250)
-    Avg_BDR_Benefits = models.CharField(max_length=100)
+    Avg_BDR_Training_Costs = models.FloatField()
+    Avg_BDR_Benefits = models.FloatField()
     Annual_Organization_BDR_Costs = models.FloatField()
     Daily_Organization_BDR_Costs = models.FloatField()
     Hourly_Organization_BDR_Costs = models.FloatField()
