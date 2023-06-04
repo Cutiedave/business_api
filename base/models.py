@@ -61,17 +61,17 @@ class MyUser(AbstractBaseUser):
 class Lead(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user_mail = models.EmailField(default='test@gmail.com')
-    lead_full_name = models.CharField(max_length=250)
-    lead_full_name_possesive = models.CharField(max_length=250)
-    lead_interest = models.CharField(max_length=250) 
-    lead_social_links = models.CharField(max_length=250)
-    lead_experience = models.CharField(max_length=250)
-    company_city = models.CharField(max_length=250)
-    company_state = models.CharField(max_length=250)
-    company_site = models.CharField(max_length=250)
-    company = models.CharField(max_length=250)
-    lead_skills = models.CharField(max_length=250)
-    lead_position = models.CharField(max_length=250)
+    lead_full_name = models.CharField(max_length=500)
+    lead_full_name_possesive = models.CharField(max_length=500)
+    lead_interest = models.TextField() 
+    lead_social_links = models.TextField()
+    lead_experience = models.TextField()
+    company_city = models.CharField(max_length=500)
+    company_state = models.CharField(max_length=500)
+    company_site = models.CharField(max_length=500)
+    company = models.CharField(max_length=500)
+    lead_skills = models.TextField()
+    lead_position = models.CharField(max_length=500)
 
     def __str__(self):
         return self.lead_full_name
