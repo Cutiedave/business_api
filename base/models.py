@@ -65,7 +65,7 @@ class Lead(models.Model):
     lead_interest = models.TextField() 
     lead_social_links = models.TextField()
     lead_experience = models.TextField()
-    company_city = models.CharField(max_length=200)
+    company_city = models.CharField(max_length=200,null=True)
     company_state = models.CharField(max_length=202)
     company_site = models.CharField(max_length=205)
     company = models.CharField(max_length=500)

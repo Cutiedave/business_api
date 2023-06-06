@@ -489,6 +489,7 @@ def seller_form(requests):
                 messages.error(requests, f"Unable to gather lead data: {response['error']['message']}")
                 return render(requests, 'web_base/home.html')
             
+            print(data['company_city'])
             lead=Lead(
                     user_mail = data['email'],
                     lead_full_name = data['lead_full_name'] ,
