@@ -606,31 +606,31 @@ option {
   .visual--grid {
     display: block;
     margin-bottom: 4.8rem;
-    max-width: 70%
+    max-width: 90%
   }
 
   .visual--grid img {
-    max-width: 70%;
-    width: 70%;
+    max-width: 90%;
+    width: 90%;
   }
 
   .visual--output {
     margin-bottom: 0;
-    max-width: 70%
+    max-width: 90%
   }
 
   .visual--low-value {
     left: -8%;
     bottom: 14%;
     font-size: 1.3rem;
-    font-weight: 500
+    font-weight: 600
   }
 
   .visual--high-value {
     right: -12%;
     bottom: 80%;
     font-size: 1.3rem;
-    font-weight: 500
+    font-weight: 600
   }
   .rep {
     width: 60%; 
