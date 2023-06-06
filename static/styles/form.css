@@ -150,6 +150,9 @@ span {
     width: 90%;
     /* padding-right: 3px */
   }
+  .root2 {
+    max-width: 90%;
+  }
 
   nav {
     margin: 27px auto auto;
