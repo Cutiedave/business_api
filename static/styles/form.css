@@ -145,6 +145,10 @@ span {
     max-width: 450px
   }
 
+  body {
+    width: 450px;
+  }
+
   #root {
     width: 400px;
     /* padding-right: 3px */
