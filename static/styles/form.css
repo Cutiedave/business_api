@@ -508,7 +508,7 @@ option {
   color: #6159e6
 }
 
-@media (max-width: 600px) {
+@media only screen and (min-width: 200px) and (max-width: 767px)  {
   .hero-container {
     display: block;
     margin-bottom: 4.8rem
