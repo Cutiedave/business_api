@@ -141,16 +141,16 @@ span {
 
 @media only screen and (min-device-width: 200px) and (max-device-width: 767px)  {
   html {
-    font-size: 65%;
-    max-width: 250px
+    font-size: 85%;
+    max-width: 450px
   }
 
   body {
-    width: 250px;
+    width: 450px
   }
 
   #root {
-    width: 250px;
+    width: 400px;
     /* padding-right: 3px */
   }
 
