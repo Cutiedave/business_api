@@ -145,12 +145,9 @@ span {
     max-width: 600px
   }
 
-  body {
-    width: 600px
-  }
 
   #root {
-    width: 600px;
+    width: 90%;
     /* padding-right: 3px */
   }
 
