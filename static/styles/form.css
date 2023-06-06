@@ -555,6 +555,18 @@ option {
   color: #6159e6
 }
 
+.rep {
+  width: 700px; 
+  text-align: left; 
+  padding-bottom: 15px;
+}
+
+.linkk {
+  width: 600px; 
+  text-align: left;
+  padding-bottom: 50px;
+}
+
 @media only screen and (min-device-width: 200px) and (max-device-width: 767px)  {
   .hero-container {
     display: block;
@@ -611,13 +623,24 @@ option {
     left: -8%;
     bottom: 14%;
     font-size: 1.3rem;
-    font-weight: 300
+    font-weight: 500
   }
 
   .visual--high-value {
     right: -12%;
     bottom: 80%;
     font-size: 1.3rem;
-    font-weight: 300
+    font-weight: 500
+  }
+  .rep {
+    width: 60%; 
+    text-align: left; 
+    padding-bottom: 15px;
+  }
+  
+  .linkk {
+    width: 50%; 
+    text-align: left;
+    padding-bottom: 50px;
   }
 }
