@@ -623,15 +623,15 @@ option {
   }
 
   .visual--low-value {
-    left: 0%;
-    bottom: 14%;
+    left: 4%;
+    bottom: 10%;
     font-size: 0.9rem;
     font-weight: 600
   }
 
   .visual--high-value {
-    right: -12%;
-    bottom: 80%;
+    right: -5%;
+    bottom: 77%;
     font-size: 0.9rem;
     font-weight: 600;
   }
