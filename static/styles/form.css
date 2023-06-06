@@ -141,14 +141,14 @@ span {
 
 @media only screen and (min-device-width: 200px) and (max-device-width: 767px)  {
   html {
-    font-size: 50%
+    font-size: 65%
   }
 
   body {
     width: 600px;
   }
   #root {
-    width: 80%;
+    width: 90%;
   }
   nav {
     max-width: 100%;
