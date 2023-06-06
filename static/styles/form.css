@@ -5,7 +5,7 @@
 }
 
 html {
-  font-size: 62.5%
+  font-size: 60%
 }
 
 body {
@@ -14,7 +14,7 @@ body {
 }
 
 #root {
-  width: 1280px;
+  width: 80%;
   margin: 0 auto;
   text-align: center;
 }
@@ -143,8 +143,6 @@ span {
   html {
     font-size: 65%;
   }
-
-
 
   #root {
     width: 90%;
