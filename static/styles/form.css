@@ -217,12 +217,12 @@ span {
   }
 
   table {
-    width: 90%
+    width: 100%
   }
 
   .table-head,
   .content--text {
-    font-size: 1.2rem
+    font-size: 0.9rem
   }
 
   .table-head span {
@@ -231,7 +231,7 @@ span {
 
   .content--title {
     padding-left: 1rem;
-    font-size: 1.2rem
+    font-size: 0.9rem
   }
 }
 
@@ -604,12 +604,14 @@ option {
   }
 
   .visual--grid {
+    align-items: center;
     display: block;
     margin-bottom: 4.8rem;
     max-width: 80%
   }
 
   .visual--grid img {
+    align-items: center;
     max-width: 80%;
     width: 80%;
   }
@@ -620,7 +622,7 @@ option {
   }
 
   .visual--low-value {
-    left: -3%;
+    left: 0%;
     bottom: 14%;
     font-size: 0.9rem;
     font-weight: 600
@@ -630,10 +632,10 @@ option {
     right: -12%;
     bottom: 80%;
     font-size: 0.9rem;
-    font-weight: 600
+    font-weight: 600;
   }
   .rep {
-    width: 60%; 
+    width: 70%; 
     text-align: left; 
     padding-bottom: 15px;
   }
