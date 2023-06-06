@@ -604,6 +604,7 @@ option {
   }
 
   .visual--grid {
+    padding-left: 3%;
     align-items: center;
     display: block;
     margin-bottom: 4.8rem;
@@ -635,7 +636,7 @@ option {
     font-weight: 600;
   }
   .rep {
-    width: 70%; 
+    width: 85%; 
     text-align: left; 
     padding-bottom: 15px;
   }
