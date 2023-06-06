@@ -42,7 +42,7 @@ REST_FRAMEWORK = {
 
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://mep-backend2-production.up.railway.app', 'https://businessapi-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://mep-backend2-production.up.railway.app', 'https://businessapi-production.up.railway.app','https://cutiedave-humble-engine-qg6xr4rjwjhxvv6-8000.preview.app.github.dev']
 CORS_ALLOW_ALL_ORIGINS = True
 
 AUTH_PROFILE_MODULE = 'base.MyUser'

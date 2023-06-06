@@ -540,7 +540,7 @@ option {
 .visual--high-value {
   position: absolute;
   right: 8.5%;
-  bottom: 69%;
+  bottom: 79%;
   font-size: 1.4rem;
   font-weight: 800;
   color: #6159e6
@@ -594,29 +594,30 @@ option {
   .visual--grid {
     display: block;
     margin-bottom: 4.8rem;
-    max-width: 90%
+    max-width: 70%
   }
 
   .visual--grid img {
-    width: 85%;
+    max-width: 70%;
+    width: 70%;
   }
 
   .visual--output {
     margin-bottom: 0;
-    max-width: 90%
+    max-width: 70%
   }
 
   .visual--low-value {
     left: -8%;
     bottom: 14%;
     font-size: 1.3rem;
-    font-weight: 700
+    font-weight: 300
   }
 
   .visual--high-value {
     right: -12%;
     bottom: 80%;
     font-size: 1.3rem;
-    font-weight: 700
+    font-weight: 300
   }
 }

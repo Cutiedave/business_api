@@ -395,7 +395,7 @@ def seller_form(requests):
                         {"exists": {"field": "mobile_phone"}}
                         ]}}}
             API_KEY = os.environ.get('API_KEY', '*****')
-            PDL_URL = os.environ.get('PDL_URL', '*****')
+            PDL_URL = os.environ.get('PDL_URL', 'https://api.peopledatalabs.com/v5/person/search')
             request_header = {"Content-Type": "application/json", "X-api-key": API_KEY}
             params = {"dataset": "all", "query": json.dumps(ES_QUERY), "size": 1, "pretty": True }
             response = req.get(PDL_URL, headers=request_header, params=params).json()
