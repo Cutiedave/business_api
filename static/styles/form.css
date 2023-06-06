@@ -146,8 +146,8 @@ span {
 
 
   #root {
-    width: 90%;
-    padding-right: 3px
+    width: 95%;
+    /* padding-right: 3px */
   }
 
   nav {
@@ -164,7 +164,7 @@ span {
   nav a {
     line-height: 50px;
     height: 100%;
-    font-size: 10px;
+    font-size: 15px;
     display: inline-block;
     position: relative;
     z-index: 1;
