@@ -576,7 +576,7 @@ option {
   }
 
   .form-sub {
-    max-width: 100%
+    max-width: 90%
   }
 
   .second-form--1,
@@ -599,7 +599,7 @@ option {
   }
 
   .visual--grid img {
-    width: 100%
+    width: 90%
   }
 
   .visual--output {
