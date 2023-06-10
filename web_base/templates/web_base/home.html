@@ -5,11 +5,19 @@
 <head>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script>
+        $(document).ready(function(){
+            $('#sub1').click(function (e) {
+                $(".form-basic").valid()
+            });
+        });
+    </script>
     <script>
         $(document).ready(function () {
             $('.next').click(function (e) {
+
                 
                 var section = $(this).closest("section");
                 var $next = section.next();
@@ -49,82 +57,6 @@
             });
         });
     </script>
-    <script>
-    //  $(document).on('keyup', "input:not([type='submit']", function () {
-
-    //     //set it to true by default
-    //     var valid = true;
-
-    //     //getting all the inputs except input submit
-    //     var inputTextboxes = $("input:not([type='submit'])");
-
-    //     inputTextboxes.each(function(e) {
-
-    //     //it enters this only if the valid is true for any one value, if valid is set to false at any point it won't check it for next inputs - works for first time
-    //     if (valid != false){
-
-    //     if ($(this).val()) {
-    //     valid = true;
-    //     }else{
-    //     valid = false;
-    //     }
-    //     }
-    //     else{
-    //     break; //breaks the loop
-    //     }
-    //     });
-
-    //     if (valid) {
-    //     $("input[type=submit]").prop("disabled", false);
-    //     } else {
-    //     $("input[type=submit]").prop("disabled", true);
-    //     }
-    //     }
-        // $(document).ready(function(){
-        //     const formInput = document.querySelector(".form-basic");
-        //     const formButton = document.querySelector(".next");
-
-        //     // the default state is 'disabled'
-        //     // formButton.disabled = true; 
-        //     $('form > input').keyup(function() {
-                        
-        //         var empty = false;
-        //         $('form > input').each(function() {
-        // if(!empty){ // this will only check next inputs if empty is false, but once its set to true no further check will be made
-        //             if ($(this).val() == '') {
-        //                 empty = true;
-        //             }
-        // }
-        //         });
-        //         if (empty) {
-        //             $('.next').attr('disabled', 'disabled');
-        //         } else {
-        //             $('.next').removeAttr('disabled');
-        //         }
-        //     });
-        // });
-        // $(document).ready(function () {
-
-
-        //     const formInput = document.querySelector(".form-basic");
-        //     const formButton = document.querySelector(".next");
-
-        //     // the default state is 'disabled'
-        //     formButton.disabled = true; 
-
-        //     // alternative is to use "change" - explained below
-        //     // formInput.addEventListener("keyup", buttonState);
-
-        //     function buttonState() {
-        //         if (document.querySelector(".form-basic").value === "") {
-        //             formButton.disabled = false; // return disabled as true whenever the input field is empty
-        //         } else {
-        //             formButton.disabled = false; // enable the button once the input field has content
-        //         }
-        //     }
-                
-        //     });
-    </script>
 </head>
 
     <section class="hero-container">
@@ -146,24 +78,25 @@
                 <section>
                     <div class="form-basic">
                         <label>
-                            <p>First Name*</p><input name="firstName" class="input" type="text" id="firstName" required="" value="">
+                            <p>First Name*</p><input name="firstName" class="input" type="text" id="firstName" required value="">
                         </label><label>
-                            <p>Last Name*</p><input name="lastName" class="input" type="text" id="lastName" required="" value="">
+                            <p>Last Name*</p><input name="lastName" class="input" type="text" id="lastName" required value="">
                         </label><label>
-                            <p>Phone Number*</p><input name="phoneNumber" class="input" type="phonenumber" id="phoneNumber" required=""
+                            <p>Phone Number*</p><input name="phoneNumber" class="input" type="phonenumber" id="phoneNumber" required
                                 value="">
                         </label><label>
-                            <p>Work Email*</p><input name="email" class="input" type="email" id="email" required="" value="">
+                            <p>Work Email*</p><input name="email" class="input" type="email" id="email" required value="">
                         </label><label>
-                            <p>Company Name*</p><input name="companyName" class="input" type="text" id="companyName" required=""
+                            <p>Company Name*</p><input name="companyName" class="input" type="text" id="companyName" required
                                 value="">
                         </label>
                         <label>
                             <p>What is your position/title?*</p><input class="input"
-                                name="position" type="text" id="position" required="" value="">
+                                name="position" type="text" id="position" required value="">
                         </label>
                     </div>
-                    <button class="btn-hero next" type="submit">Next</button>
+                    <input id="sub1" type="submit" value="next" class="btn-hero next">
+                    <!-- <button id="sub1" class="btn-hero next" type="submit" >Next</button> -->
                 </section>
                 <section style="display: none;">
                 <div class="form-basic-2">
@@ -379,7 +312,7 @@
                     
                 </div>
                 <button id="2nd" class="prev btn-hero">Previous</button>
-                <button class="btn-hero next">Next</button>
+                <button id="sub2" class="btn-hero next">Next</button>
                 </section>
                 <section style="display: none;">
                 <div class="into--scroll" id="shid">
@@ -392,7 +325,7 @@
                                 the phrase "who is"...*</p><span>(My example) who is an award-winning digital
                                 marketing consultant &amp; founder of Ben Ijah LLC.</span><textarea
                                 class="text-area-form" type="text" id="whoYouAre" name="seller_overview"
-                                placeholder="Type your answer here..." required=""></textarea>
+                                placeholder="Type your answer here..." required></textarea>
                         </label>
                         <label class="textarea-label">
                             <p class="text-title">Please provide a list of the service(s) you'd like to sell to
@@ -400,14 +333,14 @@
                                 Human-Guided, AI-Driven lead generation software that automates the entire B2B
                                 biz dev process and reduces acquisition costs.</span><textarea
                                 class="text-area-form" type="text" id="listOfService" name="services_sold"
-                                placeholder="Type your answer here..." required=""></textarea>
+                                placeholder="Type your answer here..." required></textarea>
                         </label>
                         <label class="textarea-label">
                             <p class="text-title">In one sentence describe your offer/guarantee? In other words,
                                 why should this lead meet with you? *</p><span>(My example) We guarantee our
                                 system saves your business time and/or money generating B2B leads or your money
                                 back</span><textarea class="text-area-form" name="seller_offer" type="text" id="describeYourOffer"
-                                placeholder="Type your answer here..." required=""></textarea>
+                                placeholder="Type your answer here..." required></textarea>
                         </label><label class="textarea-label">
                             <p class="text-title">Provide a brief list of past success/clients? We're looking to
                                 add social proof to your pitch. *</p><span>(My example)
@@ -416,7 +349,7 @@
                                 an AI-driven software stack that researches prospects then contacts them with
                                 bespoke messaging based on that research.</span><textarea class="text-area-form"
                                 type="text" name="social_proof" id="ListOfPastSuccess" placeholder="Type your answer here..."
-                                required=""></textarea>
+                                required></textarea>
                         </label>
                         <label class="textarea-label">
                             <p class="text-title">Break down the previous statement into a one-line elevator
@@ -424,7 +357,7 @@
                                 industries and developed an AI-driven BDR guaranteed to save your sales team
                                 time &amp; money.</span><textarea class="text-area-form" type="text"
                                 id="previousStatement" name="short_social_proof" placeholder="Type your answer here..."
-                                required=""></textarea>
+                                required></textarea>
                         </label>
                     </div>
                     <button id="3rd" class="prev btn-hero">Previous</button>
@@ -442,7 +375,7 @@
                         <span>Only positive numbers are required</span>
                         <input class="text-area-form" name="averageSalesCycle"
                             type="number" id="averageSalesCycle" placeholder="Type your answer here..."
-                            required="" value="">
+                            required value="">
                     </label>
 
                     <label class="textarea-label">
@@ -450,7 +383,7 @@
                             development? *</p><span>If you alone handle all biz dev &amp; sales, list
                             1.</span>
                             <input name="peopleInYourOrganisation" class="text-area-form" type="number" id="peopleInYourOrganisation"
-                            placeholder="Type your answer here..." required="" value="">
+                            placeholder="Type your answer here..." required value="">
                     </label>
                     
                     <label class="textarea-label">
@@ -458,14 +391,14 @@
                             each month? *</p><span>Please do not include PPC or SMM marketing
                             campaigns.</span>
                             <input name="howManyProspects" class="text-area-form" type="number" id="howManyProspects"
-                            placeholder="Type your answer here..." required="" value="">
+                            placeholder="Type your answer here..." required value="">
                     </label>
                     
                     <label class="textarea-label">
                         <p class="text-title">On average, how many leads does your team generate each month? *
                         </p><span>Only positive numbers are required</span>
                         <input class="text-area-form" name="howManyLeads"
-                            type="number" id="howManyLeads" placeholder="Type your answer here..." required=""
+                            type="number" id="howManyLeads" placeholder="Type your answer here..." required
                             value="">
                     </label>
                     
@@ -474,7 +407,7 @@
                             month? *</p><span>Only positive numbers are required</span>
                             <input name="howManyQualifiedLeads"
                             class="text-area-form" type="number" id="howManyQualifiedLeads"
-                            placeholder="Type your answer here..." required="" value="">
+                            placeholder="Type your answer here..." required value="">
                     </label>
                     
                     <label class="textarea-label">
@@ -482,14 +415,14 @@
                         </p><span>Provide percent as a number. Ex. if 50% list 50</span>
                         <input name="teamCloseRate"
                             class="text-area-form" type="number" id="teamCloseRate"
-                            placeholder="Type your answer here..." required="" value="">
+                            placeholder="Type your answer here..." required value="">
                     </label>
                     
                     <label class="textarea-label">
                         <p class="text-title">What is your average deal size? *</p><span>Provide amount as
                             number. Ex. if $50,000 list 50,000</span>
                             <input name="averageDealSize" class="text-area-form" type="number"
-                            id="averageDealSize" placeholder="Type your answer here..." required="" value="">
+                            id="averageDealSize" placeholder="Type your answer here..." required value="">
                     </label>
                     
                     <label class="textarea-label">
@@ -497,7 +430,7 @@
                             you? *</p><span>If you don't pay for contact info, list 0</span>
                             <input name="prospectcontactcost"
                             class="text-area-form" type="number" id="prospectContactInfo"
-                            placeholder="Type your answer here..." required="" value="">
+                            placeholder="Type your answer here..." required value="">
                     </label>
 
                     <p class="text-title title-check">How are you contacting prospects? *</p>
