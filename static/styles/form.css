@@ -71,6 +71,11 @@ td:nth-child(3) {
   color: #000
 }
 
+.prev {
+  margin-right: 5%;
+  display: none;
+}
+
 td {
   padding: .75rem 0
 }
@@ -577,7 +582,8 @@ option {
     display: none
   }
 
-  .form-box {
+  .form-box:invalid [type="submit"] {
+    pointer-events: none;
     display: block
   }
 

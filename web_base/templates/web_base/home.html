@@ -13,6 +13,7 @@
                 
                 var section = $(this).closest("section");
                 var $next = section.next();
+                var $prev = section.prev();
                 if ($next.length > 0) {  // check condition first and then hide current section and show next
                     section.toggle();
 
@@ -22,13 +23,107 @@
             });
         });
     </script>
+        <script>
+            $(document).ready(function () {
+                $('.prev').click(function (e) {
+                    
+                    var section = $(this).closest("section");
+                    var $next = section.prev();
+                    if ($next.length > 0) {  // check condition first and then hide current section and show next
+                        section.toggle();
+    
+                        $next.toggle();
+                    }
+                    
+                });
+            });
+        </script>
     <script>
         $(document).ready(function () {
             $('#ending').click(function (e) {
+                var section = document.getElementById("sub-mit");
+                if (section.style.display === "none") {
                 $('#sub-mit').toggle()
+                }
                 
             });
         });
+    </script>
+    <script>
+    //  $(document).on('keyup', "input:not([type='submit']", function () {
+
+    //     //set it to true by default
+    //     var valid = true;
+
+    //     //getting all the inputs except input submit
+    //     var inputTextboxes = $("input:not([type='submit'])");
+
+    //     inputTextboxes.each(function(e) {
+
+    //     //it enters this only if the valid is true for any one value, if valid is set to false at any point it won't check it for next inputs - works for first time
+    //     if (valid != false){
+
+    //     if ($(this).val()) {
+    //     valid = true;
+    //     }else{
+    //     valid = false;
+    //     }
+    //     }
+    //     else{
+    //     break; //breaks the loop
+    //     }
+    //     });
+
+    //     if (valid) {
+    //     $("input[type=submit]").prop("disabled", false);
+    //     } else {
+    //     $("input[type=submit]").prop("disabled", true);
+    //     }
+    //     }
+        // $(document).ready(function(){
+        //     const formInput = document.querySelector(".form-basic");
+        //     const formButton = document.querySelector(".next");
+
+        //     // the default state is 'disabled'
+        //     // formButton.disabled = true; 
+        //     $('form > input').keyup(function() {
+                        
+        //         var empty = false;
+        //         $('form > input').each(function() {
+        // if(!empty){ // this will only check next inputs if empty is false, but once its set to true no further check will be made
+        //             if ($(this).val() == '') {
+        //                 empty = true;
+        //             }
+        // }
+        //         });
+        //         if (empty) {
+        //             $('.next').attr('disabled', 'disabled');
+        //         } else {
+        //             $('.next').removeAttr('disabled');
+        //         }
+        //     });
+        // });
+        // $(document).ready(function () {
+
+
+        //     const formInput = document.querySelector(".form-basic");
+        //     const formButton = document.querySelector(".next");
+
+        //     // the default state is 'disabled'
+        //     formButton.disabled = true; 
+
+        //     // alternative is to use "change" - explained below
+        //     // formInput.addEventListener("keyup", buttonState);
+
+        //     function buttonState() {
+        //         if (document.querySelector(".form-basic").value === "") {
+        //             formButton.disabled = false; // return disabled as true whenever the input field is empty
+        //         } else {
+        //             formButton.disabled = false; // enable the button once the input field has content
+        //         }
+        //     }
+                
+        //     });
     </script>
 </head>
 
@@ -68,7 +163,7 @@
                                 name="position" type="text" id="position" required="" value="">
                         </label>
                     </div>
-                    <button class="btn-hero next">Next</button>
+                    <button class="btn-hero next" type="submit">Next</button>
                 </section>
                 <section style="display: none;">
                 <div class="form-basic-2">
@@ -283,6 +378,7 @@
                     </div>
                     
                 </div>
+                <button id="2nd" class="prev btn-hero">Previous</button>
                 <button class="btn-hero next">Next</button>
                 </section>
                 <section style="display: none;">
@@ -331,6 +427,7 @@
                                 required=""></textarea>
                         </label>
                     </div>
+                    <button id="3rd" class="prev btn-hero">Previous</button>
                     <button id="ending" class="btn-hero next">Next</button>
                 </div>
                 </section>
@@ -421,8 +518,10 @@
                                 class="checkbox-label">Paid Ads</label></div>
                     </div>
                 </div>
+                <button class="prev btn-hero">Previous</button>
                 </section>
-            </div><button type="submit" id="sub-mit" style="display: none;" class="btn-hero opacity1">Submit</button>
+            </div>
+            <button type="submit" id="sub-mit" style="display: none; margin-top: 5%;" class="btn-hero opacity1">Submit</button>
         </form>
     </section>
 
