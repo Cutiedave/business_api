@@ -8,21 +8,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-        $(document).ready(function(){
-            $('#sub1').click(function (e) {
-                $(".form-basic").valid()
-            });
-        });
-    </script>
-    <script>
         $(document).ready(function () {
-            $('.next').click(function (e) {
+            $('#sub1').click(function (e) {
+                $('#form').validate({
+                    rules: {
+                        firstName: "required",
+                        lastName: "required",
+                        phoneNumber: "required",
+                        email: "required",
+                        companyName: "required",
+                        position: "required",
+                        size: "required",
+                        industry: "required",
+                        role: "required",
+                        lead_position: "required",
 
-                
+                        seller_overview: "required",
+                        services_sold: "required",
+                        seller_offer: "required",
+                        social_proof: "required",
+                        short_social_proof: "required",
+
+                        averageSalesCycle: "required",
+                        peopleInYourOrganisation: "required",
+                        howManyProspects: "required",
+                        howManyLeads: "required",
+                        howManyQualifiedLeads: "required",
+                        teamCloseRate: "required",
+                        averageDealSize: "required",
+                        prospectcontactcost: "required",                     
+                    }
+                    })
                 var section = $(this).closest("section");
                 var $next = section.next();
-                var $prev = section.prev();
-                if ($next.length > 0) {  // check condition first and then hide current section and show next
+                if ($next.length > 0 && $("#form").valid()) { 
                     section.toggle();
 
                     $next.toggle();
@@ -31,32 +50,59 @@
             });
         });
     </script>
-        <script>
-            $(document).ready(function () {
-                $('.prev').click(function (e) {
-                    
-                    var section = $(this).closest("section");
-                    var $next = section.prev();
-                    if ($next.length > 0) {  // check condition first and then hide current section and show next
-                        section.toggle();
-    
-                        $next.toggle();
-                    }
-                    
-                });
+    <script>
+        $(document).ready(function () {
+            $('#sub2').click(function (e) {
+                var section = $(this).closest("section");
+                var $next = section.next();
+                if ($next.length > 0 && $("#form").valid()) { 
+                    section.toggle();
+
+                    $next.toggle();
+                }   
             });
-        </script>
+        });
+    </script>
     <script>
         $(document).ready(function () {
             $('#ending').click(function (e) {
-                var section = document.getElementById("sub-mit");
-                if (section.style.display === "none") {
-                $('#sub-mit').toggle()
+                var section = $(this).closest("section");
+                var submit = document.getElementById("sub-mit")
+                var $next = section.next();
+                if ($next.length > 0 && $("#form").valid()) { 
+                    section.toggle();
+
+                    $next.toggle();
+                    if (submit.style.display === "none") {
+                            $('#sub-mit').toggle()
+                        }
                 }
                 
             });
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            $('.prev').click(function (e) {
+                var section = $(this).closest("section");
+                var $next = section.prev();
+                if ($next.length > 0) {  // check condition first and then hide current section and show next
+                    section.toggle();
+                    $next.toggle();
+                }
+            });
+        });
+    </script>
+    <!-- <script>
+        $(document).ready(function () {
+            $('#ending').click(function (e) {
+                var section = document.getElementById("sub-mit");
+                if (section.style.display === "none" && $("#form").valid()) {
+                $('#sub-mit').toggle()
+                }
+            });
+        });
+    </script> -->
 </head>
 
     <section class="hero-container">
@@ -72,34 +118,34 @@
         <div class="hero-image-flex"><img class="hero-image" src="{% static 'img/d2.svg' %}"></div>
     </section>
     <section class="form-section">
-        <form action="{% url 'dashboard' %}" method='post' >
+        <form action="{% url 'dashboard' %}" id="form" method='post' >
             {% csrf_token %}
             <div class="form-box"><img class="invest" src="{% static 'img/d4.svg' %}">
                 <section>
-                    <div class="form-basic">
+                    <div id="form-sub1" class="form-basic">
                         <label>
-                            <p>First Name*</p><input name="firstName" class="input" type="text" id="firstName" required value="">
+                            <p>First Name*</p><input name="firstName" class="input" type="text" id="firstName"  value="">
                         </label><label>
-                            <p>Last Name*</p><input name="lastName" class="input" type="text" id="lastName" required value="">
+                            <p>Last Name*</p><input name="lastName" class="input" type="text" id="lastName"  value="">
                         </label><label>
-                            <p>Phone Number*</p><input name="phoneNumber" class="input" type="phonenumber" id="phoneNumber" required
+                            <p>Phone Number*</p><input name="phoneNumber" class="input" type="tel" id="phoneNumber" 
                                 value="">
                         </label><label>
-                            <p>Work Email*</p><input name="email" class="input" type="email" id="email" required value="">
+                            <p>Work Email*</p><input name="email" class="input" type="email" id="email"  value="">
                         </label><label>
-                            <p>Company Name*</p><input name="companyName" class="input" type="text" id="companyName" required
+                            <p>Company Name*</p><input name="companyName" class="input" type="text" id="companyName" 
                                 value="">
                         </label>
                         <label>
                             <p>What is your position/title?*</p><input class="input"
-                                name="position" type="text" id="position" required value="">
+                                name="position" type="text" id="position"  value="">
                         </label>
                     </div>
-                    <input id="sub1" type="submit" value="next" class="btn-hero next">
-                    <!-- <button id="sub1" class="btn-hero next" type="submit" >Next</button> -->
+                    <div id="sub1" class="btn-hero next" >Next</div>
+                    <!-- <button id="sub1" class="btn-hero next" >Next</button> -->
                 </section>
                 <section style="display: none;">
-                <div class="form-basic-2">
+                <div class="form-basic-2" id="form-sub2">
                     <h2>Tell us a little about your ideal prospect.</h2>
                     <p class="form-sub">This info will be used to generate your Prospect Report &amp; outreach
                         messages in real-time during our demo.</p>
@@ -107,212 +153,214 @@
                         <p class="select-label">Please select your ideal lead's management level*</p>
                         <select
                             id="level" name="lead_position">
-                            <option>--select options--</option>
-                            <option>owner</option>
-                            <option>partner</option>
-                            <option>cxo</option>
-                            <option>vice-president-vp</option>
-                            <option>director</option>
-                            <option>manager</option>
-                            <option>senior</option>
-                            <option>entry</option>
-                            <option>training</option>
-                            <option>unpaid</option>
+                            <option selected disabled value="">--select options--</option>
+                            <option value="1">owner</option>
+                            <option value="1">partner</option>
+                            <option value="1">cxo</option>
+                            <option value="1">vice-president-vp</option>
+                            <option value="1">director</option>
+                            <option value="1">manager</option>
+                            <option value="1">senior</option>
+                            <option value="1">entry</option>
+                            <option value="1">training</option>
+                            <option value="1">unpaid</option>
                         </select>
                     </div>
                     <div class="select">
                         <p class="select-label">Please select your ideal lead's role*</p>
                         <select name="role" id="role">
-                            <option>--select options--</option>
-                            <option>customer service</option>
-                            <option>design</option>
-                            <option>education</option>
-                            <option>engineering</option>
-                            <option>finance</option>
-                            <option>health</option>
-                            <option>human resources</option>
-                            <option>legal</option>
-                            <option>marketing</option>
-                            <option>media</option>
-                            <option>operations</option>
-                            <option>public relations</option>
-                            <option>real estate</option>
-                            <option>sales</option>
-                            <option>trades</option>
+                            <option selected disabled value="">--select options--</option>
+                            <option value="1">customer service</option>
+                            <option value="1">design</option>
+                            <option value="1">education</option>
+                            <option value="1">engineering</option>
+                            <option value="1">finance</option>
+                            <option value="1">health</option>
+                            <option value="1">human resources</option>
+                            <option value="1">legal</option>
+                            <option value="1">marketing</option>
+                            <option value="1">media</option>
+                            <option value="1">operations</option>
+                            <option value="1">public relations</option>
+                            <option value="1">real estate</option>
+                            <option value="1">sales</option>
+                            <option value="1">trades</option>
                         </select>
                     </div>
                     <div class="select">
                         <p class="select-label">Please select your ideal lead's company size*</p>
                         <select
                             id="size" name="size">
-                            <option>--select options--</option>
-                            <option>1-10</option>
-                            <option>11-50</option>
-                            <option>51-200</option>
-                            <option>201-500</option>
-                            <option>501-1000</option>
-                            <option>1001-5000</option>
-                            <option>5001-10000</option>
-                            <option>10001+</option>
+                            <option selected disabled value="">--select options--</option>
+                            <option value="1">1-10</option>
+                            <option value="1">11-50</option>
+                            <option value="1">51-200</option>
+                            <option value="1">201-500</option>
+                            <option value="1">501-1000</option>
+                            <option value="1">1001-5000</option>
+                            <option value="1">5001-10000</option>
+                            <option value="1">10001+</option>
                         </select>
                     </div>
                     <div class="select">
-                        <p class="select-label">Please select your ideal prospect's industry*</p><select
+                        <p class="select-label">Please select your ideal prospect's industry*</p>
+                        <select
                             id="industry" name="industry">
-                            <option>--select options--</option>
-                            <option>accounting</option>
-                            <option>airlines/aviation</option>
-                            <option>alternative dispute resolution</option>
-                            <option>alternative medicine</option>
-                            <option>animation</option>
-                            <option>apparel &amp; fashion</option>
-                            <option>architecture &amp; planning</option>
-                            <option>arts and crafts</option>
-                            <option>automotive</option>
-                            <option>aviation &amp; aerospace</option>
-                            <option>banking</option>
-                            <option>biotechnology</option>
-                            <option>broadcast media</option>
-                            <option>building materials</option>
-                            <option>business supplies and equipment</option>
-                            <option>capital markets</option>
-                            <option>chemicals</option>
-                            <option>civic &amp; social organization</option>
-                            <option>civil engineering</option>
-                            <option>commercial real estate</option>
-                            <option>computer &amp; network security</option>
-                            <option>computer games</option>
-                            <option>computer hardware</option>
-                            <option>computer networking</option>
-                            <option>computer software</option>
-                            <option>construction</option>
-                            <option>consumer electronics</option>
-                            <option>consumer goods</option>
-                            <option>consumer services</option>
-                            <option>cosmetics</option>
-                            <option>dairy</option>
-                            <option>defense &amp; space</option>
-                            <option>design</option>
-                            <option>e-learning</option>
-                            <option>education management</option>
-                            <option>electrical/electronic manufacturing</option>
-                            <option>entertainment</option>
-                            <option>environmental services</option>
-                            <option>events services</option>
-                            <option>executive office</option>
-                            <option>facilities services</option>
-                            <option>farming</option>
-                            <option>financial services</option>
-                            <option>fine art</option>
-                            <option>fishery</option>
-                            <option>food &amp; beverages</option>
-                            <option>food production</option>
-                            <option>fund-raising</option>
-                            <option>furniture</option>
-                            <option>gambling &amp; casinos</option>
-                            <option>glass, ceramics, &amp; concrete</option>
-                            <option>government administration</option>
-                            <option>government relations</option>
-                            <option>graphic design</option>
-                            <option>health, wellness and fitness</option>
-                            <option>higher education</option>
-                            <option>hospital &amp; health care</option>
-                            <option>hospitality</option>
-                            <option>human resources</option>
-                            <option>import and export</option>
-                            <option>individual &amp; family services</option>
-                            <option>industrial automation</option>
-                            <option>information services</option>
-                            <option>information technology and services</option>
-                            <option>insurance</option>
-                            <option>international affairs</option>
-                            <option>international trade and development</option>
-                            <option>internet</option>
-                            <option>investment banking</option>
-                            <option>investment management</option>
-                            <option>judiciary</option>
-                            <option>law enforcement</option>
-                            <option>law practice</option>
-                            <option>legal services</option>
-                            <option>legislative office</option>
-                            <option>leisure, travel, &amp; tourism</option>
-                            <option>libraries</option>
-                            <option>logistics and supply chain</option>
-                            <option>luxury goods &amp; jewelry</option>
-                            <option>machinery</option>
-                            <option>management consulting</option>
-                            <option>maritime</option>
-                            <option>market research</option>
-                            <option>marketing and advertising</option>
-                            <option>mechanical or industrial engineering</option>
-                            <option>media production</option>
-                            <option>medical devices</option>
-                            <option>medical practice</option>
-                            <option>mental health care</option>
-                            <option>military</option>
-                            <option>mining &amp; metals</option>
-                            <option>motion pictures and film</option>
-                            <option>museums and institutions</option>
-                            <option>music</option>
-                            <option>nanotechnology</option>
-                            <option>newspapers</option>
-                            <option>non-profit organization management</option>
-                            <option>oil &amp; energy</option>
-                            <option>online media</option>
-                            <option>outsourcing/offshoring</option>
-                            <option>package/freight delivery</option>
-                            <option>packaging and containers</option>
-                            <option>paper &amp; forest products</option>
-                            <option>performing arts</option>
-                            <option>pharmaceuticals</option>
-                            <option>philanthropy</option>
-                            <option>photography</option>
-                            <option>plastics</option>
-                            <option>political organization</option>
-                            <option>primary/secondary education</option>
-                            <option>printing</option>
-                            <option>professional training &amp; coaching</option>
-                            <option>program development</option>
-                            <option>public policy</option>
-                            <option>public relations and communications</option>
-                            <option>public safety</option>
-                            <option>publishing</option>
-                            <option>railroad manufacture</option>
-                            <option>ranching</option>
-                            <option>real estate</option>
-                            <option>recreational facilities and services</option>
-                            <option>religious institutions</option>
-                            <option>renewables &amp; environment</option>
-                            <option>research</option>
-                            <option>restaurants</option>
-                            <option>retail</option>
-                            <option>security and investigations</option>
-                            <option>semiconductors</option>
-                            <option>shipbuilding</option>
-                            <option>sporting goods</option>
-                            <option>sports</option>
-                            <option>staffing and recruiting</option>
-                            <option>supermarkets</option>
-                            <option>telecommunications</option>
-                            <option>textiles</option>
-                            <option>think tanks</option>
-                            <option>tobacco</option>
-                            <option>translation and localization</option>
-                            <option>transportation/trucking/railroad</option>
-                            <option>utilities</option>
-                            <option>venture capital &amp; private equity</option>
-                            <option>veterinary</option>
-                            <option>warehousing</option>
-                            <option>wholesale</option>
-                            <option>wine and spirits</option>
-                            <option>wireless</option>
-                            <option>writing and editing</option>
+                            <option selected disabled value="">--select options--</option>
+                            <option value="1">accounting</option>
+                            <option value="1">airlines/aviation</option>
+                            <option value="1">alternative dispute resolution</option>
+                            <option value="1">alternative medicine</option>
+                            <option value="1">animation</option>
+                            <option value="1">apparel &amp; fashion</option>
+                            <option value="1">architecture &amp; planning</option>
+                            <option value="1">arts and crafts</option>
+                            <option value="1">automotive</option>
+                            <option value="1">aviation &amp; aerospace</option>
+                            <option value="1">banking</option>
+                            <option value="1">biotechnology</option>
+                            <option value="1">broadcast media</option>
+                            <option value="1">building materials</option>
+                            <option value="1">business supplies and equipment</option>
+                            <option value="1">capital markets</option>
+                            <option value="1">chemicals</option>
+                            <option value="1">civic &amp; social organization</option>
+                            <option value="1">civil engineering</option>
+                            <option value="1">commercial real estate</option>
+                            <option value="1">computer &amp; network security</option>
+                            <option value="1">computer games</option>
+                            <option value="1">computer hardware</option>
+                            <option value="1">computer networking</option>
+                            <option value="1">computer software</option>
+                            <option value="1">construction</option>
+                            <option value="1">consumer electronics</option>
+                            <option value="1">consumer goods</option>
+                            <option value="1">consumer services</option>
+                            <option value="1">cosmetics</option>
+                            <option value="1">dairy</option>
+                            <option value="1">defense &amp; space</option>
+                            <option value="1">design</option>
+                            <option value="1">e-learning</option>
+                            <option value="1">education management</option>
+                            <option value="1">electrical/electronic manufacturing</option>
+                            <option value="1">entertainment</option>
+                            <option value="1">environmental services</option>
+                            <option value="1">events services</option>
+                            <option value="1">executive office</option>
+                            <option value="1">facilities services</option>
+                            <option value="1">farming</option>
+                            <option value="1">financial services</option>
+                            <option value="1">fine art</option>
+                            <option value="1">fishery</option>
+                            <option value="1">food &amp; beverages</option>
+                            <option value="1">food production</option>
+                            <option value="1">fund-raising</option>
+                            <option value="1">furniture</option>
+                            <option value="1">gambling &amp; casinos</option>
+                            <option value="1">glass, ceramics, &amp; concrete</option>
+                            <option value="1">government administration</option>
+                            <option value="1">government relations</option>
+                            <option value="1">graphic design</option>
+                            <option value="1">health, wellness and fitness</option>
+                            <option value="1">higher education</option>
+                            <option value="1">hospital &amp; health care</option>
+                            <option value="1">hospitality</option>
+                            <option value="1">human resources</option>
+                            <option value="1">import and export</option>
+                            <option value="1">individual &amp; family services</option>
+                            <option value="1">industrial automation</option>
+                            <option value="1">information services</option>
+                            <option value="1">information technology and services</option>
+                            <option value="1">insurance</option>
+                            <option value="1">international affairs</option>
+                            <option value="1">international trade and development</option>
+                            <option value="1">internet</option>
+                            <option value="1">investment banking</option>
+                            <option value="1">investment management</option>
+                            <option value="1">judiciary</option>
+                            <option value="1">law enforcement</option>
+                            <option value="1">law practice</option>
+                            <option value="1">legal services</option>
+                            <option value="1">legislative office</option>
+                            <option value="1">leisure, travel, &amp; tourism</option>
+                            <option value="1">libraries</option>
+                            <option value="1">logistics and supply chain</option>
+                            <option value="1">luxury goods &amp; jewelry</option>
+                            <option value="1">machinery</option>
+                            <option value="1">management consulting</option>
+                            <option value="1">maritime</option>
+                            <option value="1">market research</option>
+                            <option value="1">marketing and advertising</option>
+                            <option value="1">mechanical or industrial engineering</option>
+                            <option value="1">media production</option>
+                            <option value="1">medical devices</option>
+                            <option value="1">medical practice</option>
+                            <option value="1">mental health care</option>
+                            <option value="1">military</option>
+                            <option value="1">mining &amp; metals</option>
+                            <option value="1">motion pictures and film</option>
+                            <option value="1">museums and institutions</option>
+                            <option value="1">music</option>
+                            <option value="1">nanotechnology</option>
+                            <option value="1">newspapers</option>
+                            <option value="1">non-profit organization management</option>
+                            <option value="1">oil &amp; energy</option>
+                            <option value="1">online media</option>
+                            <option value="1">outsourcing/offshoring</option>
+                            <option value="1">package/freight delivery</option>
+                            <option value="1">packaging and containers</option>
+                            <option value="1">paper &amp; forest products</option>
+                            <option value="1">performing arts</option>
+                            <option value="1">pharmaceuticals</option>
+                            <option value="1">philanthropy</option>
+                            <option value="1">photography</option>
+                            <option value="1">plastics</option>
+                            <option value="1">political organization</option>
+                            <option value="1">primary/secondary education</option>
+                            <option value="1">printing</option>
+                            <option value="1">professional training &amp; coaching</option>
+                            <option value="1">program development</option>
+                            <option value="1">public policy</option>
+                            <option value="1">public relations and communications</option>
+                            <option value="1">public safety</option>
+                            <option value="1">publishing</option>
+                            <option value="1">railroad manufacture</option>
+                            <option value="1">ranching</option>
+                            <option value="1">real estate</option>
+                            <option value="1">recreational facilities and services</option>
+                            <option value="1">religious institutions</option>
+                            <option value="1">renewables &amp; environment</option>
+                            <option value="1">research</option>
+                            <option value="1">restaurants</option>
+                            <option value="1">retail</option>
+                            <option value="1">security and investigations</option>
+                            <option value="1">semiconductors</option>
+                            <option value="1">shipbuilding</option>
+                            <option value="1">sporting goods</option>
+                            <option value="1">sports</option>
+                            <option value="1">staffing and recruiting</option>
+                            <option value="1">supermarkets</option>
+                            <option value="1">telecommunications</option>
+                            <option value="1">textiles</option>
+                            <option value="1">think tanks</option>
+                            <option value="1">tobacco</option>
+                            <option value="1">translation and localization</option>
+                            <option value="1">transportation/trucking/railroad</option>
+                            <option value="1">utilities</option>
+                            <option value="1">venture capital &amp; private equity</option>
+                            <option value="1">veterinary</option>
+                            <option value="1">warehousing</option>
+                            <option value="1">wholesale</option>
+                            <option value="1">wine and spirits</option>
+                            <option value="1">wireless</option>
+                            <option value="1">writing and editing</option>
                         </select>
                     </div>
                     
                 </div>
-                <button id="2nd" class="prev btn-hero">Previous</button>
-                <button id="sub2" class="btn-hero next">Next</button>
+                <div id="2nd" class="prev btn-hero" >Previous</div>
+                <div id="sub2" class="btn-hero next" >Next</div>
+                <!-- <button id="sub2" class="btn-hero next">Next</button> -->
                 </section>
                 <section style="display: none;">
                 <div class="into--scroll" id="shid">
@@ -325,7 +373,7 @@
                                 the phrase "who is"...*</p><span>(My example) who is an award-winning digital
                                 marketing consultant &amp; founder of Ben Ijah LLC.</span><textarea
                                 class="text-area-form" type="text" id="whoYouAre" name="seller_overview"
-                                placeholder="Type your answer here..." required></textarea>
+                                placeholder="Type your answer here..." ></textarea>
                         </label>
                         <label class="textarea-label">
                             <p class="text-title">Please provide a list of the service(s) you'd like to sell to
@@ -333,14 +381,14 @@
                                 Human-Guided, AI-Driven lead generation software that automates the entire B2B
                                 biz dev process and reduces acquisition costs.</span><textarea
                                 class="text-area-form" type="text" id="listOfService" name="services_sold"
-                                placeholder="Type your answer here..." required></textarea>
+                                placeholder="Type your answer here..." ></textarea>
                         </label>
                         <label class="textarea-label">
                             <p class="text-title">In one sentence describe your offer/guarantee? In other words,
                                 why should this lead meet with you? *</p><span>(My example) We guarantee our
                                 system saves your business time and/or money generating B2B leads or your money
                                 back</span><textarea class="text-area-form" name="seller_offer" type="text" id="describeYourOffer"
-                                placeholder="Type your answer here..." required></textarea>
+                                placeholder="Type your answer here..." ></textarea>
                         </label><label class="textarea-label">
                             <p class="text-title">Provide a brief list of past success/clients? We're looking to
                                 add social proof to your pitch. *</p><span>(My example)
@@ -349,7 +397,7 @@
                                 an AI-driven software stack that researches prospects then contacts them with
                                 bespoke messaging based on that research.</span><textarea class="text-area-form"
                                 type="text" name="social_proof" id="ListOfPastSuccess" placeholder="Type your answer here..."
-                                required></textarea>
+                                ></textarea>
                         </label>
                         <label class="textarea-label">
                             <p class="text-title">Break down the previous statement into a one-line elevator
@@ -357,11 +405,11 @@
                                 industries and developed an AI-driven BDR guaranteed to save your sales team
                                 time &amp; money.</span><textarea class="text-area-form" type="text"
                                 id="previousStatement" name="short_social_proof" placeholder="Type your answer here..."
-                                required></textarea>
+                                ></textarea>
                         </label>
                     </div>
-                    <button id="3rd" class="prev btn-hero">Previous</button>
-                    <button id="ending" class="btn-hero next">Next</button>
+                    <div id="3rd" class="prev btn-hero" >Previous</div>
+                    <div id="ending" class="btn-hero next" >Next</div>
                 </div>
                 </section>
                 <section id="endopo" class="endopo"  style="display: none;" >
@@ -372,10 +420,10 @@
                         create your business case.</p>
                     <label class="textarea-label">
                         <p class="text-title">How many months does your average sales cycle take? *</p>
-                        <span>Only positive numbers are required</span>
+                        <span>Only positive numbers are </span>
                         <input class="text-area-form" name="averageSalesCycle"
                             type="number" id="averageSalesCycle" placeholder="Type your answer here..."
-                            required value="">
+                             value="">
                     </label>
 
                     <label class="textarea-label">
@@ -383,7 +431,7 @@
                             development? *</p><span>If you alone handle all biz dev &amp; sales, list
                             1.</span>
                             <input name="peopleInYourOrganisation" class="text-area-form" type="number" id="peopleInYourOrganisation"
-                            placeholder="Type your answer here..." required value="">
+                            placeholder="Type your answer here..."  value="">
                     </label>
                     
                     <label class="textarea-label">
@@ -391,23 +439,23 @@
                             each month? *</p><span>Please do not include PPC or SMM marketing
                             campaigns.</span>
                             <input name="howManyProspects" class="text-area-form" type="number" id="howManyProspects"
-                            placeholder="Type your answer here..." required value="">
+                            placeholder="Type your answer here..."  value="">
                     </label>
                     
                     <label class="textarea-label">
                         <p class="text-title">On average, how many leads does your team generate each month? *
-                        </p><span>Only positive numbers are required</span>
+                        </p><span>Only positive numbers are </span>
                         <input class="text-area-form" name="howManyLeads"
-                            type="number" id="howManyLeads" placeholder="Type your answer here..." required
+                            type="number" id="howManyLeads" placeholder="Type your answer here..." 
                             value="">
                     </label>
                     
                     <label class="textarea-label">
                         <p class="text-title">On average, how many qualified leads does your team generate each
-                            month? *</p><span>Only positive numbers are required</span>
+                            month? *</p><span>Only positive numbers are </span>
                             <input name="howManyQualifiedLeads"
                             class="text-area-form" type="number" id="howManyQualifiedLeads"
-                            placeholder="Type your answer here..." required value="">
+                            placeholder="Type your answer here..."  value="">
                     </label>
                     
                     <label class="textarea-label">
@@ -415,14 +463,14 @@
                         </p><span>Provide percent as a number. Ex. if 50% list 50</span>
                         <input name="teamCloseRate"
                             class="text-area-form" type="number" id="teamCloseRate"
-                            placeholder="Type your answer here..." required value="">
+                            placeholder="Type your answer here..."  value="">
                     </label>
                     
                     <label class="textarea-label">
                         <p class="text-title">What is your average deal size? *</p><span>Provide amount as
                             number. Ex. if $50,000 list 50,000</span>
                             <input name="averageDealSize" class="text-area-form" type="number"
-                            id="averageDealSize" placeholder="Type your answer here..." required value="">
+                            id="averageDealSize" placeholder="Type your answer here..."  value="">
                     </label>
                     
                     <label class="textarea-label">
@@ -430,7 +478,7 @@
                             you? *</p><span>If you don't pay for contact info, list 0</span>
                             <input name="prospectcontactcost"
                             class="text-area-form" type="number" id="prospectContactInfo"
-                            placeholder="Type your answer here..." required value="">
+                            placeholder="Type your answer here..."  value="">
                     </label>
 
                     <p class="text-title title-check">How are you contacting prospects? *</p>
@@ -451,7 +499,7 @@
                                 class="checkbox-label">Paid Ads</label></div>
                     </div>
                 </div>
-                <button class="prev btn-hero">Previous</button>
+                <div id="4th" class="prev btn-hero" >Previous</div>
                 </section>
             </div>
             <button type="submit" id="sub-mit" style="display: none; margin-top: 5%;" class="btn-hero opacity1">Submit</button>
