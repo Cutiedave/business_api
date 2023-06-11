@@ -40,11 +40,15 @@
                     }
                     })
                 var section = $(this).closest("section");
+                var submit = document.getElementById("sub-mit")
                 var $next = section.next();
                 if ($next.length > 0 && $("#form").valid()) { 
                     section.toggle();
 
                     $next.toggle();
+                   
+                    $('#sub-mit').hide()
+                      
                 }
                 
             });
@@ -54,11 +58,15 @@
         $(document).ready(function () {
             $('#sub2').click(function (e) {
                 var section = $(this).closest("section");
+                var submit = document.getElementById("sub-mit")
                 var $next = section.next();
                 if ($next.length > 0 && $("#form").valid()) { 
                     section.toggle();
 
                     $next.toggle();
+                    
+                    $('#sub-mit').hide()
+                     
                 }   
             });
         });
@@ -73,9 +81,9 @@
                     section.toggle();
 
                     $next.toggle();
-                    if (submit.style.display === "none") {
-                            $('#sub-mit').toggle()
-                        }
+                    
+                    $('#sub-mit').show()
+                        
                 }
                 
             });
@@ -85,24 +93,18 @@
         $(document).ready(function () {
             $('.prev').click(function (e) {
                 var section = $(this).closest("section");
+                var submit = document.getElementById("sub-mit")
                 var $next = section.prev();
                 if ($next.length > 0) {  // check condition first and then hide current section and show next
                     section.toggle();
                     $next.toggle();
+                    
+                    $('#sub-mit').hide()
+          
                 }
             });
         });
     </script>
-    <!-- <script>
-        $(document).ready(function () {
-            $('#ending').click(function (e) {
-                var section = document.getElementById("sub-mit");
-                if (section.style.display === "none" && $("#form").valid()) {
-                $('#sub-mit').toggle()
-                }
-            });
-        });
-    </script> -->
 </head>
 
     <section class="hero-container">
