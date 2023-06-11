@@ -17,44 +17,46 @@
 	<div class="visual--grid">
 		<div class="visual--output">
 			<div class="visual--high-value">
-				<div>Your Current plan costs</div>${{data.Annual_Organization_BDR_Costs|intcomma}}<div>Per year</div>
+				<div>ABDD would save you</div>${{data.savings_per_year|floatformat:2|intcomma}}<div>per year</div>
 			</div>
 			<img src="{% static 'img/chart.svg' %}">
 			<div class="visual--low-value">
-				<div>ABDD costs you</div>${{data.ABDD_cost_per_year|intcomma}}<div>Per year</div>
+				<div>Your current Biz Dev process costs</div>${{data.Annual_Organization_BDR_Costs|intcomma}}<div>per year</div>
 			</div>
-		</div><img src="{% static 'img/sale.svg' %}">
+		</div>
+		<img src="{% static 'img/sale.svg' %}">
 	</div>
 	<table>
 		<thead>
 			<th></th>
-			<th class="table-head table-head-1">Current plan</th>
+			<th class="table-head table-head-1">Current Plan</th>
 			<th class="table-head table-head-2">ABDD</th>
 		</thead>
 		<tbody>
 			<tr class="switch-color">
-				<td class="content--title">annual cost</td>
-				<td class="content--text">$ {{data.Annual_Organization_BDR_Costs|intcomma}}</td>
-				<td class="content--text">$ {{data.ABDD_cost_per_year|intcomma}}</td>
-			</tr>
-			<tr>
-				<td class="content--title">daily cost</td>
-				<td class="content--text">$ {{data.Daily_Organization_BDR_Costs|floatformat:1|intcomma}}</td>
-				<td class="content--text">$ {{data.ABDD_cost_per_day|floatformat:1|intcomma}}</td>
-			</tr>
-			<tr class="switch-color">
-				<td class="content--title">hourly cost</td>
-				<td class="content--text">$ {{data.Hourly_Organization_BDR_Costs|floatformat:1|intcomma}}</td>
-				<td class="content--text">$ {{data.ABDD_cost_per_hour|floatformat:1|intcomma}}</td>
+				<td class="content--title">Annual Biz Dev Cost</td>
+				<td class="content--text">$ {{data.Annual_Organization_BDR_Costs|floatformat:2|intcomma}}</td>
+				<td class="content--text">$ {{data.ABDD_cost_per_year|floatformat:2|intcomma}}</td>
 			</tr>
 			<tr>
 				<td class="content--title">monthly cost</td>
-				<td class="content--text">$ {{data.Monthly_Organization_BDR_Costs|floatformat:1|intcomma}}</td>
-				<td class="content--text">$ {{data.ABDD_cost_per_month|floatformat:1|intcomma}}</td>
+				<td class="content--text">$ {{data.Monthly_Organization_BDR_Costs|floatformat:2|intcomma}}</td>
+				<td class="content--text">$ {{data.ABDD_cost_per_month|floatformat:2|intcomma}}</td>
 			</tr>
+			<tr>
+				<td class="content--title">Daily Biz Dev Cost</td>
+				<td class="content--text">$ {{data.Daily_Organization_BDR_Costs|floatformat:2|intcomma}}</td>
+				<td class="content--text">$ {{data.ABDD_cost_per_day|floatformat:2|intcomma}}</td>
+			</tr>
+			<tr class="switch-color">
+				<td class="content--title">Hourly Biz Dev Cost</td>
+				<td class="content--text">$ {{data.Hourly_Organization_BDR_Costs|floatformat:2|intcomma}}</td>
+				<td class="content--text">$ {{data.ABDD_cost_per_hour|floatformat:2|intcomma}}</td>
+			</tr>
+			
 			<tr class="switch-color">
 				<td class="content--title">Average BDR salary</td>
-				<td class="content--text">$ {{data.Avg_BDR_Salary|floatformat:1|intcomma}}</td>
+				<td class="content--text">$ {{data.Avg_BDR_Salary|floatformat:2|intcomma}}</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 						xmlns="http://www.w3.org/2000/svg"
@@ -65,8 +67,8 @@
 					</svg></td>
 			</tr>
 			<tr>
-				<td class="content--title">Average training cost</td>
-				<td class="content--text">$ {{data.Avg_BDR_Training_Costs|floatformat:1|intcomma}}</td>
+				<td class="content--title">Average BDR Training Cost</td>
+				<td class="content--text">$ {{data.Avg_BDR_Training_Costs|floatformat:2|intcomma}}</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 						xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +79,8 @@
 					</svg></td>
 			</tr>
 			<tr class="switch-color">
-				<td class="content--title">Benefit cost</td>
-				<td class="content--text">$ {{data.Avg_BDR_Benefits|floatformat:1|intcomma}}</td>
+				<td class="content--title">BDR Employee Benefits Cost</td>
+				<td class="content--text">$ {{data.Avg_BDR_Benefits|floatformat:2|intcomma}}</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 						xmlns="http://www.w3.org/2000/svg"
@@ -89,17 +91,17 @@
 					</svg></td>
 			</tr>
 			<tr>
-				<td class="content--title">Organisation cost per lead</td>
-				<td class="content--text">$ {{data.Organization_Avg_Cost_Per_Lead|floatformat:1|intcomma}}</td>
-				<td class="content--text">$ {{data.ABDD_Avg_Cost_Per_Lead|floatformat:1|intcomma}}</td>
+				<td class="content--title">Avg. Cost Per Lead (CPL)</td>
+				<td class="content--text">$ {{data.Organization_Avg_Cost_Per_Lead|floatformat:2|intcomma}}</td>
+				<td class="content--text">$ {{data.ABDD_Avg_Cost_Per_Lead|floatformat:2|intcomma}}</td>
 			</tr>
 			<tr class="switch-color">
-				<td class="content--title">Organisation cost per likely sale</td>
-				<td class="content--text">$ {{data.Avg_Organization_BDR_Cost_to_Generate_Sale|floatformat:1|intcomma}}</td>
-				<td class="content--text">$ {{data.Avg_ABDD_Cost_to_Generate_Sale|floatformat:1|intcomma}}</td>
+				<td class="content--title">Avg. Cost Per Sale</td>
+				<td class="content--text">$ {{data.Avg_Organization_BDR_Cost_to_Generate_Sale|floatformat:2|intcomma}}</td>
+				<td class="content--text">$ {{data.Avg_ABDD_Cost_to_Generate_Sale|floatformat:2|intcomma}}</td>
 			</tr>
 			<tr>
-				<td class="content--title">Days to generate lead</td>
+				<td class="content--title">Avg. Days to Generate Lead</td>
 				<td class="content--text">{{data.Organization_Lead_Generation_Rate_daily|floatformat:0}}</td>
 				<td class="content--text">{{data.ABDD_Lead_Generation_Rate_daily|floatformat:0}}</td>
 				
@@ -116,40 +118,40 @@
 							fill="currentColor"></path>
 					</svg></td>
 			</tr> -->
-			<tr>
-				<td class="content--title">Leads generated per month</td>
-				<td class="content--text">{{data.Leads_Monthly|floatformat:0}}</td>
-				<td class="content--text">{{data.ABDD_Lead_Generation_Rate|floatformat:0}}</td>
-			</tr>
 			<tr class="switch-color">
-				<td class="content--title">monthly prospect</td>
+				<td class="content--title">Prospects Contacted per Month</td>
 				<td class="content--text">{{data.Contacts_Monthly}}</td>
 				<td class="content--text">{{data.ABDD_contacts_per_month}}</td>
 			</tr>
 			<tr>
-				<td class="content--title">contact hourly rate</td>
+				<td class="content--title">Leads Generated per Month</td>
+				<td class="content--text">{{data.Leads_Monthly|floatformat:0}}</td>
+				<td class="content--text">{{data.ABDD_Lead_Generation_Rate|floatformat:0}}</td>
+			</tr>
+			<tr>
+				<td class="content--title">Prospects Contacted per Hour</td>
 				<td class="content--text">{{data.Contacts_Hourly}}</td>
 				<td class="content--text">{{data.ABDD_contacts_per_hour}}</td>
 			</tr>
 			<tr class="switch-color">
-				<td class="content--title">contact daily rate</td>
+				<td class="content--title">Prospects Contacted per Day</td>
 				<td class="content--text">{{data.Contacts_Daily}}</td>
 				<td class="content--text">{{data.ABDD_contacts_per_day}}</td>
 			</tr>
 			<tr>
-				<td class="content--title">contact to generate lead</td>
+				<td class="content--title">Prospects Needed per Lead</td>
 				<td class="content--text">{{data.contacts_to_generate_each_lead}}</td>
 				<td class="content--text">{{data.contacts_to_generate_each_lead}}</td>
 
 			</tr>
 			<tr>
-				<td class="content--title">Organisation lead to close</td>
+				<td class="content--title">Leads Needed per Sales</td>
 				<td class="content--text">{{data.leads_needed_to_generate_each_sale|floatformat:0}}</td>
 				<td class="content--text">{{data.leads_needed_to_generate_each_sale|floatformat:0}}</td>
 
 			</tr>
 			<tr class="switch-color">
-				<td class="content--title">org. team to abdd process_ratio</td>
+				<td class="content--title">ABDD vs Current Team Process Rate</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 						xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +163,7 @@
 					<td class="content--text">{{data.org_abdd_process_ratio}}x faster</td>
 			</tr>
 			<tr class="switch-color">
-				<td class="content--title">org. individual to abdd process_ratio</td>
+				<td class="content--title">ABDD vs Current BDR Process Rate</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 						xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +175,7 @@
 					<td class="content--text">{{data.ind_abdd_process_ratio}}x faster</td>
 			</tr>
 			<tr class="switch-color">
-				<td class="content--title">Team monthly unfruitful contacts</td>
+				<td class="content--title">Team Unfruitful Contacts per Month</td>
 				<td class="content--text">{{data.organization_unfruitful_contacts_monthly}}</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
@@ -185,7 +187,7 @@
 					</svg></td>
 			</tr>
 			<tr>
-				<td class="content--title">Team daily unfruitful contacts</td>
+				<td class="content--title">Team Unfruitful Contacts per Day</td>
 				<td class="content--text">{{data.organization_unfruitful_contacts_daily|floatformat:0}}</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
@@ -197,7 +199,7 @@
 					</svg></td>
 			</tr>
 			<tr class="switch-color">
-				<td class="content--title">Team hourly unfruitful contacts</td>
+				<td class="content--title">Team Unfruitful Contacts per Hour</td>
 				<td class="content--text">{{data.organization_unfruitful_contacts_hourly|floatformat:0}}</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
@@ -209,8 +211,8 @@
 					</svg></td>
 			</tr>
 			<tr>
-				<td class="content--title">Team monthly unfruitful cost</td>
-				<td class="content--text">$ {{data.organization_unfruitful_costs_monthly|floatformat:1|intcomma}}</td>
+				<td class="content--title">Monthly Unfruitful Cost</td>
+				<td class="content--text">$ {{data.organization_unfruitful_costs_monthly|floatformat:2|intcomma}}</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 						xmlns="http://www.w3.org/2000/svg"
@@ -221,8 +223,8 @@
 					</svg></td>
 			</tr>
 			<tr class="switch-color">
-				<td class="content--title">Team daily unfruitful cost</td>
-				<td class="content--text">$ {{data.organization_unfruitful_costs_daily|floatformat:1|intcomma}}</td>
+				<td class="content--title">Daily Unfruitful Cost</td>
+				<td class="content--text">$ {{data.organization_unfruitful_costs_daily|floatformat:2|intcomma}}</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 						xmlns="http://www.w3.org/2000/svg"
@@ -233,8 +235,8 @@
 					</svg></td>
 			</tr>
 			<tr>
-				<td class="content--title">Team hourly unfruitful cost</td>
-				<td class="content--text">$ {{data.organization_unfruitful_costs_hourly|floatformat:1|intcomma}}</td>
+				<td class="content--title">Hourly Unfruitful Cost</td>
+				<td class="content--text">$ {{data.organization_unfruitful_costs_hourly|floatformat:2|intcomma}}</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 						xmlns="http://www.w3.org/2000/svg"
@@ -244,8 +246,8 @@
 							fill="currentColor"></path>
 					</svg></td>
 			</tr>
-			<tr class="switch-color">
-				<td class="content--title">Unfruitful contact rate</td>
+			<!--<tr class="switch-color">
+				<td class="content--title">Unfruitful Contact Rate</td>
 				<td class="content--text">{{data.unfruitful_contact_rate|floatformat:0}}</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
@@ -255,9 +257,9 @@
 							d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
 							fill="currentColor"></path>
 					</svg></td>
-			</tr>
+			</tr> -->
 			<tr>
-				<td class="content--title">BDR vs ABBD monthly savings</td>
+				<td class="content--title">ABBD monthly savings</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 						xmlns="http://www.w3.org/2000/svg"
@@ -266,10 +268,10 @@
 							d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
 							fill="currentColor"></path>
 					</svg></td>
-				<td class="content--text">$ {{data.savings_per_month|floatformat:1|intcomma}}</td>
+				<td class="content--text">$ {{data.savings_per_month|floatformat:2|intcomma}}</td>
 			</tr>
 			<tr class="switch-color">
-				<td class="content--title">BDR vs ABBD Annual savings</td>
+				<td class="content--title">ABBD Annual savings</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 						xmlns="http://www.w3.org/2000/svg"
@@ -278,10 +280,10 @@
 							d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
 							fill="currentColor"></path>
 					</svg></td>
-				<td class="content--text">$ {{data.savings_per_year|floatformat:1|intcomma}}</td>
+				<td class="content--text">$ {{data.savings_per_year|floatformat:2|intcomma}}</td>
 			</tr>
 			<tr>
-				<td class="content--title">Monthly savings percentage</td>
+				<td class="content--title">Monthly Savings (%)</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 						xmlns="http://www.w3.org/2000/svg"
@@ -293,7 +295,7 @@
 				<td class="content--text">{{data.saving_rate}}%</td>
 			</tr>
 			<tr class="switch-color">
-				<td class="content--title">CPI reduction</td>
+				<td class="content--title">CPL Reduction (%)</td>
 				<td class="content--text"><svg stroke="currentColor" fill="none" stroke-width="0"
 						viewBox="0 0 15 15" class="global-class-name" height="1em" width="1em"
 						xmlns="http://www.w3.org/2000/svg"
@@ -313,26 +315,25 @@
 	</table>
 </section>
 <div class="rep">
-	<h1>Prospect report</h1>
-	<h3 style="color: rgb(78, 28, 85); font-size: large; padding-bottom: 30px; font-weight: 200;">{{data.prospect_report}}</h3>
+	<h1 style="font-size: xx-large;">Prospect report</h1>
+	<br>
+	<h3 style="color: rgb(78, 28, 85); font-size: large; padding-bottom: 30px; font-weight: 200;">{{data.prospect_report|linebreaksbr}}</h3>
 </div>
+<br>
 <div class="rep">
-	<h1>Email</h1>
-	<h3 style=" color: rgb(78, 28, 85); font-size: large; padding-bottom: 30px; font-weight: 200;">{{data.background_email}}</h3>
+	<h1 style="font-size: xx-large;" >Email</h1>
+	<br>
+	<h3 style=" color: rgb(78, 28, 85); font-size: large; padding-bottom: 30px; font-weight: 200;">{{data.background_email|linebreaksbr}}</h3>
 </div>
+<br>
 <div class="rep">
-	<h1>Text</h1>
-	<h3 style=" color: rgb(78, 28, 85); font-size: large; padding-bottom: 30px; font-weight: 200;">{{data.background_text}}</h3>
+	<h1 style="font-size: xx-large;" >Text</h1>
+	<br>
+	<h3 style=" color: rgb(78, 28, 85); font-size: large; padding-bottom: 30px; font-weight: 200;">{{data.background_text|linebreaksbr}}</h3>
 </div>
-<button style="margin: 0;" class="btn btn-hero">Back to Home</button>
+<br>
+<button style="margin: 0;" class="btn btn-hero"><a href="{% url 'home_web_base' %}">Back to Home</a></button>
 <div class="linkk">
 	<h4 style=" color: rgb(84, 118, 211); font-size: large; padding-top: 50px; font-weight: 400;"><a href="{{data.dashboard_link}}">Dashboard link :{{data.dashboard_link}} </a></h4>
 </div>
-
-
-
-
-
-
-
 {% endblock content%}

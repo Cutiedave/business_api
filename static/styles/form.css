@@ -144,101 +144,7 @@ span {
   position: relative
 }
 
-@media only screen and (min-device-width: 200px) and (max-device-width: 767px)  {
-  html {
-    font-size: 65%;
-  }
 
-  #root {
-    width: 90%;
-    padding-right: 3px
-  }
-
-  nav {
-    margin: 27px auto auto;
-    max-width: 100%;
-    /* padding-right: 10px; */
-    margin-bottom: 47px;
-    position: relative;
-    width: 90%;
-    height: 50px;
-    background-color: #6159e6;
-    border-radius: 8px;
-    font-size: 0;
-  }
-  nav a {
-    line-height: 50px;
-    height: 100%;
-    font-size: 5px;
-    width: 1%;
-    display: inline-block;
-    position: relative;
-    z-index: 1;
-    text-decoration: none;
-    text-transform: uppercase;
-    text-align: center;
-    color: white;
-    cursor: pointer;
-  }
-  nav .animation {
-    height: 100%;
-    top: 0;
-    z-index: 0;
-    transition: all .5s ease 0s;
-    border-radius: 8px;
-  }
-  a:nth-child(1) {
-    width: 2%;
-  }
-  a:nth-child(2) {
-    width: 2%;
-    display: none;
-  }
-  a:nth-child(3) {
-    width: 2%;
-  }
-  a:nth-child(4) {
-    width: 3%;
-  }
-  a:nth-child(5) {
-    width: 3%;
-  }
-
-
-  .invest,
-  .logic {
-    margin-bottom: 3.2rem
-  }
-
-  .termsheet {
-    padding-top: 3.2rem;
-    margin-bottom: 3.2rem
-  }
-
-  .online--discussion,
-  .datapoint,
-  .savings {
-    display: none
-  }
-
-  table {
-    width: 100%
-  }
-
-  .table-head,
-  .content--text {
-    font-size: 0.9rem
-  }
-
-  .table-head span {
-    font-size: 1rem
-  }
-
-  .content--title {
-    padding-left: 1rem;
-    font-size: 0.9rem
-  }
-}
 
 .primary-heading {
   font-size: 5.8rem;
@@ -534,34 +440,48 @@ option {
 
 .visual--grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr
-}
-
-.visual--output {
-  position: relative;
-  margin-bottom: 9.6rem
+  grid-template-columns: 1fr 1fr
 }
 
 .visual--high-value {
-  position: absolute;
-  right: 8.5%;
-  bottom: 79%;
-  font-size: 1.4rem;
+  position: relative;
+  left: 26.5%;
+  top: 15%; 
+  font-size: 1.5rem;
   font-weight: 800;
   color: #6159e6
 }
 
 .visual--low-value {
-  position: absolute;
-  left: 15%;
-  bottom: 18%;
-  font-size: 1.4rem;
+  position: relative;
+  right: -10.5%;
+  max-width: 25%;
+  top: -23%; 
+  font-size: 1.5rem;
   font-weight: 800;
   color: #6159e6
 }
+/* .visual--output {
+  position: relative;
+  margin-bottom: 9.6rem
+}
+
+
+.visual--low-value {
+  position: relative;
+  right: -17.5%;
+  max-width: 25%;
+  top: -23%; 
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #6159e6
+} */
 
 .rep {
-  width: 700px; 
+  max-width: 80%; 
+  /* align-content: center; */
+  margin-left: 15%;
+  margin-right: 15%;
   text-align: left; 
   padding-bottom: 15px;
 }
@@ -614,7 +534,8 @@ option {
     align-items: center;
     display: block;
     margin-bottom: 4.8rem;
-    max-width: 80%
+    max-width: 80%;
+    display: none;
   }
 
   .visual--grid img {
@@ -651,5 +572,110 @@ option {
     width: 50%; 
     text-align: left;
     padding-bottom: 50px;
+  }
+}
+
+@media only screen and (min-device-width: 200px) and (max-device-width: 767px)  {
+  html {
+    font-size: 65%;
+  }
+
+  #root {
+    width: 90%;
+    padding-right: 3px
+  }
+
+  nav {
+    margin: 27px auto auto;
+    max-width: 100%;
+    /* padding-right: 10px; */
+    margin-bottom: 47px;
+    position: relative;
+    width: 90%;
+    height: 50px;
+    background-color: #6159e6;
+    border-radius: 8px;
+    font-size: 0;
+  }
+  nav a {
+    line-height: 50px;
+    height: 100%;
+    font-size: 5px;
+    width: 1%;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+  }
+  nav .animation {
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    transition: all .5s ease 0s;
+    border-radius: 8px;
+  }
+  a:nth-child(1) {
+    width: 2%;
+  }
+  a:nth-child(2) {
+    width: 2%;
+    display: none;
+  }
+  a:nth-child(3) {
+    width: 2%;
+  }
+  a:nth-child(4) {
+    width: 3%;
+  }
+  a:nth-child(5) {
+    width: 3%;
+  }
+
+
+  .invest,
+  .logic {
+    margin-bottom: 3.2rem
+  }
+  .invest{
+    display: none;
+  }
+
+  .form-box {
+    display: block;
+    grid-template-columns: repeat(0, 50);
+    /* row-gap: 9.6rem */
+  }
+
+  .termsheet {
+    padding-top: 3.2rem;
+    margin-bottom: 3.2rem
+  }
+
+  .online--discussion,
+  .datapoint,
+  .savings {
+    display: none
+  }
+
+  table {
+    width: 100%
+  }
+
+  .table-head,
+  .content--text {
+    font-size: 0.9rem
+  }
+
+  .table-head span {
+    font-size: 1rem
+  }
+
+  .content--title {
+    padding-left: 1rem;
+    font-size: 0.9rem
   }
 }

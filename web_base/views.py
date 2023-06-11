@@ -266,29 +266,9 @@ def dashboard_detail(requests,id):
     if not users:
         messages.error(requests, 'No data available, please fill the data form')
         return redirect('home_web_base')
-    serializer=MepSerializer(users)
-    return render(requests, 'web_base/table_page.html',{'data':serializer.data})
-    # if not requests.user.is_authenticated:
-    #     return redirect('login')
-    # else:
-    #     if requests.user.is_admin:
-    #         users=Business_case_data.objects.filter(id=id).first()
-    #         if not users:
-    #             messages.error(requests, 'No data available, please fill the data form')
-    #             return redirect('home_web_base')
-    #         serializer=MepSerializer(users)
-    #         return render(requests, 'web_base/table_page.html',{'data':serializer.data})
-
-    #     if requests.user.email != email:
-    #         messages.error(requests, 'Not allowed on this account, check email')
-    #         return redirect('home_web_base')
-    #     else:
-    #         users=Business_case_data.objects.filter(email=email).first()
-    #         if not users:
-    #             messages.error(requests, 'No data available, please fill the data form')
-    #             return redirect('home_web_base')
-    #         serializer=MepSerializer(users)
-    #         return render(requests, 'web_base/table_page.html',{'data':serializer.data})
+    data=MepSerializer(users).data
+    data['prospect_report'] = data['prospect_report'].replace('Paragraph ', '')
+    return render(requests, 'web_base/table_page.html',{'data':data})
 
 
 
@@ -352,11 +332,6 @@ def seller_form(requests):
 
         pw = 'default'
         full_name = data['seller_first_name'] + ' ' + data['seller_last_name']
-
-        #checks if the user email is available
-        # if (MyUser.objects.filter(email=email).exists()==True):
-        #     messages.error(requests, 'email already exists for another user')
-        #     return render(requests,'web_base/home.html')   
 
         # checks if the data has been previously saved
         if (Business_case_data.objects.filter(email=data['email']).exists()==True):
@@ -625,12 +600,7 @@ def seller_form(requests):
     else:
         messages.error(requests, 'error: invalid dashboard link')
         return redirect('home_web_base')
-        # users=Business_case_data.objects.filter(email=requests.user.email).first()
-        # if not users:
-        #     messages.error(requests, 'No data available, please fill the data form')
-        #     return redirect('home_web_base')
-        # serializer=MepSerializer(users)
-        # return render(requests, 'web_base/table_page.html',{'data':serializer.data})
+
 
 @decorators.unauthenticated_user
 def Login(requests):

@@ -208,7 +208,7 @@ def send_email(business_data):
         time.sleep(35)
         conversation.append({'role': 'system', 'content': prompt1})
         conversation = ChatGPT_conversation(conversation, model_id)
-        background = conversation[-1]['content']
+        background = conversation[-1]['content'].replace('Paragraph ', '')
         obj = Business_case_data.objects.get(email=business_data['email'])
         obj.prospect_report=background
         obj.save()
