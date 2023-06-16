@@ -152,7 +152,7 @@ span {
   letter-spacing: -2px;
   line-height: 1.05;
   color: #2b2866;
-  text-align: justify;
+  text-align: left;
   margin-bottom: 2rem;
   margin-top: 2.5rem
 }
@@ -161,7 +161,7 @@ span {
   font-size: 1.8rem;
   letter-spacing: -.5px;
   line-height: 1.4;
-  text-align: justify;
+  text-align: left;
   margin-bottom: 5rem;
   color: #2b2866
 }
@@ -573,6 +573,13 @@ option {
     text-align: left;
     padding-bottom: 50px;
   }
+
+  /* .input {
+    width: 100%;
+    border: none;
+    padding: 0;
+    border-radius: .5rem
+  } */
 }
 
 @media only screen and (min-device-width: 200px) and (max-device-width: 767px)  {
@@ -589,9 +596,10 @@ option {
     margin: 27px auto auto;
     max-width: 100%;
     /* padding-right: 10px; */
-    margin-bottom: 47px;
+    margin-bottom: 0%;
+    padding-bottom: 0%;
     position: relative;
-    width: 90%;
+    max-width: 100%;
     height: 50px;
     background-color: #6159e6;
     border-radius: 8px;
@@ -601,7 +609,7 @@ option {
     line-height: 50px;
     height: 100%;
     font-size: 5px;
-    width: 1%;
+    max-width: 100%;
     display: inline-block;
     position: relative;
     z-index: 1;
@@ -619,20 +627,14 @@ option {
     border-radius: 8px;
   }
   a:nth-child(1) {
-    width: 2%;
+    max-width: 20%;
   }
   a:nth-child(2) {
-    width: 2%;
+    max-width: 20%;
     display: none;
   }
   a:nth-child(3) {
-    width: 2%;
-  }
-  a:nth-child(4) {
-    width: 3%;
-  }
-  a:nth-child(5) {
-    width: 3%;
+    max-width: 20%;
   }
 
 
@@ -646,9 +648,26 @@ option {
 
   .form-box {
     display: block;
-    grid-template-columns: repeat(0, 50);
+    margin-left: -10%;
+    margin-right: 10%;
+    grid-template-columns: repeat(0, 1);
+    width: 115%;
     /* row-gap: 9.6rem */
   }
+   
+  form {
+    padding-left: 0%;
+    margin-left: 0%;
+  }
+
+  .form-sub1 {
+    width: 100%;
+  }
+
+.form-section {
+  margin-bottom: 9.6rem;
+  width: 100%;
+}
 
   .termsheet {
     padding-top: 3.2rem;
